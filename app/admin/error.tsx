@@ -1,7 +1,7 @@
 "use client";
 import React from 'react'
 
-export default function error() {
+export default function Error() {
   return (
     <div
         className="min-h-screen min-w-full flex justify-center items-center"

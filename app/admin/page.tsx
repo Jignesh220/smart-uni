@@ -7,7 +7,7 @@ import { firebaseApp } from "../Firebase/Firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { throws } from "assert";
 
-export default function page() {
+export default function Page() {
   const route = useRouter();
   const auth = getAuth(firebaseApp);
   const [user, loading, error] = useAuthState(auth);

@@ -9,7 +9,7 @@ import { firebaseApp } from "@/app/Firebase/Firebase";
 import Login from "../Login";
 import Home from "./Home";
 
-export default function page() {
+export default function Page() {
   const route = useRouter();
   const auth = getAuth(firebaseApp);
   const [user, loading, error] = useAuthState(auth);
