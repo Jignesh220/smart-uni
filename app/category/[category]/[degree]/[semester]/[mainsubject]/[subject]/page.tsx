@@ -3,7 +3,7 @@ import Link from "next/link";
 import React from "react";
 import { motion } from "framer-motion";
 import { db } from "@/app/Firebase/Firebase";
-import { Document, Page } from "react-pdf";
+
 import {
   doc,
   getDoc,
@@ -12,6 +12,13 @@ import {
   DocumentData,
   QuerySnapshot,
 } from "firebase/firestore";
+import { Viewer, Worker } from "@react-pdf-viewer/core";
+import { ZoomInIcon, ZoomOutIcon } from '@react-pdf-viewer/zoom';
+
+import { zoomPlugin } from '@react-pdf-viewer/zoom';
+import '@react-pdf-viewer/zoom/lib/styles/index.css';
+
+import "@react-pdf-viewer/core/lib/styles/index.css";
 
 export default function SubjectPage({
   params,
@@ -24,12 +31,9 @@ export default function SubjectPage({
     subject: string;
   };
 }) {
-  const [numPages, setNumPages] = React.useState(null);
-  const [pageNumber, setPageNumber] = React.useState(1);
-
-  function onDocumentLoadSuccess({ numPages }: any) {
-    setNumPages(numPages);
-  }
+    const zoomPluginInstance = zoomPlugin({
+        enableShortcuts: true,
+    });
   const [MainSubjectData, setMainSubjectData] = React.useState<DocumentData[]>(
     []
   );
@@ -105,36 +109,40 @@ export default function SubjectPage({
           </code>
         </motion.div>
       </div>
-      <div className="mt-16 min-w-full px-32">
+      <div className="mt-16 min-w-full md:px-32 min-[0px]:px-2">
         <div className="min-w-full flex flex-row flex-wrap justify-center gap-3">
           {MainSubjectData.map((item) => (
-            <Link href={item.fileURL} key={item.id}>
-              <motion.div
-                initial={{
-                  scale: 0,
-                  opacity: 0,
-                }}
-                whileInView={
-                  loaded
-                    ? {
-                        scale: 1,
-                        opacity: 1,
-                      }
-                    : {}
-                }
-                transition={{
-                  delay:
-                    (MainSubjectData.findIndex((i) => i.id === item.id) + 1) /
-                    10,
-                  ease: "easeInOut",
-                }}
-                className="min-h-max w-11/12 p-4 bg-sky-300 rounded-xl flex justify-center items-center flex-wrap shadow-lg shadow-slate-400"
-              >
-                <div className="lg:text-lg min-[0px]:text-sm font-capriola text-black">
-                  Download
+            <motion.div
+              initial={{
+                scale: 0,
+                opacity: 0,
+              }}
+              key={item.id}
+              whileInView={
+                loaded
+                  ? {
+                      scale: 1,
+                      opacity: 1,
+                    }
+                  : {}
+              }
+              transition={{
+                delay:
+                  (MainSubjectData.findIndex((i) => i.id === item.id) + 1) / 10,
+                ease: "easeInOut",
+              }}
+              className="min-h-max lg:w-11/12 min-[0px]:w-11/12 lg:p-4 min-[0px]:p-0 rounded-xl flex justify-center items-center flex-wrap"
+            >
+              <Worker workerUrl="https://unpkg.com/pdfjs-dist@3.4.120/build/pdf.worker.js">
+                <div className="w-screen">
+                  <Viewer
+                    fileUrl={item.fileURL}
+                    plugins={[zoomPluginInstance]}
+                    defaultScale={.5}
+                  />
                 </div>
-              </motion.div>
-            </Link>
+              </Worker>
+            </motion.div>
           ))}
         </div>
       </div>
