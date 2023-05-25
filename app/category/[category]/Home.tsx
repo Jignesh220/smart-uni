@@ -4,62 +4,65 @@ import React from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 
-const BScSemesterCount = [
-  {
-    index: 1,
-    title: "semester 1",
-    url: "/category/bsc/semester-1",
-  },
-  {
-    index: 2,
-    title: "semester 2",
-    url: "/category/bsc/semester-2",
-  },
-  {
-    index: 3,
-    title: "semester 3",
-    url: "#",
-  },
-  {
-    index: 4,
-    title: "semester 4",
-    url: "#",
-  },
-  {
-    index: 5,
-    title: "semester 5",
-    url: "#",
-  },
-  {
-    index: 6,
-    title: "semester 6",
-    url: "#",
-  },
-];
-const MScSemesterCount = [
-  {
-    index: 1,
-    title: "semester 1",
-    url: "#",
-  },
-  {
-    index: 2,
-    title: "semester 2",
-    url: "#",
-  },
-  {
-    index: 3,
-    title: "semester 3",
-    url: "#",
-  },
-  {
-    index: 4,
-    title: "semester 4",
-    url: "#",
-  },
-];
+interface homeprops {
+  category: string;
+}
 
-export default function Home() {
+export default function Home({ category }: homeprops) {
+  const BScSemesterCount = [
+    {
+      index: 1,
+      title: "semester 1",
+      url: `/category/${category}/BachelorOfScience/semester-1`,
+    },
+    {
+      index: 2,
+      title: "semester 2",
+      url: `/category/${category}/BachelorOfScience/semester-2`,
+    },
+    {
+      index: 3,
+      title: "semester 3",
+      url: `/category/${category}/BachelorOfScience/semester-3`,
+    },
+    {
+      index: 4,
+      title: "semester 4",
+      url: `/category/${category}/BachelorOfScience/semester-4`,
+    },
+    {
+      index: 5,
+      title: "semester 5",
+      url: `/category/${category}/BachelorOfScience/semester-5`,
+    },
+    {
+      index: 6,
+      title: "semester 6",
+      url: `/category/${category}/BachelorOfScience/semester-6`,
+    },
+  ];
+  const MScSemesterCount = [
+    {
+      index: 1,
+      title: "semester 1",
+      url: `/category/${category}/BachelorOfScience/semester-1`,
+    },
+    {
+      index: 2,
+      title: "semester 2",
+      url: `/category/${category}/BachelorOfScience/semester-2`,
+    },
+    {
+      index: 3,
+      title: "semester 3",
+      url: `/category/${category}/BachelorOfScience/semester-3`,
+    },
+    {
+      index: 4,
+      title: "semester 4",
+      url: `/category/${category}/BachelorOfScience/semester-4`,
+    },
+  ];
   return (
     <div>
       <div className="h-screen md:px-16 min-[0px]:px-3 mt-16">
@@ -111,7 +114,7 @@ export default function Home() {
                           }}
                           whileHover={{
                             scale: 1.05,
-                            backgroundColor: 'rgb(253 164 175)'
+                            backgroundColor: "rgb(253 164 175)",
                           }}
                           className="md:w-40 min-[0px]:w-32 md:h-24 min-[0px]:h-16 bg-sky-300 rounded-xl flex justify-center items-center flex-col shadow-lg shadow-slate-400"
                         >
@@ -146,7 +149,7 @@ export default function Home() {
                   </div>
                 </motion.div>
                 <div className="h-auto p-3">
-                  <div className="flex flex-row-reverse flex-wrap gap-3 items-center min-h-full justify-center">
+                  <div className="flex lg:flex-row-reverse min-[0px]:flex-row flex-wrap gap-3 items-center min-h-full justify-center">
                     {MScSemesterCount.map((item) => (
                       <Link href={item.url} key={item.index}>
                         <motion.div
@@ -173,7 +176,7 @@ export default function Home() {
                           }}
                           whileHover={{
                             scale: 1.05,
-                            backgroundColor: 'rgb(253 164 175)'
+                            backgroundColor: "rgb(253 164 175)",
                           }}
                           className="md:w-40 min-[0px]:w-32 md:h-24 min-[0px]:h-16 bg-sky-300 rounded-xl flex justify-center items-center flex-col shadow-lg shadow-slate-400"
                         >

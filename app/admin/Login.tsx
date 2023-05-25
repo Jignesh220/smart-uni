@@ -34,7 +34,7 @@ export default function Login() {
       <div
         className="min-h-screen min-w-full flex justify-center items-center"
         style={{
-          backgroundColor: "#000029",
+          backgroundColor: "#fff",
         }}
       >
         <div className="text-3xl font-capriola font-bold text-white">

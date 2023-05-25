@@ -1277,7 +1277,7 @@ const categoryItems = [
     title: "Old Papers",
     color: "bg-blue-200",
     textColor: "text-blue-800",
-    url: '/category'
+    url: '/category/oldPaper'
   },
   // {
   //   index: 2,
@@ -1291,7 +1291,7 @@ const categoryItems = [
     title: "Notes",
     color: "bg-yellow-200",
     textColor: "text-yellow-800",
-    url: '#'
+    url: '/category/notes'
   },
   // {
   //   index: 4,
@@ -1305,7 +1305,7 @@ const categoryItems = [
     title: "Project Guid",
     color: "bg-rose-200",
     textColor: "text-rose-800",
-    url: '#'
+    url: '/category/projectGuide'
   },
   {
     index: 6,
@@ -1325,15 +1325,15 @@ const categoryItems = [
 
 export default function Category() {
   return (
-    <div className="mt-28">
-      <div className="px-36">
+    <div className="lg:mt-28 min-[0px]:mt-10">
+      <div className="lg:px-36 min-[0px]:px-2">
         <div className="text-4xl text-black font-outfit font-extrabold text-center tracking-wide">
           Category
         </div>
         <div className="mt-8 ">
           <div className="flex flex-row gap-3 flex-wrap justify-center">
             {categoryItems.map((item) => (
-              <Link href={item.url} className="rounded-3xl w-56" key={item.index}>
+              <Link href={item.url} className="rounded-3xl lg:w-56 lg:h-40 min-[0px]:w-48 min-[0px]:h-28" key={item.index}>
                 <motion.div
                   initial={{
                     scale: 0.8,
@@ -1349,7 +1349,7 @@ export default function Category() {
                   whileHover={{
                     scale: 1.03,
                   }}
-                  className={`h-40 min-w-full rounded-3xl relative shadow-md shadow-slate-400 cursor-pointer ${item.color}`}
+                  className={`min-h-full min-w-full rounded-3xl relative shadow-md shadow-slate-400 cursor-pointer ${item.color}`}
                 >
                   <div className="absolute top-8 ms-4 left-1/2 -translate-x-1/2 -translate-y-1/2 min-w-full">
                     <GetSVG index={item.index} />

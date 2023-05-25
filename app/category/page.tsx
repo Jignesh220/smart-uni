@@ -1,13 +1,7 @@
-"use client";
-
-import React from "react";
-import { Navbar } from "../Reuseable/Navbar";
-import Home from "./Home";
+import React from 'react'
 
 export default function page() {
   return (
-    <div>
-      <Home />
-    </div>
-  );
+    <div>page</div>
+  )
 }

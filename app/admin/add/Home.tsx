@@ -150,7 +150,7 @@ export default function Home() {
           tag5: form.Tag_5,
         }).then(async () => {
           const uid = uuidv4();
-          const MainSubjectPath = `university/${form.university}/${form.degree}/${form.semester}`;
+          const MainSubjectPath = `university/${form.university}/${form.degree}_${form.semester}/${form.mainSubject}`;
           const MainSubjectInfomation = doc(db, MainSubjectPath);
           await setDoc(MainSubjectInfomation, {
             id: uid,
@@ -345,7 +345,7 @@ export default function Home() {
                   placeholder="Enter Main Subject"
                   className="flex w-full rounded-md border appearance-none border-blue-500/75 bg-transparent px-3 py-2 text-sm placeholder:text-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500/30 disabled:cursor-not-allowed disabled:opacity-50"
                   onChange={(e) => {
-                    setForm({ ...form, mainSubject: e.target.value });
+                    setForm({ ...form, mainSubject: e.target.value.split(" ").join("") });
                     if (e.target.value.length > 2) {
                       setFormError({ ...formError, mainSubject: false });
                     } else {
@@ -378,7 +378,7 @@ export default function Home() {
                   placeholder="Enter Subject"
                   className="flex w-full rounded-md border appearance-none border-blue-500/75 bg-transparent px-3 py-2 text-sm placeholder:text-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500/30 disabled:cursor-not-allowed disabled:opacity-50"
                   onChange={(e) => {
-                    setForm({ ...form, subSubject: e.target.value });
+                    setForm({ ...form, subSubject: e.target.value.split(" ").join("") });
                     if (e.target.value.length > 2) {
                       setFormError({ ...formError, subSubject: false });
                     } else {
