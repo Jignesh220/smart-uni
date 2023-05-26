@@ -45,22 +45,22 @@ export default function Home({ category }: homeprops) {
     {
       index: 1,
       title: "semester 1",
-      url: `/category/${category}/BachelorOfScience/semester-1`,
+      url: `/category/${category}/MasterOfScience/semester-1`,
     },
     {
       index: 2,
       title: "semester 2",
-      url: `/category/${category}/BachelorOfScience/semester-2`,
+      url: `/category/${category}/MasterOfScience/semester-2`,
     },
     {
       index: 3,
       title: "semester 3",
-      url: `/category/${category}/BachelorOfScience/semester-3`,
+      url: `/category/${category}/MasterOfScience/semester-3`,
     },
     {
       index: 4,
       title: "semester 4",
-      url: `/category/${category}/BachelorOfScience/semester-4`,
+      url: `/category/${category}/MasterOfScience/semester-4`,
     },
   ];
   return (

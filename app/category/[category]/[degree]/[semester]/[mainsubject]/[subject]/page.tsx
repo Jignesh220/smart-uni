@@ -12,13 +12,7 @@ import {
   DocumentData,
   QuerySnapshot,
 } from "firebase/firestore";
-import { Viewer, Worker } from "@react-pdf-viewer/core";
-import { ZoomInIcon, ZoomOutIcon } from '@react-pdf-viewer/zoom';
-
-import { zoomPlugin } from '@react-pdf-viewer/zoom';
-import '@react-pdf-viewer/zoom/lib/styles/index.css';
-
-import "@react-pdf-viewer/core/lib/styles/index.css";
+import Pdfviwer from "./Pdfviwer";
 
 export default function SubjectPage({
   params,
@@ -31,9 +25,6 @@ export default function SubjectPage({
     subject: string;
   };
 }) {
-    const zoomPluginInstance = zoomPlugin({
-        enableShortcuts: true,
-    });
   const [MainSubjectData, setMainSubjectData] = React.useState<DocumentData[]>(
     []
   );
@@ -131,17 +122,9 @@ export default function SubjectPage({
                   (MainSubjectData.findIndex((i) => i.id === item.id) + 1) / 10,
                 ease: "easeInOut",
               }}
-              className="min-h-max lg:w-11/12 min-[0px]:w-11/12 lg:p-4 min-[0px]:p-0 rounded-xl flex justify-center items-center flex-wrap"
+              className="lg:w-11/12 min-[0px]:w-11/12 lg:p-4 min-[0px]:p-0 rounded-xl flex justify-center items-center flex-wrap"
             >
-              <Worker workerUrl="https://unpkg.com/pdfjs-dist@3.4.120/build/pdf.worker.js">
-                <div className="w-screen">
-                  <Viewer
-                    fileUrl={item.fileURL}
-                    plugins={[zoomPluginInstance]}
-                    defaultScale={.5}
-                  />
-                </div>
-              </Worker>
+              <Pdfviwer fileUrl="/unit2.pdf" />
             </motion.div>
           ))}
         </div>
