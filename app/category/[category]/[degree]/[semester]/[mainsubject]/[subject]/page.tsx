@@ -3,16 +3,14 @@ import Link from "next/link";
 import React from "react";
 import { motion } from "framer-motion";
 import { db } from "@/app/Firebase/Firebase";
+import Pdfview from "./Pdfview";
 
 import {
-  doc,
-  getDoc,
   collection,
   getDocs,
   DocumentData,
   QuerySnapshot,
 } from "firebase/firestore";
-import Pdfviwer from "./Pdfviwer";
 
 export default function SubjectPage({
   params,
@@ -75,59 +73,33 @@ export default function SubjectPage({
   }
   return (
     <div>
-      <div className="min-w-full flex justify-center mt-8">
-        <motion.div
-          initial={{
-            scale: 0,
-            opacity: 0,
-          }}
-          whileInView={
-            loaded
-              ? {
-                  scale: 1,
-                  opacity: 1,
-                  rotate: 360,
-                }
-              : {}
-          }
-          className="w-96 h-48 bg-cyan-900 rounded-3xl flex justify-center items-center flex-col gap-2 shadow-2xl shadow-slate-400"
-        >
-          <div className="text-4xl text-white font-capriola">
-            {params.mainsubject}
-          </div>
-          <code className="text-sm text-white font-outfit tracking-widest">
-            {params.semester} ({degreeName})
-          </code>
-        </motion.div>
-      </div>
-      <div className="mt-16 min-w-full md:px-32 min-[0px]:px-2">
-        <div className="min-w-full flex flex-row flex-wrap justify-center gap-3">
-          {MainSubjectData.map((item) => (
-            <motion.div
-              initial={{
-                scale: 0,
-                opacity: 0,
-              }}
-              key={item.id}
-              whileInView={
-                loaded
-                  ? {
-                      scale: 1,
-                      opacity: 1,
-                    }
-                  : {}
-              }
-              transition={{
-                delay:
-                  (MainSubjectData.findIndex((i) => i.id === item.id) + 1) / 10,
-                ease: "easeInOut",
-              }}
-              className="lg:w-11/12 min-[0px]:w-11/12 lg:p-4 min-[0px]:p-0 rounded-xl flex justify-center items-center flex-wrap"
-            >
-              <Pdfviwer fileUrl="/unit2.pdf" />
-            </motion.div>
-          ))}
-        </div>
+      <div className="mt-8 min-w-screen">
+        {MainSubjectData.map((item) => (
+          <motion.div
+            initial={{
+              scale: 0,
+              opacity: 0,
+            }}
+            key={item.id}
+            whileInView={
+              loaded
+                ? {
+                    scale: 1,
+                    opacity: 1,
+                  }
+                : {}
+            }
+          >
+            <div className="min-w-full grid grid-cols-12 gap-3 lg:px-32">
+              <div className="lg:col-span-6 min-[0px]:col-span-12 flex justify-center bg-blue-200 shadow-2xl rounded-3xl shadow-slate-900 p-8"></div>
+              <div className="lg:col-span-6 min-[0px]:col-span-12 bg-blue-200 shadow-2xl rounded-3xl shadow-slate-900 md:p-8 min-[0px]:p-0">
+                <div className="relative rounded-3xl overflow-hidden">
+                  <Pdfview fileurl={item.fileURL}/>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        ))}
       </div>
     </div>
   );
