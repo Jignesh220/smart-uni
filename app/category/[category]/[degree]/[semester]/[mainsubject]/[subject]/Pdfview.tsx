@@ -46,16 +46,16 @@ export default function Pdfview({ fileurl }: PdfviewProps) {
             <div style={{ padding: "0px 2px" }}>
               <ZoomIn />
             </div>
-            <div style={{ padding: "0px 2px", marginLeft: "auto" }}>
+            <div style={{ padding: "0px 2px", marginLeft: "auto" }} className="text-white">
               <GoToPreviousPage />
             </div>
-            <div style={{ padding: "0px 2px", width: "4rem" }}>
+            <div style={{ padding: "0px 2px", width: "4rem" }} className="text-white">
               <CurrentPageInput />
             </div>
-            <div style={{ padding: "0px 2px" }}>
+            <div style={{ padding: "0px 2px" }} className="text-sm">
               / <NumberOfPages />
             </div>
-            <div style={{ padding: "0px 2px" }}>
+            <div style={{ padding: "0px 2px" }} className="text-sm">
               <GoToNextPage />
             </div>
             <div style={{ padding: "0px 2px", marginLeft: "auto" }}>
@@ -76,8 +76,8 @@ export default function Pdfview({ fileurl }: PdfviewProps) {
   return (
     <div className="scrollbar-hidden">
       <Worker workerUrl="https://unpkg.com/pdfjs-dist@3.4.120/build/pdf.worker.js">
-        <div style={{ height: "750px", position: "relative" }} className="scrollbar-hidden">
-          <Viewer fileUrl={fileurl} plugins={[defaultLayoutPluginInstance]} />
+        <div style={{ height: "750px", position: "relative" }} className="scrollbar-hidden relative overflow-hidden border-0 ">
+          <Viewer fileUrl={fileurl} plugins={[defaultLayoutPluginInstance]} theme="dark"/>
         </div>
       </Worker>
     </div>
