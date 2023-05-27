@@ -138,12 +138,7 @@ export default function SubjectPage({
                 </center>
                 <button
                   onClick={() => {
-                    getDownloadURL(
-                      ref(
-                        storage,
-                        item.fileURL
-                      )
-                    )
+                    getDownloadURL(ref(storage, item.fileURL))
                       .then((url) => {
                         const xhr = new XMLHttpRequest();
                         xhr.responseType = "blob";
@@ -156,10 +151,12 @@ export default function SubjectPage({
                           link.click();
                           document.body.removeChild(link);
                         };
+                        xhr.open("GET", url);
+                        xhr.send();
                       })
                       .catch((error) => {
                         console.log(error);
-                        throw new Error(error);
+                        // throw new Error(error);
                       });
                   }}
                   className="bg-cyan-800 p-2 px-8 text-cyan-200 rounded-full mt-8 mb-16 font-outfit tracking-wide hover:bg-blue-950 hover:text-blue-200"
