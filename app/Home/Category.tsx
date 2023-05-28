@@ -1325,7 +1325,7 @@ const categoryItems = [
 
 export default function Category() {
   return (
-    <div className="lg:mt-28 min-[0px]:mt-10">
+    <div className="lg:mt-28 min-[0px]:mt-10" id="Category">
       <div className="lg:px-36 min-[0px]:px-2">
         <div className="text-4xl text-black font-outfit font-extrabold text-center tracking-wide">
           Category

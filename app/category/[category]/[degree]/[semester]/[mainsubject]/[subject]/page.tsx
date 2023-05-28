@@ -105,6 +105,75 @@ export default function SubjectPage({
                   </div>
                 </div>
                 <center className="flex flex-col gap-3 text-cyan-900 mt-16">
+                  <div className="flex justify-center md:pt-8 min-[0px]:pt-5">
+                    <div className="flex flex-row md:gap-3 min-[0px]:gap-1 p-2 md:px-7 min-[0px]:px-3 rounded-full">
+                      <Link
+                        href="/"
+                        className="md:text-sm min-[0px]:text-xs font-outfit text-blue-700 hover:underline underline-offset-4 my-auto"
+                      >
+                        Home
+                      </Link>
+                      <div className="h-auto flex items-center">
+                        <svg
+                          viewBox="0 0 96 96"
+                          xmlns="http://www.w3.org/2000/svg"
+                          className="md:w-4 min-[0px]:w-2 md:h-4 min-[0px]:h-2 my-auto"
+                        >
+                          <title />
+                          <path d="M69.8437,43.3876,33.8422,13.3863a6.0035,6.0035,0,0,0-7.6878,9.223l30.47,25.39-30.47,25.39a6.0035,6.0035,0,0,0,7.6878,9.2231L69.8437,52.6106a6.0091,6.0091,0,0,0,0-9.223Z" />
+                        </svg>
+                      </div>
+                      <div className="md:text-sm min-[0px]:text-xs font-extrabold text-blue-600">
+                        ...
+                      </div>
+                      <div className="h-auto flex items-center">
+                        <svg
+                          viewBox="0 0 96 96"
+                          xmlns="http://www.w3.org/2000/svg"
+                          className="md:w-4 min-[0px]:w-2 md:h-4 min-[0px]:h-2 my-auto"
+                        >
+                          <title />
+                          <path d="M69.8437,43.3876,33.8422,13.3863a6.0035,6.0035,0,0,0-7.6878,9.223l30.47,25.39-30.47,25.39a6.0035,6.0035,0,0,0,7.6878,9.2231L69.8437,52.6106a6.0091,6.0091,0,0,0,0-9.223Z" />
+                        </svg>
+                      </div>
+                      <Link
+                        href={`/category/${params.category}/${params.degree}/${params.semester}`}
+                        className="md:text-sm min-[0px]:text-xs font-outfit text-blue-700 hover:underline underline-offset-4 my-auto flex flex-row gap-2"
+                      >
+                        <span>Semester</span>
+                        <span>{params.semester.slice(9)}</span>
+                      </Link>
+                      <div className="h-auto flex items-center">
+                        <svg
+                          viewBox="0 0 96 96"
+                          xmlns="http://www.w3.org/2000/svg"
+                          className="md:w-4 min-[0px]:w-2 md:h-4 min-[0px]:h-2 my-auto"
+                        >
+                          <title />
+                          <path d="M69.8437,43.3876,33.8422,13.3863a6.0035,6.0035,0,0,0-7.6878,9.223l30.47,25.39-30.47,25.39a6.0035,6.0035,0,0,0,7.6878,9.2231L69.8437,52.6106a6.0091,6.0091,0,0,0,0-9.223Z" />
+                        </svg>
+                      </div>
+                      <Link
+                        href={`/category/${params.category}/${params.degree}/${params.semester}/${params.mainsubject}`}
+                        className="md:text-sm min-[0px]:text-xs font-outfit text-blue-700 hover:underline underline-offset-4 my-auto flex flex-row gap-2"
+                      >
+                        {params.mainsubject}
+                      </Link>
+                      <div className="h-auto flex items-center">
+                        <svg
+                          viewBox="0 0 96 96"
+                          xmlns="http://www.w3.org/2000/svg"
+                          className="md:w-4 min-[0px]:w-2 md:h-4 min-[0px]:h-2 my-auto"
+                        >
+                          <title />
+                          <path d="M69.8437,43.3876,33.8422,13.3863a6.0035,6.0035,0,0,0-7.6878,9.223l30.47,25.39-30.47,25.39a6.0035,6.0035,0,0,0,7.6878,9.2231L69.8437,52.6106a6.0091,6.0091,0,0,0,0-9.223Z" />
+                        </svg>
+                      </div>
+                      <div className="md:text-sm min-[0px]:text-xs font-outfit text-black my-auto">
+                        {params.subject}
+                      </div>
+                    </div>
+                  </div>
                   <div className="capitalize text-xl font-outfit font-bold tracking-wide">
                     <span className="text-lg font-semibold text-cyan-900/80">
                       Univercity
@@ -119,9 +188,15 @@ export default function SubjectPage({
                   </div>
                   <div className="capitalize text-xl font-outfit font-bold tracking-wide">
                     <span className="text-lg font-semibold text-cyan-900/80">
-                      Subject
+                      Main Subject
                     </span>{" "}
                     : {item.mainSubject}
+                  </div>
+                  <div className="capitalize text-xl font-outfit font-bold tracking-wide">
+                    <span className="text-lg font-semibold text-cyan-900/80">
+                      Subject
+                    </span>{" "}
+                    : {item.subject}
                   </div>
                   <div className="capitalize text-xl font-outfit font-bold tracking-wide">
                     <span className="text-lg font-semibold text-cyan-900/80">
