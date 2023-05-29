@@ -1327,13 +1327,13 @@ export default function Category() {
   return (
     <div className="lg:mt-28 min-[0px]:mt-10" id="Category">
       <div className="lg:px-36 min-[0px]:px-2">
-        <div className="text-4xl text-black font-outfit font-extrabold text-center tracking-wide">
+        <div className="lg:text-8xl min-[0px]:text-6xl text-slate-700/20 font-outfit font-extrabold text-center tracking-wide">
           Category
         </div>
         <div className="mt-8 ">
-          <div className="flex flex-row gap-3 flex-wrap justify-center">
+          <div className="flex flex-row lg:gap-8 min-[0px]:gap-6 flex-wrap justify-center">
             {categoryItems.map((item) => (
-              <Link href={item.url} className="rounded-3xl lg:w-56 lg:h-40 min-[0px]:w-48 min-[0px]:h-28" key={item.index}>
+              <Link href={item.url} className="rounded-3xl lg:w-96 lg:h-44 min-[0px]:w-11/12 min-[0px]:h-40" key={item.index}>
                 <motion.div
                   initial={{
                     scale: 0.8,
@@ -1349,13 +1349,13 @@ export default function Category() {
                   whileHover={{
                     scale: 1.03,
                   }}
-                  className={`min-h-full min-w-full rounded-3xl relative shadow-md shadow-slate-400 cursor-pointer ${item.color}`}
+                  className={`min-h-full min-w-full rounded-3xl relative shadow-xl shadow-slate-400 cursor-pointer ${item.color}`}
                 >
                   <div className="absolute top-8 ms-4 left-1/2 -translate-x-1/2 -translate-y-1/2 min-w-full">
                     <GetSVG index={item.index} />
                   </div>
                   <div className="absolute bottom-0 ms-4 left-1/2 -translate-x-1/2 -translate-y-1/2 min-w-full">
-                    <div className={`text-lg font-capriola text-start ${item.textColor}`}>
+                    <div className={`lg:text-4xl min-[0px]:text-3xl font-capriola text-start font-bold ${item.textColor} text-opacity-60`}>
                       {item.title}
                     </div>
                   </div>
@@ -1365,7 +1365,6 @@ export default function Category() {
           </div>
         </div>
       </div>
-      <div className="min-h-screen mt-16"></div>
     </div>
   );
 }

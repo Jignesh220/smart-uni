@@ -81,6 +81,28 @@ export default function Page({
       </div>
     );
   }
+  if (MainSubjectData.length === 0) {
+    return (
+      <div className="min-w-full md:px-5 min-[0px]:px-2 py-4 flex justify-center">
+        <div
+          className="min-w-full rounded-3xl outline outline-offset-2 outline-2 outline-blue-500 bg-slate-50 flex justify-center"
+          style={{
+            minHeight: "90vh",
+          }}
+        >
+          <div className="mt-8 flex flex-col md:gap-5 min-[0px]:gap-3 px-3">
+            <div className="md:text-3xl min-[0px]:text-lg text-center font-capriola font-bold text-red-400/50 capitalize">
+              The requested document was not found.
+            </div>
+            <div className="md:text-3xl min-[0px]:text-lg text-center font-capriola font-bold text-red-400/50">
+              Please feel free to submit a request through our 'Contact Us' page
+              for Request a Document.
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
   return (
     <div className="min-w-full md:px-5 min-[0px]:px-2 py-4 flex justify-center">
       <div

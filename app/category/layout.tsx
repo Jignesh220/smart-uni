@@ -1,5 +1,6 @@
 import React from "react";
 import { Navbar } from "../Reuseable/Navbar";
+import Footer from "../Reuseable/Footer";
 
 export default function DashboardLayout({
   children, // will be a page or nested layout
@@ -8,10 +9,9 @@ export default function DashboardLayout({
 }) {
   return (
     <section>
-      {/* Include shared UI here e.g. a header or sidebar */}
-      <Navbar />
-
+      <Navbar/>
       {children}
+      <Footer/>
     </section>
   );
 }
