@@ -12,7 +12,7 @@ interface FormProps {
   type: string;
   message: string;
 }
-export default function page() {
+export default function Page() {
   const [Form, setForm] = React.useState({
     name: "",
     email: "",

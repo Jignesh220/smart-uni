@@ -95,7 +95,7 @@ export default function Page({
               The requested document was not found.
             </div>
             <div className="md:text-3xl min-[0px]:text-lg text-center font-capriola font-bold text-red-400/50">
-              Please feel free to submit a request through our 'Contact Us' page
+              Please feel free to submit a request through our &#39;Contact Us&#39; page
               for Request a Document.
             </div>
           </div>
