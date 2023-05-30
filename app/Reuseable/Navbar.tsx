@@ -2,19 +2,20 @@
 
 import Link from "next/link";
 import React from "react";
+import { motion } from "framer-motion";
 
 const menuItems = [
   {
-    name: "Home",
-    href: "#",
+    name: "Category",
+    href: "/#Category",
   },
   {
     name: "About",
-    href: "#",
+    href: "/about",
   },
   {
     name: "Contact",
-    href: "#",
+    href: "/contact-us",
   },
 ];
 
@@ -27,7 +28,7 @@ export function Navbar() {
 
   return (
     <div className="relative w-full bg-white">
-      <div className="mx-auto flex items-center justify-between px-4 py-2 sm:px-6 lg:px-8">
+      <div className="mx-auto flex items-center justify-between px-4 py-2 sm:px-6 lg:px-8 md:flex-row min-[0px]:flex-col gap-2">
         <Link href="/">
           <div className="inline-flex items-center space-x-2">
             <span>
@@ -44,30 +45,91 @@ export function Navbar() {
                 />
               </svg>
             </span>
-            <span className="font-bold">Learning</span>
+            <span className="font-bold">UniSmart</span>
           </div>
         </Link>
-        <div className="hidden lg:block">
-          <ul className="inline-flex space-x-8">
+        <div className="block">
+          <ul className="inline-flex md:space-x-8">
             {menuItems.map((item) => (
-              <li key={item.name}>
+              <li key={item.name} className="my-auto min-[0px]:hidden md:block">
                 <a
                   href={item.href}
-                  className="text-sm font-semibold text-gray-800 hover:text-gray-900"
+                  className="text-sm font-semibold text-gray-800 hover:text-gray-800/75"
                 >
                   {item.name}
                 </a>
               </li>
             ))}
+            <li>
+              <div className="w-auto flex items-center h-auto">
+                <form action="" className="my-auto">
+                  <motion.div
+                    initial={{
+                      opacity: 0,
+                    }}
+                    animate={{
+                      opacity: 1,
+                    }}
+                    className="relative"
+                  >
+                    <label className="sr-only" htmlFor="search">
+                      {" "}
+                      Search{" "}
+                    </label>
+
+                    <motion.input
+                      initial={{
+                        width: "0px",
+                      }}
+                      animate={{
+                        width: "280px",
+                      }}
+                      whileFocus={{
+                        width: "380px",
+                      }}
+                      transition={{
+                        delay: 0.2,
+                      }}
+                      className="h-10 rounded-full border-none bg-purple-100 focus:border-2 hover:border-blue-400 outline-blue-400 pe-10 ps-4 text-sm shadow-sm"
+                      id="search"
+                      type="search"
+                      placeholder="Search"
+                    />
+
+                    <motion.button
+                      initial={{
+                        opacity: 0,
+                      }}
+                      animate={{
+                        opacity: 1,
+                      }}
+                      transition={{
+                        delay: 0.1,
+                      }}
+                      type="button"
+                      className="absolute end-1 top-1/2 -translate-y-1/2 rounded-full bg-gray-50 p-2 text-gray-600 transition hover:text-gray-700"
+                    >
+                      <span className="sr-only">Search</span>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="h-4 w-4"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                        />
+                      </svg>
+                    </motion.button>
+                  </motion.div>
+                </form>
+              </div>
+            </li>
           </ul>
-        </div>
-        <div className="hidden lg:block">
-          <button
-            type="button"
-            className="rounded-md bg-black px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-black/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
-          >
-            Button text
-          </button>
         </div>
       </div>
     </div>

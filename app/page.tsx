@@ -4,6 +4,7 @@ import { Navbar } from './Reuseable/Navbar'
 import Home from './Home/Home'
 import Category from './Home/Category'
 import Footer from './Reuseable/Footer'
+import Degree from './Home/Degree'
 
 export default function Index() {
   return (
@@ -11,6 +12,7 @@ export default function Index() {
       <Navbar/>
       <Home/>
       <Category/>
+      <Degree/>
       <Footer/>
     </main>
   )
