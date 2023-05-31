@@ -240,7 +240,7 @@ const categoryItems = [
     color: "bg-fuchsia-200",
     bgSVG: 'bg-fuchsia-700',
     textColor: "text-fuchsia-800",
-    url: '#'
+    url: '/bsc'
   },
   {
     index: 2,
@@ -248,7 +248,7 @@ const categoryItems = [
     color: "bg-orange-200",
     bgSVG: 'bg-orange-700',
     textColor: "text-orange-800",
-    url: '#'
+    url: '/msc'
   },
 ];
 

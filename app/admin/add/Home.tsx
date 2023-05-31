@@ -9,6 +9,7 @@ import {
   getDownloadURL,
   getStorage,
 } from "firebase/storage";
+import { error } from "console";
 
 interface FormProps {
   university: string;
@@ -182,6 +183,31 @@ export default function Home() {
                   dataUpload: true,
                 });
               });
+            }).then(async()=>{
+              const unqId = uuidv4();
+              const allDataPath = `allData/${form.university}/${form.degree}/${uniqID}` 
+              const allData = doc(db,allDataPath);
+              await setDoc(allData, {
+                aDocid: uniqID,
+                id: unqId,
+                university: form.university,
+                degree: form.degree,
+                semester: form.semester,
+                mainSubject: form.mainSubject,
+                subject: form.subSubject,
+                category: form.category,
+                subjectCode: form.subjectCode,
+                DocumentYear: form.docYear,
+                fileName: form.fileName,
+                fileURL: form.fileURL,
+                tag1: form.Tag_1,
+                tag2: form.Tag_2,
+                tag3: form.Tag_3,
+                tag4: form.Tag_4,
+                tag5: form.Tag_5,
+              }).then((error)=>{
+                console.log(error);
+              })
             })
             .then((error) => {
               console.log(error);

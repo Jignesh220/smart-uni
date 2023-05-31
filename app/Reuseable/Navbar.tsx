@@ -90,7 +90,7 @@ export function Navbar() {
                       transition={{
                         delay: 0.2,
                       }}
-                      className="h-10 rounded-full border-none bg-purple-100 focus:border-2 hover:border-blue-400 outline-blue-400 pe-10 ps-4 text-sm shadow-sm"
+                      className="h-10 rounded-full border-none bg-purple-100 focus:border-2 hover:border-purple-400 outline-purple-700 pe-10 ps-4 text-sm shadow-sm"
                       id="search"
                       type="search"
                       placeholder="Search"
