@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { doc, getDocs, collection, DocumentData } from "firebase/firestore";
 import { db } from "../Firebase/Firebase";
-import PreviewPage from "./PreviewPage";
+import PreviewPage from '../bsc/PreviewPage'
 import { uuidv4 } from "@firebase/util";
 import Link from "next/link";
 import Footer from "../Reuseable/Footer";
@@ -32,7 +32,7 @@ export default function Home() {
       while (SubjectData.length > 0) {
         SubjectData.pop();
       }
-      const ref = `/allData/govind_guru/BachelorOfScience`;
+      const ref = `/allData/govind_guru/MasterOfScience`;
       const oldpaperInformation = collection(db, ref);
       const Mysnapshort = getDocs(oldpaperInformation);
       (await Mysnapshort).forEach(async (doc) => {
@@ -190,87 +190,17 @@ export default function Home() {
                 <span className="text-lg my-auto">4</span>
               </motion.div>
             </div>
-            <div className="flex justify-center flex-row gap-2 mt-8">
-              <motion.div
-                onHoverStart={() => {
-                  settextvisible({ ...textvisible, semester5: true });
-                }}
-                onHoverEnd={() => {
-                  settextvisible({ ...textvisible, semester5: false });
-                }}
-                onClick={() => {
-                  setSemester("5");
-                }}
-                className="mx-1 font-capriola flex items-center rounded-xl border border-blue-500 hover:bg-cyan-600 hover:text-white px-4 py-1 text-gray-900 gap-2 flex-row"
-              >
-                {textvisible.semester5 && (
-                  <motion.span
-                    initial={{
-                      opacity: 0,
-                      scale: 0,
-                    }}
-                    whileInView={
-                      textvisible.semester5
-                        ? {
-                            opacity: 1,
-                            scale: 1,
-                          }
-                        : {}
-                    }
-                    className="text-sm"
-                  >
-                    Semester
-                  </motion.span>
-                )}
-                <span className="text-lg my-auto">5</span>
-              </motion.div>
-            </div>
-            <div className="flex justify-center flex-row gap-2 mt-8">
-              <motion.div
-                onHoverStart={() => {
-                  settextvisible({ ...textvisible, semester6: true });
-                }}
-                onHoverEnd={() => {
-                  settextvisible({ ...textvisible, semester6: false });
-                }}
-                onClick={() => {
-                  setSemester("6");
-                }}
-                className="mx-1 font-capriola flex items-center rounded-xl border border-blue-500 hover:bg-cyan-600 hover:text-white px-4 py-1 text-gray-900 gap-2 flex-row"
-              >
-                {textvisible.semester6 && (
-                  <motion.span
-                    initial={{
-                      opacity: 0,
-                      scale: 0,
-                    }}
-                    whileInView={
-                      textvisible.semester6
-                        ? {
-                            opacity: 1,
-                            scale: 1,
-                          }
-                        : {}
-                    }
-                    className="text-sm"
-                  >
-                    Semester
-                  </motion.span>
-                )}
-                <span className="text-lg my-auto">6</span>
-              </motion.div>
-            </div>
           </div>
           <center className="my-5 px-48">
             <hr />
           </center>
-          {!Semester && (
-            <div
-              style={{
-                minHeight: "50vh",
-              }}
-            ></div>
-          )}
+            {
+                !Semester && (
+                    <div style={{
+                        minHeight: '50vh'
+                    }}></div>
+                )
+            }
           {Semester && (
             <motion.div
               initial={{
@@ -287,12 +217,12 @@ export default function Home() {
             >
               <div className="min-h-min min-w-full ">
                 <div className="grid grid-cols-12 md:gap-4 min-[0px]:gap-2 md:mx-8 min-[0px]:mx-1 md:p-3 min-[0px]:p-2 bg-white rounded-3xl">
-                  <div className="md:col-span-1 min-[0px]:col-span-2 h-auto bg-purple-200 rounded-3xl flex justify-center items-center">
+                  <div className="md:col-span-1 min-[0px]:col-span-2 h-auto bg-cyan-200 rounded-3xl flex justify-center items-center">
                     <div className="-rotate-90 text-purple-900 text-opacity-60 md:text-4xl min-[0px]:text-lg font-bold font-capriola whitespace-nowrap">
                       Notes
                     </div>
                   </div>
-                  <div className="md:col-span-11 min-[0px]:col-span-10 h-auto bg-purple-200 rounded-3xl md:p-5 min-[0px]:p-2">
+                  <div className="md:col-span-11 min-[0px]:col-span-10 h-auto bg-cyan-200 rounded-3xl md:p-5 min-[0px]:p-2">
                     <div className="flex overflow-x-scroll hide-scroll-bar">
                       <div
                         className="flex flex-nowrap"
@@ -351,7 +281,7 @@ export default function Home() {
                                   SubjectData.findIndex((i) => i.id === item.id)
                                 );
                               }}
-                              className="w-60 h-96 max-w-xs cursor-pointer overflow-hidden rounded-3xl shadow-md bg-purple-900 text-purple-200 hover:shadow-xl transition-shadow duration-300 ease-in-out flex justify-center items-center flex-col"
+                              className="w-60 h-96 max-w-xs cursor-pointer overflow-hidden rounded-3xl shadow-md bg-cyan-900 text-cyan-200 hover:shadow-xl transition-shadow duration-300 ease-in-out flex justify-center items-center flex-col"
                             >
                               <div className="text-lg font-outfit font-bold tracking-wider capitalize">
                                 {item.degree.split(/(?=[A-Z])/).join(" ")}
@@ -394,12 +324,12 @@ export default function Home() {
             >
               <div className="min-h-min min-w-full ">
                 <div className="grid grid-cols-12 md:gap-4 min-[0px]:gap-2 md:mx-8 min-[0px]:mx-1 md:p-3 min-[0px]:p-2 bg-white rounded-3xl">
-                  <div className="md:col-span-1 min-[0px]:col-span-2 h-auto bg-teal-200 rounded-3xl flex justify-center items-center">
+                  <div className="md:col-span-1 min-[0px]:col-span-2 h-auto bg-violet-200 rounded-3xl flex justify-center items-center">
                     <div className="-rotate-90 text-teal-900 text-opacity-40 md:text-4xl min-[0px]:text-lg font-bold font-capriola whitespace-nowrap">
                       Old Paper
                     </div>
                   </div>
-                  <div className="md:col-span-11 min-[0px]:col-span-10 h-auto bg-teal-200 rounded-3xl md:p-5 min-[0px]:p-2">
+                  <div className="md:col-span-11 min-[0px]:col-span-10 h-auto bg-violet-200 rounded-3xl md:p-5 min-[0px]:p-2">
                     <div className="flex overflow-x-scroll hide-scroll-bar">
                       <div
                         className="flex flex-nowrap justify-center"
@@ -458,7 +388,7 @@ export default function Home() {
                                   SubjectData.findIndex((i) => i.id === item.id)
                                 );
                               }}
-                              className="w-60 h-96 max-w-xs overflow-hidden rounded-2xl shadow-md bg-teal-700 text-teal-300 hover:shadow-xl transition-shadow duration-300 ease-in-out flex justify-center items-center flex-col"
+                              className="w-60 h-96 max-w-xs overflow-hidden rounded-2xl shadow-md bg-violet-700 text-violet-300 hover:shadow-xl transition-shadow duration-300 ease-in-out flex justify-center items-center flex-col"
                             >
                               <div className="text-lg font-outfit font-bold tracking-wider capitalize">
                                 {item.degree.split(/(?=[A-Z])/).join(" ")}
@@ -486,7 +416,7 @@ export default function Home() {
             </motion.div>
           )}
           <div className="mb-16"></div>
-          <Footer />
+          <Footer/>
         </div>
       )}
 
@@ -534,20 +464,19 @@ export default function Home() {
             </svg>
           </div>
           <div className="md:mt-0 min-[0px]:mt-20">
-            <PreviewPage
-              university={SubjectData[ArrayIndex].university}
-              degree={SubjectData[ArrayIndex].degree}
-              mainSubject={SubjectData[ArrayIndex].mainSubject}
-              subject={SubjectData[ArrayIndex].subject}
-              semester={SubjectData[ArrayIndex].semester}
-              subjectCode={SubjectData[ArrayIndex].subjectCode}
-              url={SubjectData[ArrayIndex].fileURL}
-              documentYear={SubjectData[ArrayIndex].DocumentYear}
-              category="notes"
-              fileName={SubjectData[ArrayIndex].fileName}
-            />
-          </div>
-        </div>
+          <PreviewPage
+            university={SubjectData[ArrayIndex].university}
+            degree={SubjectData[ArrayIndex].degree}
+            mainSubject={SubjectData[ArrayIndex].mainSubject}
+            subject={SubjectData[ArrayIndex].subject}
+            semester={SubjectData[ArrayIndex].semester}
+            subjectCode={SubjectData[ArrayIndex].subjectCode}
+            url={SubjectData[ArrayIndex].fileURL}
+            documentYear={SubjectData[ArrayIndex].DocumentYear}
+            category="notes"
+            fileName={SubjectData[ArrayIndex].fileName}
+          />
+        </div></div>
       )}
     </div>
   );

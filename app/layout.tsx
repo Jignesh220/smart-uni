@@ -1,3 +1,4 @@
+"use client";
 import "./globals.css";
 import { Inter, Lexend_Deca, Outfit,Capriola } from "next/font/google";
 

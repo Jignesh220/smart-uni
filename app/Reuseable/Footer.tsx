@@ -3,14 +3,19 @@ import Link from "next/link";
 
 export default function Footer() {
   return (
-    <footer aria-label="Site Footer" className="bg-gray-100 mt-24">
-      <div className="mx-auto max-w-5xl px-4 py-16 sm:px-6 lg:px-8">
+    <footer aria-label="Site Footer" className="bg-blue-100 mt-24 my-3 mx-3 rounded-3xl">
+      <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
         <div className="flex justify-center text-teal-600">
-          <div className="text-2xl">E-Learning</div>
+          <div className="text-5xl font-capriola font-bold text-blue-600">UniSmart</div>
         </div>
 
-        <p className="mx-auto mt-6 max-w-md text-center leading-relaxed text-gray-500">
-          about this page
+        <p className="mx-auto mt-6 max-w-7xl text-center font-outfit font-bold tracking-wider leading-relaxed text-gray-500">
+          Welcome to our college website, a comprehensive platform designed to
+          support your academic journey, offering subject notes, old exam
+          papers, and project guidance. Access well-organized resources, prepare
+          for exams effectively, and get step-by-step instructions to excel in
+          academic projects. Visit our website today and enrich your learning
+          experience.
         </p>
 
         <nav aria-label="Footer Nav" className="mt-12">

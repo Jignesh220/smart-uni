@@ -580,6 +580,7 @@ export default function Home() {
                     required
                   />
                   <button
+                  type="button"
                     className="w-2/5 bg-rose-300 text-rose-700 hover:bg-rose-700 hover:text-rose-200 text-center rounded-lg font-outfit font-font-bold tracking-wider"
                     onClick={UploadFileToStorage}
                   >
