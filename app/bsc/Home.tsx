@@ -74,6 +74,9 @@ export default function Home() {
                   onHoverEnd={() => {
                     settextvisible({ ...textvisible, semester1: false });
                   }}
+                  onClick={()=>{
+                    setSemester("1")
+                  }}
                   className="mx-1 font-capriola flex items-center rounded-xl border border-blue-500 hover:bg-cyan-600 hover:text-white px-4 py-1 text-gray-900 gap-2 flex-row"
                 >
                   {textvisible.semester1 && (
@@ -107,6 +110,9 @@ export default function Home() {
                   }}
                   onHoverEnd={() => {
                     settextvisible({ ...textvisible, semester2: false });
+                  }}
+                  onClick={()=>{
+                    setSemester("2")
                   }}
                   className="mx-1 font-capriola flex items-center rounded-xl border border-blue-500 hover:bg-cyan-600 hover:text-white px-4 py-1 text-gray-900 gap-2 flex-row"
                 >
@@ -142,6 +148,9 @@ export default function Home() {
                   onHoverEnd={() => {
                     settextvisible({ ...textvisible, semester3: false });
                   }}
+                  onClick={()=>{
+                    setSemester("3")
+                  }}
                   className="mx-1 font-capriola flex items-center rounded-xl border border-blue-500 hover:bg-cyan-600 hover:text-white px-4 py-1 text-gray-900 gap-2 flex-row"
                 >
                   {textvisible.semester3 && (
@@ -175,6 +184,9 @@ export default function Home() {
                   }}
                   onHoverEnd={() => {
                     settextvisible({ ...textvisible, semester4: false });
+                  }}
+                  onClick={()=>{
+                    setSemester("4")
                   }}
                   className="mx-1 font-capriola flex items-center rounded-xl border border-blue-500 hover:bg-cyan-600 hover:text-white px-4 py-1 text-gray-900 gap-2 flex-row"
                 >
@@ -210,6 +222,9 @@ export default function Home() {
                   onHoverEnd={() => {
                     settextvisible({ ...textvisible, semester5: false });
                   }}
+                  onClick={()=>{
+                    setSemester("5")
+                  }}
                   className="mx-1 font-capriola flex items-center rounded-xl border border-blue-500 hover:bg-cyan-600 hover:text-white px-4 py-1 text-gray-900 gap-2 flex-row"
                 >
                   {textvisible.semester5 && (
@@ -243,6 +258,9 @@ export default function Home() {
                   }}
                   onHoverEnd={() => {
                     settextvisible({ ...textvisible, semester6: false });
+                  }}
+                  onClick={()=>{
+                    setSemester("6")
                   }}
                   className="mx-1 font-capriola flex items-center rounded-xl border border-blue-500 hover:bg-cyan-600 hover:text-white px-4 py-1 text-gray-900 gap-2 flex-row"
                 >
