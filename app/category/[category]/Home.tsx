@@ -65,7 +65,9 @@ export default function Home({ category }: homeprops) {
   ];
   return (
     <div>
-      <div className="h-screen md:px-16 min-[0px]:px-3 mt-16">
+      <div className="md:px-16 min-[0px]:px-3 mt-16" style={{
+        minHeight: '50vh'
+      }}>
         <div className="min-h-full">
           <div className="flex flex-col gap-5">
             <div className="min-h-max">

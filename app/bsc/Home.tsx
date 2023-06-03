@@ -11,6 +11,7 @@ import Footer from "../Reuseable/Footer";
 
 export default function Home() {
   const [popupBox, setpopupBox] = useState(false);
+  const [SemesterNumber, setSemesterNumber] = useState(0);
   const [textvisible, settextvisible] = useState({
     semester1: false,
     semester2: false,
@@ -19,10 +20,24 @@ export default function Home() {
     semester5: false,
     semester6: false,
   });
+  React.useEffect(() => {
+    if (typeof window !== "undefined") {
+      const fragmentIdentifier = window.location.hash.slice(1);
+      setSemesterNumber(parseInt(fragmentIdentifier));
+    }
+  }, []);
   const [Semester, setSemester] = useState<string | null>(null);
   React.useEffect(() => {
     getOldPaperData();
   }, [Semester]);
+
+  React.useEffect(() => {
+    if (typeof window !== "undefined") {
+      if (SemesterNumber > 0 && SemesterNumber <= 6) {
+        setSemester(window.location.hash.slice(1));
+      }
+    }
+  }, [SemesterNumber]);
 
   const [SubjectData, setSubjectData] = React.useState<DocumentData[]>([]);
   const [ArrayIndex, setArrayIndex] = useState(0);
@@ -51,214 +66,208 @@ export default function Home() {
           </div>
           <div className="flex justify-center flex-row gap-1">
             <div className="flex justify-center flex-row gap-2 mt-8">
-              <motion.div
-                onClick={() => {
-                  setSemester("1");
-                }}
-                onHoverStart={() => {
-                  settextvisible({ ...textvisible, semester1: true });
-                }}
-                onHoverEnd={() => {
-                  settextvisible({ ...textvisible, semester1: false });
-                }}
-                className="mx-1 font-capriola flex items-center rounded-xl border border-blue-500 hover:bg-cyan-600 hover:text-white px-4 py-1 text-gray-900 gap-2 flex-row"
-              >
-                {textvisible.semester1 && (
-                  <motion.span
-                    initial={{
-                      opacity: 0,
-                      scale: 0,
-                    }}
-                    whileInView={
-                      textvisible.semester1
-                        ? {
-                            opacity: 1,
-                            scale: 1,
-                          }
-                        : {}
-                    }
-                    className="text-sm"
-                  >
-                    Semester
-                  </motion.span>
-                )}
-                <span className="text-lg my-auto">1</span>
-              </motion.div>
+              <Link href="/bsc#1">
+                <motion.div
+                  onHoverStart={() => {
+                    settextvisible({ ...textvisible, semester1: true });
+                  }}
+                  onHoverEnd={() => {
+                    settextvisible({ ...textvisible, semester1: false });
+                  }}
+                  className="mx-1 font-capriola flex items-center rounded-xl border border-blue-500 hover:bg-cyan-600 hover:text-white px-4 py-1 text-gray-900 gap-2 flex-row"
+                >
+                  {textvisible.semester1 && (
+                    <motion.span
+                      initial={{
+                        opacity: 0,
+                        scale: 0,
+                      }}
+                      whileInView={
+                        textvisible.semester1
+                          ? {
+                              opacity: 1,
+                              scale: 1,
+                            }
+                          : {}
+                      }
+                      className="text-sm"
+                    >
+                      Semester
+                    </motion.span>
+                  )}
+                  <span className="text-lg my-auto">1</span>
+                </motion.div>
+              </Link>
             </div>
             <div className="flex justify-center flex-row gap-2 mt-8">
-              <motion.div
-                onHoverStart={() => {
-                  settextvisible({ ...textvisible, semester2: true });
-                }}
-                onHoverEnd={() => {
-                  settextvisible({ ...textvisible, semester2: false });
-                }}
-                onClick={() => {
-                  setSemester("2");
-                }}
-                className="mx-1 font-capriola flex items-center rounded-xl border border-blue-500 hover:bg-cyan-600 hover:text-white px-4 py-1 text-gray-900 gap-2 flex-row"
-              >
-                {textvisible.semester2 && (
-                  <motion.span
-                    initial={{
-                      opacity: 0,
-                      scale: 0,
-                    }}
-                    whileInView={
-                      textvisible.semester2
-                        ? {
-                            opacity: 1,
-                            scale: 1,
-                          }
-                        : {}
-                    }
-                    className="text-sm"
-                  >
-                    Semester
-                  </motion.span>
-                )}
-                <span className="text-lg my-auto">2</span>
-              </motion.div>
+              <Link href="/bsc#2">
+                <motion.div
+                  onHoverStart={() => {
+                    settextvisible({ ...textvisible, semester2: true });
+                  }}
+                  onHoverEnd={() => {
+                    settextvisible({ ...textvisible, semester2: false });
+                  }}
+                  className="mx-1 font-capriola flex items-center rounded-xl border border-blue-500 hover:bg-cyan-600 hover:text-white px-4 py-1 text-gray-900 gap-2 flex-row"
+                >
+                  {textvisible.semester2 && (
+                    <motion.span
+                      initial={{
+                        opacity: 0,
+                        scale: 0,
+                      }}
+                      whileInView={
+                        textvisible.semester2
+                          ? {
+                              opacity: 1,
+                              scale: 1,
+                            }
+                          : {}
+                      }
+                      className="text-sm"
+                    >
+                      Semester
+                    </motion.span>
+                  )}
+                  <span className="text-lg my-auto">2</span>
+                </motion.div>
+              </Link>
             </div>
             <div className="flex justify-center flex-row gap-2 mt-8">
-              <motion.div
-                onHoverStart={() => {
-                  settextvisible({ ...textvisible, semester3: true });
-                }}
-                onHoverEnd={() => {
-                  settextvisible({ ...textvisible, semester3: false });
-                }}
-                onClick={() => {
-                  setSemester("3");
-                }}
-                className="mx-1 font-capriola flex items-center rounded-xl border border-blue-500 hover:bg-cyan-600 hover:text-white px-4 py-1 text-gray-900 gap-2 flex-row"
-              >
-                {textvisible.semester3 && (
-                  <motion.span
-                    initial={{
-                      opacity: 0,
-                      scale: 0,
-                    }}
-                    whileInView={
-                      textvisible.semester3
-                        ? {
-                            opacity: 1,
-                            scale: 1,
-                          }
-                        : {}
-                    }
-                    className="text-sm"
-                  >
-                    Semester
-                  </motion.span>
-                )}
-                <span className="text-lg my-auto">3</span>
-              </motion.div>
+              <Link href="/bsc#3">
+                <motion.div
+                  onHoverStart={() => {
+                    settextvisible({ ...textvisible, semester3: true });
+                  }}
+                  onHoverEnd={() => {
+                    settextvisible({ ...textvisible, semester3: false });
+                  }}
+                  className="mx-1 font-capriola flex items-center rounded-xl border border-blue-500 hover:bg-cyan-600 hover:text-white px-4 py-1 text-gray-900 gap-2 flex-row"
+                >
+                  {textvisible.semester3 && (
+                    <motion.span
+                      initial={{
+                        opacity: 0,
+                        scale: 0,
+                      }}
+                      whileInView={
+                        textvisible.semester3
+                          ? {
+                              opacity: 1,
+                              scale: 1,
+                            }
+                          : {}
+                      }
+                      className="text-sm"
+                    >
+                      Semester
+                    </motion.span>
+                  )}
+                  <span className="text-lg my-auto">3</span>
+                </motion.div>
+              </Link>
             </div>
             <div className="flex justify-center flex-row gap-2 mt-8">
-              <motion.div
-                onHoverStart={() => {
-                  settextvisible({ ...textvisible, semester4: true });
-                }}
-                onHoverEnd={() => {
-                  settextvisible({ ...textvisible, semester4: false });
-                }}
-                onClick={() => {
-                  setSemester("4");
-                }}
-                className="mx-1 font-capriola flex items-center rounded-xl border border-blue-500 hover:bg-cyan-600 hover:text-white px-4 py-1 text-gray-900 gap-2 flex-row"
-              >
-                {textvisible.semester4 && (
-                  <motion.span
-                    initial={{
-                      opacity: 0,
-                      scale: 0,
-                    }}
-                    whileInView={
-                      textvisible.semester4
-                        ? {
-                            opacity: 1,
-                            scale: 1,
-                          }
-                        : {}
-                    }
-                    className="text-sm"
-                  >
-                    Semester
-                  </motion.span>
-                )}
-                <span className="text-lg my-auto">4</span>
-              </motion.div>
+              <Link href="/bsc#4">
+                <motion.div
+                  onHoverStart={() => {
+                    settextvisible({ ...textvisible, semester4: true });
+                  }}
+                  onHoverEnd={() => {
+                    settextvisible({ ...textvisible, semester4: false });
+                  }}
+                  className="mx-1 font-capriola flex items-center rounded-xl border border-blue-500 hover:bg-cyan-600 hover:text-white px-4 py-1 text-gray-900 gap-2 flex-row"
+                >
+                  {textvisible.semester4 && (
+                    <motion.span
+                      initial={{
+                        opacity: 0,
+                        scale: 0,
+                      }}
+                      whileInView={
+                        textvisible.semester4
+                          ? {
+                              opacity: 1,
+                              scale: 1,
+                            }
+                          : {}
+                      }
+                      className="text-sm"
+                    >
+                      Semester
+                    </motion.span>
+                  )}
+                  <span className="text-lg my-auto">4</span>
+                </motion.div>
+              </Link>
             </div>
             <div className="flex justify-center flex-row gap-2 mt-8">
-              <motion.div
-                onHoverStart={() => {
-                  settextvisible({ ...textvisible, semester5: true });
-                }}
-                onHoverEnd={() => {
-                  settextvisible({ ...textvisible, semester5: false });
-                }}
-                onClick={() => {
-                  setSemester("5");
-                }}
-                className="mx-1 font-capriola flex items-center rounded-xl border border-blue-500 hover:bg-cyan-600 hover:text-white px-4 py-1 text-gray-900 gap-2 flex-row"
-              >
-                {textvisible.semester5 && (
-                  <motion.span
-                    initial={{
-                      opacity: 0,
-                      scale: 0,
-                    }}
-                    whileInView={
-                      textvisible.semester5
-                        ? {
-                            opacity: 1,
-                            scale: 1,
-                          }
-                        : {}
-                    }
-                    className="text-sm"
-                  >
-                    Semester
-                  </motion.span>
-                )}
-                <span className="text-lg my-auto">5</span>
-              </motion.div>
+              <Link href="/bsc#5">
+                <motion.div
+                  onHoverStart={() => {
+                    settextvisible({ ...textvisible, semester5: true });
+                  }}
+                  onHoverEnd={() => {
+                    settextvisible({ ...textvisible, semester5: false });
+                  }}
+                  className="mx-1 font-capriola flex items-center rounded-xl border border-blue-500 hover:bg-cyan-600 hover:text-white px-4 py-1 text-gray-900 gap-2 flex-row"
+                >
+                  {textvisible.semester5 && (
+                    <motion.span
+                      initial={{
+                        opacity: 0,
+                        scale: 0,
+                      }}
+                      whileInView={
+                        textvisible.semester5
+                          ? {
+                              opacity: 1,
+                              scale: 1,
+                            }
+                          : {}
+                      }
+                      className="text-sm"
+                    >
+                      Semester
+                    </motion.span>
+                  )}
+                  <span className="text-lg my-auto">5</span>
+                </motion.div>
+              </Link>
             </div>
             <div className="flex justify-center flex-row gap-2 mt-8">
-              <motion.div
-                onHoverStart={() => {
-                  settextvisible({ ...textvisible, semester6: true });
-                }}
-                onHoverEnd={() => {
-                  settextvisible({ ...textvisible, semester6: false });
-                }}
-                onClick={() => {
-                  setSemester("6");
-                }}
-                className="mx-1 font-capriola flex items-center rounded-xl border border-blue-500 hover:bg-cyan-600 hover:text-white px-4 py-1 text-gray-900 gap-2 flex-row"
-              >
-                {textvisible.semester6 && (
-                  <motion.span
-                    initial={{
-                      opacity: 0,
-                      scale: 0,
-                    }}
-                    whileInView={
-                      textvisible.semester6
-                        ? {
-                            opacity: 1,
-                            scale: 1,
-                          }
-                        : {}
-                    }
-                    className="text-sm"
-                  >
-                    Semester
-                  </motion.span>
-                )}
-                <span className="text-lg my-auto">6</span>
-              </motion.div>
+              <Link href="/bsc#6">
+                <motion.div
+                  onHoverStart={() => {
+                    settextvisible({ ...textvisible, semester6: true });
+                  }}
+                  onHoverEnd={() => {
+                    settextvisible({ ...textvisible, semester6: false });
+                  }}
+                  className="mx-1 font-capriola flex items-center rounded-xl border border-blue-500 hover:bg-cyan-600 hover:text-white px-4 py-1 text-gray-900 gap-2 flex-row"
+                >
+                  {textvisible.semester6 && (
+                    <motion.span
+                      initial={{
+                        opacity: 0,
+                        scale: 0,
+                      }}
+                      whileInView={
+                        textvisible.semester6
+                          ? {
+                              opacity: 1,
+                              scale: 1,
+                            }
+                          : {}
+                      }
+                      className="text-sm"
+                    >
+                      Semester
+                    </motion.span>
+                  )}
+                  <span className="text-lg my-auto">6</span>
+                </motion.div>
+              </Link>
             </div>
           </div>
           <center className="my-5 px-48">

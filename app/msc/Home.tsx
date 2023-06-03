@@ -4,12 +4,13 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { doc, getDocs, collection, DocumentData } from "firebase/firestore";
 import { db } from "../Firebase/Firebase";
-import PreviewPage from '../bsc/PreviewPage'
+import PreviewPage from "../bsc/PreviewPage";
 import { uuidv4 } from "@firebase/util";
 import Link from "next/link";
 import Footer from "../Reuseable/Footer";
 
 export default function Home() {
+  const [SemesterNumber, setSemesterNumber] = useState(0);
   const [popupBox, setpopupBox] = useState(false);
   const [textvisible, settextvisible] = useState({
     semester1: false,
@@ -21,8 +22,22 @@ export default function Home() {
   });
   const [Semester, setSemester] = useState<string | null>(null);
   React.useEffect(() => {
+    if (typeof window !== "undefined") {
+      const fragmentIdentifier = window.location.hash.slice(1);
+      setSemesterNumber(parseInt(fragmentIdentifier));
+    }
+  }, []);
+  React.useEffect(() => {
     getOldPaperData();
   }, [Semester]);
+
+  React.useEffect(() => {
+    if (typeof window !== "undefined") {
+      if (SemesterNumber > 0 && SemesterNumber <= 4) {
+        setSemester(window.location.hash.slice(1));
+      }
+    }
+  }, [SemesterNumber]);
 
   const [SubjectData, setSubjectData] = React.useState<DocumentData[]>([]);
   const [ArrayIndex, setArrayIndex] = useState(0);
@@ -51,156 +66,152 @@ export default function Home() {
           </div>
           <div className="flex justify-center flex-row gap-1">
             <div className="flex justify-center flex-row gap-2 mt-8">
-              <motion.div
-                onClick={() => {
-                  setSemester("1");
-                }}
-                onHoverStart={() => {
-                  settextvisible({ ...textvisible, semester1: true });
-                }}
-                onHoverEnd={() => {
-                  settextvisible({ ...textvisible, semester1: false });
-                }}
-                className="mx-1 font-capriola flex items-center rounded-xl border border-blue-500 hover:bg-cyan-600 hover:text-white px-4 py-1 text-gray-900 gap-2 flex-row"
-              >
-                {textvisible.semester1 && (
-                  <motion.span
-                    initial={{
-                      opacity: 0,
-                      scale: 0,
-                    }}
-                    whileInView={
-                      textvisible.semester1
-                        ? {
-                            opacity: 1,
-                            scale: 1,
-                          }
-                        : {}
-                    }
-                    className="text-sm"
-                  >
-                    Semester
-                  </motion.span>
-                )}
-                <span className="text-lg my-auto">1</span>
-              </motion.div>
+              <Link href="/msc#1">
+                <motion.div
+                  onHoverStart={() => {
+                    settextvisible({ ...textvisible, semester1: true });
+                  }}
+                  onHoverEnd={() => {
+                    settextvisible({ ...textvisible, semester1: false });
+                  }}
+                  className="mx-1 font-capriola flex items-center rounded-xl border border-blue-500 hover:bg-cyan-600 hover:text-white px-4 py-1 text-gray-900 gap-2 flex-row"
+                >
+                  {textvisible.semester1 && (
+                    <motion.span
+                      initial={{
+                        opacity: 0,
+                        scale: 0,
+                      }}
+                      whileInView={
+                        textvisible.semester1
+                          ? {
+                              opacity: 1,
+                              scale: 1,
+                            }
+                          : {}
+                      }
+                      className="text-sm"
+                    >
+                      Semester
+                    </motion.span>
+                  )}
+                  <span className="text-lg my-auto">1</span>
+                </motion.div>
+              </Link>
             </div>
             <div className="flex justify-center flex-row gap-2 mt-8">
-              <motion.div
-                onHoverStart={() => {
-                  settextvisible({ ...textvisible, semester2: true });
-                }}
-                onHoverEnd={() => {
-                  settextvisible({ ...textvisible, semester2: false });
-                }}
-                onClick={() => {
-                  setSemester("2");
-                }}
-                className="mx-1 font-capriola flex items-center rounded-xl border border-blue-500 hover:bg-cyan-600 hover:text-white px-4 py-1 text-gray-900 gap-2 flex-row"
-              >
-                {textvisible.semester2 && (
-                  <motion.span
-                    initial={{
-                      opacity: 0,
-                      scale: 0,
-                    }}
-                    whileInView={
-                      textvisible.semester2
-                        ? {
-                            opacity: 1,
-                            scale: 1,
-                          }
-                        : {}
-                    }
-                    className="text-sm"
-                  >
-                    Semester
-                  </motion.span>
-                )}
-                <span className="text-lg my-auto">2</span>
-              </motion.div>
+              <Link href="/msc#2">
+                <motion.div
+                  onHoverStart={() => {
+                    settextvisible({ ...textvisible, semester2: true });
+                  }}
+                  onHoverEnd={() => {
+                    settextvisible({ ...textvisible, semester2: false });
+                  }}
+                  className="mx-1 font-capriola flex items-center rounded-xl border border-blue-500 hover:bg-cyan-600 hover:text-white px-4 py-1 text-gray-900 gap-2 flex-row"
+                >
+                  {textvisible.semester2 && (
+                    <motion.span
+                      initial={{
+                        opacity: 0,
+                        scale: 0,
+                      }}
+                      whileInView={
+                        textvisible.semester2
+                          ? {
+                              opacity: 1,
+                              scale: 1,
+                            }
+                          : {}
+                      }
+                      className="text-sm"
+                    >
+                      Semester
+                    </motion.span>
+                  )}
+                  <span className="text-lg my-auto">2</span>
+                </motion.div>
+              </Link>
             </div>
             <div className="flex justify-center flex-row gap-2 mt-8">
-              <motion.div
-                onHoverStart={() => {
-                  settextvisible({ ...textvisible, semester3: true });
-                }}
-                onHoverEnd={() => {
-                  settextvisible({ ...textvisible, semester3: false });
-                }}
-                onClick={() => {
-                  setSemester("3");
-                }}
-                className="mx-1 font-capriola flex items-center rounded-xl border border-blue-500 hover:bg-cyan-600 hover:text-white px-4 py-1 text-gray-900 gap-2 flex-row"
-              >
-                {textvisible.semester3 && (
-                  <motion.span
-                    initial={{
-                      opacity: 0,
-                      scale: 0,
-                    }}
-                    whileInView={
-                      textvisible.semester3
-                        ? {
-                            opacity: 1,
-                            scale: 1,
-                          }
-                        : {}
-                    }
-                    className="text-sm"
-                  >
-                    Semester
-                  </motion.span>
-                )}
-                <span className="text-lg my-auto">3</span>
-              </motion.div>
+              <Link href="/msc#3">
+                <motion.div
+                  onHoverStart={() => {
+                    settextvisible({ ...textvisible, semester3: true });
+                  }}
+                  onHoverEnd={() => {
+                    settextvisible({ ...textvisible, semester3: false });
+                  }}
+                  className="mx-1 font-capriola flex items-center rounded-xl border border-blue-500 hover:bg-cyan-600 hover:text-white px-4 py-1 text-gray-900 gap-2 flex-row"
+                >
+                  {textvisible.semester3 && (
+                    <motion.span
+                      initial={{
+                        opacity: 0,
+                        scale: 0,
+                      }}
+                      whileInView={
+                        textvisible.semester3
+                          ? {
+                              opacity: 1,
+                              scale: 1,
+                            }
+                          : {}
+                      }
+                      className="text-sm"
+                    >
+                      Semester
+                    </motion.span>
+                  )}
+                  <span className="text-lg my-auto">3</span>
+                </motion.div>
+              </Link>
             </div>
             <div className="flex justify-center flex-row gap-2 mt-8">
-              <motion.div
-                onHoverStart={() => {
-                  settextvisible({ ...textvisible, semester4: true });
-                }}
-                onHoverEnd={() => {
-                  settextvisible({ ...textvisible, semester4: false });
-                }}
-                onClick={() => {
-                  setSemester("4");
-                }}
-                className="mx-1 font-capriola flex items-center rounded-xl border border-blue-500 hover:bg-cyan-600 hover:text-white px-4 py-1 text-gray-900 gap-2 flex-row"
-              >
-                {textvisible.semester4 && (
-                  <motion.span
-                    initial={{
-                      opacity: 0,
-                      scale: 0,
-                    }}
-                    whileInView={
-                      textvisible.semester4
-                        ? {
-                            opacity: 1,
-                            scale: 1,
-                          }
-                        : {}
-                    }
-                    className="text-sm"
-                  >
-                    Semester
-                  </motion.span>
-                )}
-                <span className="text-lg my-auto">4</span>
-              </motion.div>
+              <Link href="/msc#4">
+                <motion.div
+                  onHoverStart={() => {
+                    settextvisible({ ...textvisible, semester4: true });
+                  }}
+                  onHoverEnd={() => {
+                    settextvisible({ ...textvisible, semester4: false });
+                  }}
+                  className="mx-1 font-capriola flex items-center rounded-xl border border-blue-500 hover:bg-cyan-600 hover:text-white px-4 py-1 text-gray-900 gap-2 flex-row"
+                >
+                  {textvisible.semester4 && (
+                    <motion.span
+                      initial={{
+                        opacity: 0,
+                        scale: 0,
+                      }}
+                      whileInView={
+                        textvisible.semester4
+                          ? {
+                              opacity: 1,
+                              scale: 1,
+                            }
+                          : {}
+                      }
+                      className="text-sm"
+                    >
+                      Semester
+                    </motion.span>
+                  )}
+                  <span className="text-lg my-auto">4</span>
+                </motion.div>
+              </Link>
             </div>
           </div>
           <center className="my-5 px-48">
             <hr />
           </center>
-            {
-                !Semester && (
-                    <div style={{
-                        minHeight: '50vh'
-                    }}></div>
-                )
-            }
+          {!Semester && (
+            <div
+              style={{
+                minHeight: "50vh",
+              }}
+            ></div>
+          )}
           {Semester && (
             <motion.div
               initial={{
@@ -416,7 +427,7 @@ export default function Home() {
             </motion.div>
           )}
           <div className="mb-16"></div>
-          <Footer/>
+          <Footer />
         </div>
       )}
 
@@ -464,19 +475,20 @@ export default function Home() {
             </svg>
           </div>
           <div className="md:mt-0 min-[0px]:mt-20">
-          <PreviewPage
-            university={SubjectData[ArrayIndex].university}
-            degree={SubjectData[ArrayIndex].degree}
-            mainSubject={SubjectData[ArrayIndex].mainSubject}
-            subject={SubjectData[ArrayIndex].subject}
-            semester={SubjectData[ArrayIndex].semester}
-            subjectCode={SubjectData[ArrayIndex].subjectCode}
-            url={SubjectData[ArrayIndex].fileURL}
-            documentYear={SubjectData[ArrayIndex].DocumentYear}
-            category="notes"
-            fileName={SubjectData[ArrayIndex].fileName}
-          />
-        </div></div>
+            <PreviewPage
+              university={SubjectData[ArrayIndex].university}
+              degree={SubjectData[ArrayIndex].degree}
+              mainSubject={SubjectData[ArrayIndex].mainSubject}
+              subject={SubjectData[ArrayIndex].subject}
+              semester={SubjectData[ArrayIndex].semester}
+              subjectCode={SubjectData[ArrayIndex].subjectCode}
+              url={SubjectData[ArrayIndex].fileURL}
+              documentYear={SubjectData[ArrayIndex].DocumentYear}
+              category="notes"
+              fileName={SubjectData[ArrayIndex].fileName}
+            />
+          </div>
+        </div>
       )}
     </div>
   );
