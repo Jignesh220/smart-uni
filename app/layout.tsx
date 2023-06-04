@@ -1,6 +1,5 @@
-
 import "./globals.css";
-import { Inter, Lexend_Deca, Outfit,Capriola } from "next/font/google";
+import { Inter, Lexend_Deca, Outfit, Capriola } from "next/font/google";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -33,7 +32,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2495784574263932"></script>
+        <script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2495784574263932"
+        ></script>
       </head>
       <body
         className={`
