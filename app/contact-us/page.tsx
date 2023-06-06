@@ -1,7 +1,6 @@
 "use client";
 
 import React from "react";
-import { Navbar } from "../Reuseable/Navbar";
 import { db } from "../Firebase/Firebase";
 import { uuidv4 } from "@firebase/util";
 import { doc, getDoc, setDoc } from "firebase/firestore";
@@ -42,11 +41,10 @@ export default function Page() {
   };
   return (
     <div>
-      <Navbar />
       <div
         className="min-w-full"
         style={{
-          minHeight: "90vh",
+          minHeight: "50vh",
         }}
       >
         <div className="text-center text-3xl font-capriola mt-8 mb-4">

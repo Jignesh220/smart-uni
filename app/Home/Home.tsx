@@ -35,6 +35,10 @@ export default function Home() {
             },
           }}
           className="min-w-full flex flex-col lg:gap-2 min-[0px]:gap-1 lg:py-40 min-[0px]:py-16 text-blue-200 rounded-3xl lg:px-64 md:px-20 min-[0px]:px-2"
+          style={{
+            boxShadow:
+              "rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px",
+          }}
         >
           <motion.div
             initial={{

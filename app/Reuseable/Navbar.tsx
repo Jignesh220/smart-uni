@@ -20,7 +20,7 @@ const menuItems = [
   },
   {
     name: "About",
-    href: "/about",
+    href: "/about-us",
   },
   {
     name: "Contact",
@@ -57,13 +57,13 @@ export function Navbar() {
 
   return (
     <div className="relative w-full bg-white">
-      <div className="mx-auto flex items-center justify-between px-4 py-2 sm:px-6 lg:px-8 md:flex-row min-[0px]:flex-col gap-2">
-        <Link href="/">
+      <div className="mx-auto flex items-center justify-between px-4 py-2 sm:px-6 lg:px-8 md:flex-row min-[0px]:flex-col flex-wrap gap-2">
+        <Link href="/" aria-label="Home">
           <div className="inline-flex items-center space-x-2">
             <span>
               <SvgIcon/>
             </span>
-            <span className="font-bold">UniSmart</span>
+            <div className="text-sm font-outfit md:hidden min-[0px]:block">UniSmart</div>
           </div>
         </Link>
         <div className="block">

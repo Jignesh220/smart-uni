@@ -4,7 +4,6 @@ import React from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 
-
 const BScSVG = () => {
   return (
     <svg
@@ -238,86 +237,102 @@ const categoryItems = [
     index: 1,
     title: "BSc",
     color: "bg-fuchsia-200",
-    bgSVG: 'bg-fuchsia-700',
+    bgSVG: "bg-fuchsia-700",
     textColor: "text-fuchsia-800",
-    url: '/bsc'
+    url: "/bsc",
   },
   {
     index: 2,
     title: "MSc",
     color: "bg-orange-200",
-    bgSVG: 'bg-orange-700',
+    bgSVG: "bg-orange-700",
     textColor: "text-orange-800",
-    url: '/msc'
+    url: "/msc",
   },
 ];
 
 export default function Category() {
+  const [DegreeViewPoint, setDegreeViewPoint] = React.useState(false);
   return (
     <div className="lg:mt-16 min-[0px]:mt-10" id="Category">
       <div className="lg:px-36 min-[0px]:px-2">
-        <motion.div 
-        initial={{
+        <motion.div
+          initial={{
             scale: 0,
           }}
-          whileInView={{
-            scale: 1,
-          }}
+          animate={
+            DegreeViewPoint
+              ? {
+                  scale: 1,
+                }
+              : {}
+          }
           transition={{
-            ease: 'easeInOut',
-            delay: .2,
+            ease: "easeInOut",
+            delay: 0.2,
           }}
-        className="lg:text-7xl min-[0px]:text-6xl text-slate-700/20 font-capriola font-extrabold text-center tracking-wide">
+          className="lg:text-7xl min-[0px]:text-6xl text-slate-700/20 font-capriola font-extrabold text-center tracking-wide"
+        >
           Degree
         </motion.div>
         <div className="mt-8 ">
           <div className="flex flex-row lg:gap-8 min-[0px]:gap-6 flex-wrap justify-center">
             {categoryItems.map((item) => (
-               <Link
-               href={item.url}
-               className="rounded-3xl lg:w-96 lg:h-40 min-[0px]:w-11/12 min-[0px]:h-40"
-               key={item.index}
-             >
-               <motion.div
-                 initial={{
-                   scale: 0,
-                   opacity: 0,
-                 }}
-                 whileInView={{
-                   scale: 1,
-                   opacity: 1,
-                 }}
-                 whileTap={{
-                   scale: 0.9,
-                 }}
-                 whileHover={{
-                   scale: 1.05,
-                 }}
-                 transition={{
-                    delay: (categoryItems.findIndex((i) => i.index === item.index)/10)+ 0.2,
+              <Link
+                href={item.url}
+                className="rounded-3xl lg:w-96 lg:h-40 min-[0px]:w-11/12 min-[0px]:h-40"
+                key={item.index}
+              >
+                <motion.div
+                  initial={{
+                    scale: 0,
+                    opacity: 0,
                   }}
-                 className={`min-h-full min-w-full rounded-3xl relative  cursor-pointer ${item.color}`}
-                 style={{
-                  boxShadow:
-                    "rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset",
-                }}
-               >
-                 <div
-                   className={`absolute top-9 ms-4 left-6 ${item.bgSVG} bg-opacity-40 rounded-lg -translate-x-1/2 -translate-y-1/2`}
-                 >
-                   <div className={`py-2 px-2`}>
-                     <GetSVG index={item.index} />
-                   </div>
-                 </div>
-                 <div className="absolute bottom-0 ms-6 left-1/2 -translate-x-1/2 -translate-y-1/2 min-w-full">
-                   <div
-                     className={`lg:text-4xl min-[0px]:text-3xl font-capriola text-start font-bold ${item.textColor} text-opacity-60`}
-                   >
-                     {item.title}
-                   </div>
-                 </div>
-               </motion.div>
-             </Link>
+                  onViewportEnter={() => {
+                    setDegreeViewPoint(true);
+                  }}
+                  animate={
+                    DegreeViewPoint
+                      ? {
+                          scale: 1,
+                          opacity: 1,
+                        }
+                      : {}
+                  }
+                  whileTap={{
+                    scale: 0.9,
+                  }}
+                  whileHover={{
+                    scale: 1.05,
+                  }}
+                  transition={{
+                    delay:
+                      categoryItems.findIndex((i) => i.index === item.index) /
+                        10 +
+                      0.2,
+                  }}
+                  className={`min-h-full min-w-full rounded-3xl relative  cursor-pointer ${item.color}`}
+                  style={{
+                    boxShadow:
+                      "rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset",
+                  }}
+                >
+                  <div
+                    className={`absolute top-9 ms-4 left-6 ${item.bgSVG} bg-opacity-40 rounded-lg -translate-x-1/2 -translate-y-1/2`}
+                  >
+                    <div className={`py-2 px-2`}>
+                      <GetSVG index={item.index} />
+                    </div>
+                  </div>
+                  <div className="absolute bottom-0 ms-6 left-1/2 -translate-x-1/2 -translate-y-1/2 min-w-full">
+                    <div
+                      className={`lg:text-4xl min-[0px]:text-3xl font-capriola text-start font-bold ${item.textColor} text-opacity-60`}
+                    >
+                      {item.title}
+                    </div>
+                  </div>
+                </motion.div>
+              </Link>
             ))}
           </div>
         </div>

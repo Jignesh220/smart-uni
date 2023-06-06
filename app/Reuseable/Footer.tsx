@@ -1,36 +1,53 @@
-"use client"
+"use client";
 import React from "react";
 import Link from "next/link";
 import SvgIcon from "./SvgIcon";
 import { motion } from "framer-motion";
 
 export default function Footer() {
+  const [DegreeViewPoint, setDegreeViewPoint] = React.useState(false);
   return (
     <motion.footer
       initial={{
         scale: 0,
         opacity: 0,
       }}
-      whileInView={{
-        scale: 1,
-        opacity: 1,
+      onViewportEnter={() => {
+        setDegreeViewPoint(true);
       }}
+      animate={
+        DegreeViewPoint
+          ? {
+              scale: 1,
+              opacity: 1,
+            }
+          : {}
+      }
       aria-label="Site Footer"
       className="bg-blue-100 mt-24 my-3 mx-3 rounded-3xl"
+      style={{
+        boxShadow:
+          "rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px, rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px",
+      }}
     >
       <motion.div
-      initial={{
-        scale: 0,
-        opacity: 0,
-      }}
-      whileInView={{
-        scale: 1,
-        opacity: 1,
-      }} 
-      transition={{
-        delay: .3
-      }}
-      className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+        initial={{
+          scale: 0,
+          opacity: 0,
+        }}
+        animate={
+          DegreeViewPoint
+            ? {
+                scale: 1,
+                opacity: 1,
+              }
+            : {}
+        }
+        transition={{
+          delay: 0.3,
+        }}
+        className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8"
+      >
         <div className="flex justify-center text-teal-600">
           <div className="flex gap-3 flex-col">
             <center>
@@ -82,7 +99,7 @@ export default function Footer() {
             <li>
               <Link
                 className="text-blue-800 font-bold tracking-wide font-outfit hover:text-opacity-75"
-                href="/about"
+                href="/about-us"
               >
                 About
               </Link>
@@ -253,7 +270,7 @@ export default function Footer() {
         </ul>
       </motion.div>
       <div className="flex justify-center flex-row gap-2 font-outfit -mt-4 pb-8">
-        Design and Develop By{" "}
+        Design and Develop By
         <span className="text-blue-800">
           {"  "}
           <Link href="https://jignesh-baria.vercel.app/" target="_blank">

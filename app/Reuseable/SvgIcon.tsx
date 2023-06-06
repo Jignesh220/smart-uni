@@ -6,7 +6,8 @@ export default function SvgIcon() {
           id="OBJECTS"
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 500 500"
-          className="w-8 h-8"
+          className="md:w-10 md:h-10 min-[0px]:w-7 min-[0px]:h-7"
+          xlinkTitle='Home'
         >
           <rect
             x="0"

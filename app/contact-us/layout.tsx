@@ -1,4 +1,6 @@
 import React from "react";
+import Footer from "../Reuseable/Footer";
+import { Navbar } from "../Reuseable/Navbar";
 export const metadata = {
   title: "UniSol | Contact Us",
   description:
@@ -11,10 +13,9 @@ export default function ContactUsLayout({
   }) {
     return (
       <section>
-        {/* Include shared UI here e.g. a header or sidebar */}
-        <nav></nav>
-   
+        <Navbar/>
         {children}
+        <Footer/>
       </section>
     );
   }
