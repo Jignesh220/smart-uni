@@ -1093,9 +1093,13 @@ export default function Category() {
           initial={{
             scale: 0,
           }}
-          animate={DegreeViewPoint?{
-            scale: 1,
-          }:{}}
+          animate={
+            DegreeViewPoint
+              ? {
+                  scale: 1,
+                }
+              : {}
+          }
           transition={{
             ease: "easeInOut",
             delay: 0.2,
@@ -1143,7 +1147,7 @@ export default function Category() {
                   className={`min-h-full min-w-full rounded-3xl relative  cursor-pointer ${item.color}`}
                   style={{
                     boxShadow:
-                      "rgba(50, 50, 93, 0.25) 0px 5px 10px -2px, rgba(0, 0, 0, 0.3) 0px 3px 6px -3px, rgba(10, 37, 64, 0.35) 0px -1px 3px 0px inset",
+                      "rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset",
                   }}
                 >
                   <div

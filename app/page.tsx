@@ -5,7 +5,6 @@ import Home from './Home/Home'
 import Category from './Home/Category'
 import Footer from './Reuseable/Footer'
 import Degree from './Home/Degree'
-import AdSense from './googleAds/AdSense'
 import Head from 'next/head'
 
 export default function Index() {
@@ -17,7 +16,6 @@ export default function Index() {
       <Navbar/>
       <Home/>
       <Category/>
-      <AdSense/>
       <Degree/>
       <Footer/>
     </main>

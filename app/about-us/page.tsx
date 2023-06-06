@@ -8,10 +8,10 @@ export default function page() {
         minHeight: "50vh",
       }}
     >
-      <div className="min-h-full min-w-full px-64 flex justify-center">
+      <div className="min-h-full min-w-full md:px-64 min-[0px]:px-4 flex justify-center">
         <center className="min-h-full min-w-full">
-          <div className="text-5xl font-capriola my-5">About Us</div>
-          <div className="flex flex-col gap-2 my-5 text-2xl font-outfit">
+          <div className="md:text-5xl min-[0px]:text-4xl font-capriola my-5">About Us</div>
+          <div className="flex flex-col gap-2 my-5 md:text-2xl min-[0px]:text-lg font-outfit">
             Welcome to our college website, your ultimate destination for
             academic excellence and support. We are dedicated to providing a
             holistic educational experience that goes beyond the classroom. Our

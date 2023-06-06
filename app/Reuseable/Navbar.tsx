@@ -166,7 +166,7 @@ export function Navbar() {
                       transition={{
                         delay: 0.3,
                       }}
-                      className="absolute md:max-h-96 min-[0px]:max-h-80 overflow-auto scrollbar-search bg-purple-100 border border-purple-300 rounded-md shadow-md mt-2 w-96"
+                      className="absolute z-10 md:max-h-96 min-[0px]:max-h-80 overflow-auto scrollbar-search bg-purple-100 border border-purple-300 rounded-md shadow-md mt-2 w-96"
                     >
                       {suggestions.map((item) => (
                         <Link href={item.url} key={item.index}>
@@ -200,7 +200,7 @@ export function Navbar() {
                       transition={{
                         delay: 0.3,
                       }}
-                      className="absolute md:max-h-96 min-[0px]:max-h-80 overflow-auto scrollbar-search bg-purple-100 border border-purple-300 rounded-xl shadow-md mt-2 w-96"
+                      className="absolute z-10 md:max-h-96 min-[0px]:max-h-80 overflow-auto scrollbar-search bg-purple-100 border border-purple-300 rounded-xl shadow-md mt-2 w-96"
                     >
                       {Search.map((item) => (
                         <Link href={item.url} key={item.index}>
