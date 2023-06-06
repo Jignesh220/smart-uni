@@ -3,6 +3,7 @@ import Link from "next/link";
 import React from "react";
 import { motion } from "framer-motion";
 import { db } from "@/app/Firebase/Firebase";
+import Head from "next/head";
 import {
   doc,
   getDoc,
@@ -107,6 +108,9 @@ export default function Page({
   }
   return (
     <div className="min-w-full md:px-5 min-[0px]:px-2 py-4 flex justify-center">
+      <Head>
+        <title>UniSol | Main Subject</title>
+      </Head>
       <div
         className="min-w-full rounded-3xl outline outline-offset-2 outline-2 outline-blue-500 bg-slate-50"
         style={{

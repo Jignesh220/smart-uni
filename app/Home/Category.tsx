@@ -1127,9 +1127,16 @@ export default function Category() {
                     scale: 1.05,
                   }}
                   transition={{
-                    delay: (categoryItems.findIndex((i) => i.index === item.index)/10)+ 0.2,
+                    delay:
+                      categoryItems.findIndex((i) => i.index === item.index) /
+                        10 +
+                      0.2,
                   }}
-                  className={`min-h-full min-w-full rounded-3xl relative shadow-lg hover:shadow-xl shadow-slate-300 hover:shadow-slate-400 cursor-pointer ${item.color}`}
+                  className={`min-h-full min-w-full rounded-3xl relative  cursor-pointer ${item.color}`}
+                  style={{
+                    boxShadow:
+                      "rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset",
+                  }}
                 >
                   <div
                     className={`absolute top-9 ms-4 left-6 ${item.bgSVG} bg-opacity-40 rounded-lg -translate-x-1/2 -translate-y-1/2`}

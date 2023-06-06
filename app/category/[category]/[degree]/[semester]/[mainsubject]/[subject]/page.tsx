@@ -13,6 +13,7 @@ import {
   DocumentData,
   QuerySnapshot,
 } from "firebase/firestore";
+import Head from "next/head";
 
 export default function SubjectPage({
   params,
@@ -91,6 +92,9 @@ export default function SubjectPage({
   }
   return (
     <div>
+      <Head>
+        <title>UniSol | Subject</title>
+      </Head>
       <div className="mt-8 min-w-screen">
         {MainSubjectData.map((item) => (
           <motion.div
