@@ -44,9 +44,9 @@ export default function Home() {
                   whileHover={{
                     scale: 1.02,
                   }}
-                  className="lg:w-60 lg:h-32 min-[0px]:w-44 min-[0px]:h-28 shadow-xl shadow-slate-500 bg-emerald-300 rounded-2xl flex justify-center items-center"
+                  className="lg:w-60 lg:h-32 min-[0px]:w-44 min-[0px]:h-28 shadow-xl shadow-slate-500 bg-emerald-100 rounded-2xl flex justify-center items-center"
                 >
-                  <div className="text-base font-outfit font-bold tracking-wide">
+                  <div className="text-2xl font-capriola font-bold tracking-wide text-emerald-800">
                     {item.title}
                   </div>
                 </motion.div>
