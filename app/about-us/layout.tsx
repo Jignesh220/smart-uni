@@ -2,7 +2,7 @@ import React from 'react'
 import { Navbar } from '../Reuseable/Navbar';
 import Footer from '../Reuseable/Footer';
 export const metadata = {
-    title: "UniSol | About Us",
+    title: "UniSmart | About Us",
     description:
       "About UniSmart",
   };

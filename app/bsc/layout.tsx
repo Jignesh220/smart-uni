@@ -1,6 +1,6 @@
 import React from "react";
 export const metadata = {
-  title: "UniSol | B.Sc",
+  title: "UniSmart | B.Sc",
   description:
     "Discover a vast selection of high-quality BSc notes and exam papers, tailored to meet your academic needs.",
 };

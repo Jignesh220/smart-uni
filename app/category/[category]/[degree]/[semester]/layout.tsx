@@ -1,6 +1,6 @@
 import React from 'react'
 export const metadata = {
-    title: "UniSol | Semester",
+    title: "UniSmart | Semester",
     description:
       "Discover a vast selection of high-quality notes and exam papers, tailored to meet your academic needs By Semester.",
   };

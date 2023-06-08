@@ -1,6 +1,6 @@
 import React from 'react'
 export const metadata = {
-    title: "UniSol | M.Sc",
+    title: "UniSmart | M.Sc",
     description:
       "Discover a vast selection of high-quality MSc notes and exam papers, tailored to meet your academic needs.",
   };

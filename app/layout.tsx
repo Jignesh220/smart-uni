@@ -4,7 +4,7 @@ import { Inter, Lexend_Deca, Outfit, Capriola } from "next/font/google";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "UniSol | Home",
+  title: "UniSmart | Home",
   description:
     "UniSmart is a comprehensive online platform offering a wide array of educational resources, including notes, exam papers, and project guidance, all available to users at no cost.",
 };
