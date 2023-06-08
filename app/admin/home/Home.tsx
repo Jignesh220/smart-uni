@@ -9,12 +9,17 @@ const adminItem = [
     url: "/admin/add",
   },
   {
-    index: 1,
+    index: 2,
     title: "Update",
     url: "#",
   },
   {
-    index: 1,
+    index: 3,
+    title: "Add Water Mark",
+    url: "/admin/watermark",
+  },
+  {
+    index: 4,
     title: "Remove",
     url: "#",
   },

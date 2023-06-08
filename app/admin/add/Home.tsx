@@ -3,6 +3,7 @@ import { auth, db, storage } from "@/app/Firebase/Firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { doc, getDoc, setDoc, updateDoc } from "firebase/firestore";
 import { uuidv4 } from "@firebase/util";
+import { PDFDocument, rgb } from "pdf-lib";
 import {
   ref,
   uploadBytesResumable,
@@ -86,40 +87,103 @@ export default function Home() {
     }
   };
 
-  const UploadFileToStorage = () => {
-    if (
-      form.documentPdf &&
-      form.degree &&
-      form.semester &&
-      form.category &&
-      form.fileName
-    ) {
-      setfileUploading(true);
-      const path = `${form.degree}/${form.semester}/${form.category}/${form.fileName}`;
-      const adharcardupload = ref(storage, path);
-      const uploadTask = uploadBytesResumable(
-        adharcardupload,
-        form.documentPdf
-      );
-      uploadTask.on(
-        "state_changed",
-        (snapshot: any) => {
-          const percent = Math.round(
-            (snapshot.bytesTransferred / snapshot.totalBytes) * 100
-          );
-          setpercentage(percent);
-        },
-        (err: Error) => console.log(err),
-        () => {
-          getDownloadURL(uploadTask.snapshot.ref).then((url) => {
-            setForm({ ...form, fileURL: url });
-            setfileUploading(false);
-            setuploadSuccessfull({ ...uploadSuccessfull, pdfUpload: true });
-          });
+  const readFileAsArrayBuffer = (file: File): Promise<ArrayBuffer> => {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => {
+        if (reader.result instanceof ArrayBuffer) {
+          resolve(reader.result);
+        } else {
+          reject(new Error("Unable to read file"));
         }
-      );
-    } else {
-      alert("select the file or write name first!!");
+      };
+      reader.onerror = (error) => {
+        reject(error);
+      };
+      reader.readAsArrayBuffer(file);
+    });
+  };
+
+  const UploadFileToStorage = async () => {
+    try {
+      if (form.documentPdf) {
+        const pdfBytes = await readFileAsArrayBuffer(form.documentPdf);
+        const pdfDoc = await PDFDocument.load(pdfBytes);
+        const pages = pdfDoc.getPages();
+
+        const font = await pdfDoc.embedFont("Helvetica-Bold");
+        const watermarkSize = 80;
+        const watermarkColor = rgb(0.5, 0.5, 0.5);
+
+        for (const page of pages) {
+          const { width, height } = page.getSize();
+          const textWidth = font.widthOfTextAtSize("UniSmart", watermarkSize);
+          const textHeight = font.heightAtSize(watermarkSize);
+
+          page.drawText('UniSmart', {
+            x: (width - textWidth) / 2,
+            y: height - textHeight - 200,
+            size: watermarkSize,
+            font: font,
+            color: watermarkColor,
+            opacity: 0.3,
+          });
+          page.drawText('UniSmart', {
+            x: (width - textWidth) / 2,
+            y: 200,
+            size: watermarkSize,
+            font: font,
+            color: watermarkColor,
+            opacity: 0.3,
+          });
+          // page.drawText(watermarkText, {
+          //   x: (width - textWidth) / 2,
+          //   y: height/2,
+          //   size: watermarkSize,
+          //   font: font,
+          //   color: watermarkColor,
+          //   opacity: 0.3,
+          // });
+        }
+        const modifiedPdfBytes = await pdfDoc.save();
+        if (
+          form.documentPdf &&
+          form.degree &&
+          form.semester &&
+          form.category &&
+          form.fileName
+        ) {
+          setfileUploading(true);
+          const path = `${form.degree}/${form.semester}/${form.category}/${form.fileName}`;
+          const adharcardupload = ref(storage, path);
+          const uploadTask = uploadBytesResumable(
+            adharcardupload,
+            modifiedPdfBytes
+          );
+          uploadTask.on(
+            "state_changed",
+            (snapshot: any) => {
+              const percent = Math.round(
+                (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+              );
+              setpercentage(percent);
+            },
+            (err: Error) => console.log(err),
+            () => {
+              getDownloadURL(uploadTask.snapshot.ref).then((url) => {
+                setForm({ ...form, fileURL: url });
+                setfileUploading(false);
+                setuploadSuccessfull({ ...uploadSuccessfull, pdfUpload: true });
+              });
+            }
+          );
+        } else {
+          alert("select the file or write name first!!");
+        }
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      alert("An error occurred while adding the watermark");
     }
   };
 
@@ -183,10 +247,11 @@ export default function Home() {
                   dataUpload: true,
                 });
               });
-            }).then(async()=>{
+            })
+            .then(async () => {
               const unqId = uuidv4();
-              const allDataPath = `allData/${form.university}/${form.degree}/${uniqID}` 
-              const allData = doc(db,allDataPath);
+              const allDataPath = `allData/${form.university}/${form.degree}/${uniqID}`;
+              const allData = doc(db, allDataPath);
               await setDoc(allData, {
                 aDocid: uniqID,
                 id: unqId,
@@ -205,9 +270,9 @@ export default function Home() {
                 tag3: form.Tag_3,
                 tag4: form.Tag_4,
                 tag5: form.Tag_5,
-              }).then((error)=>{
+              }).then((error) => {
                 console.log(error);
-              })
+              });
             })
             .then((error) => {
               console.log(error);
@@ -371,7 +436,10 @@ export default function Home() {
                   placeholder="Enter Main Subject"
                   className="flex w-full rounded-md border appearance-none border-blue-500/75 bg-transparent px-3 py-2 text-sm placeholder:text-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500/30 disabled:cursor-not-allowed disabled:opacity-50"
                   onChange={(e) => {
-                    setForm({ ...form, mainSubject: e.target.value.split(" ").join("") });
+                    setForm({
+                      ...form,
+                      mainSubject: e.target.value.split(" ").join(""),
+                    });
                     if (e.target.value.length > 2) {
                       setFormError({ ...formError, mainSubject: false });
                     } else {
@@ -404,7 +472,10 @@ export default function Home() {
                   placeholder="Enter Subject"
                   className="flex w-full rounded-md border appearance-none border-blue-500/75 bg-transparent px-3 py-2 text-sm placeholder:text-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500/30 disabled:cursor-not-allowed disabled:opacity-50"
                   onChange={(e) => {
-                    setForm({ ...form, subSubject: e.target.value.split(" ").join("") });
+                    setForm({
+                      ...form,
+                      subSubject: e.target.value.split(" ").join(""),
+                    });
                     if (e.target.value.length > 2) {
                       setFormError({ ...formError, subSubject: false });
                     } else {
@@ -581,7 +652,7 @@ export default function Home() {
                     required
                   />
                   <button
-                  type="button"
+                    type="button"
                     className="w-2/5 bg-rose-300 text-rose-700 hover:bg-rose-700 hover:text-rose-200 text-center rounded-lg font-outfit font-font-bold tracking-wider"
                     onClick={UploadFileToStorage}
                   >

@@ -4,10 +4,14 @@ import { PDFDocument, rgb } from 'pdf-lib';
 
 export default function Home() {
   const [watermarkText, setWatermarkText] = useState('');
+  const [fileName, setFileName] = useState('')
   const [pdfFile, setPdfFile] = useState<File | null>(null);
 
   const handleTextChange = (event: ChangeEvent<HTMLInputElement>) => {
     setWatermarkText(event.target.value);
+  };
+  const handleFileNameChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setFileName(event.target.value);
   };
 
   const handleFileChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -19,7 +23,7 @@ export default function Home() {
   const handleFormSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    if (!watermarkText || !pdfFile) {
+    if (!watermarkText || !pdfFile || !fileName) {
       alert('Please enter watermark text and select a PDF file');
       return;
     }
@@ -40,7 +44,7 @@ export default function Home() {
 
         page.drawText(watermarkText, {
           x: (width - textWidth) / 2,
-          y: height - textHeight - 50,
+          y: height - textHeight - 200,
           size: watermarkSize,
           font: font,
           color: watermarkColor,
@@ -48,20 +52,20 @@ export default function Home() {
         });
         page.drawText(watermarkText, {
           x: (width - textWidth) / 2,
-          y: 50,
+          y: 200,
           size: watermarkSize,
           font: font,
           color: watermarkColor,
           opacity: 0.3,
         });
-        page.drawText(watermarkText, {
-          x: (width - textWidth) / 2,
-          y: height/2,
-          size: watermarkSize,
-          font: font,
-          color: watermarkColor,
-          opacity: 0.3,
-        });
+        // page.drawText(watermarkText, {
+        //   x: (width - textWidth) / 2,
+        //   y: height/2,
+        //   size: watermarkSize,
+        //   font: font,
+        //   color: watermarkColor,
+        //   opacity: 0.3,
+        // });
       }
 
       const modifiedPdfBytes = await pdfDoc.save();
@@ -70,7 +74,7 @@ export default function Home() {
       const downloadUrl = URL.createObjectURL(file);
       const link = document.createElement('a');
       link.href = downloadUrl;
-      link.setAttribute('download', 'watermarked.pdf');
+      link.setAttribute('download', fileName);
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
@@ -99,34 +103,54 @@ export default function Home() {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="max-w-md mx-auto p-8 bg-white shadow-lg rounded-lg">
-        <h1 className="text-2xl font-semibold mb-6">Add Watermark to PDF</h1>
+      <div className="max-w-md mx-auto px-16 py-8 bg-white shadow-lg rounded-3xl">
+        <h1 className="text-2xl font-semibold text-center mb-6 font-outfit">Add Watermark to PDF</h1>
 
         <form onSubmit={handleFormSubmit}>
           <div className="mb-4">
-            <label htmlFor="watermarkText" className="font-medium">
-              Watermark Text:
+            <label htmlFor="watermarkText" className="font-medium font-outfit text-sm text-center">
+              Watermark Text
             </label>
             <input
               type="text"
               id="watermarkText"
               name="watermarkText"
-              className="mt-2 border border-gray-300 rounded-md p-2 w-full"
+              className="flex h-10 w-full border-b border-slate-300 focus:border-black  bg-transparent px-3 py-2 text-sm placeholder:text-gray-600 focus:outline-none"
               value={watermarkText}
               onChange={handleTextChange}
+              placeholder='Enter Yor watermark text'
+              required
+            />
+          </div>
+          <div className="mb-4">
+            <label htmlFor="fileName" className="font-medium text-sm font-outfit">
+              File Name
+            </label>
+            <input
+              type="text"
+              id="fileName"
+              name="fileName"
+              className="flex h-10 w-full border-b border-slate-300 focus:border-black  bg-transparent px-3 py-2 text-sm placeholder:text-gray-600 focus:outline-none"
+              value={fileName}
+              onChange={handleFileNameChange}
+              placeholder='Enter Yor File Name text'
               required
             />
           </div>
 
           <div className="mb-4">
-            <label htmlFor="pdfFile" className="font-medium">
-              PDF File:
+            <label htmlFor="pdfFile" className="font-medium text-sm font-outfit">
+              PDF File
             </label>
             <input
               type="file"
               id="pdfFile"
               name="pdfFile"
-              className="mt-2"
+              className="flex mt-2 w-full rounded-md appearance-none bg-transparent text-sm placeholder:text-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500/30 disabled:cursor-not-allowed disabled:opacity-50 file:mr-4 file:py-2 file:px-4
+                  file:rounded-lg file:border-0
+                  file:text-sm file:font-semibold
+                  file:bg-blue-300 file:w-full file:text-blue-700
+                  hover:file:bg-blue-700 hover:file:text-blue-100"
               accept="application/pdf"
               onChange={handleFileChange}
               required
@@ -135,8 +159,8 @@ export default function Home() {
 
           <button
             type="submit"
-            className="py-2 px-4 bg-blue-500 text-white font-semibold rounded-md hover:bg-blue-600"
-          >
+            className="w-full mt-8 bg-blue-800 text-blue-100 p-2 rounded-full font-outfit font-bold text-sm tracking-wider"
+            >
             Add Watermark and Download
           </button>
         </form>
