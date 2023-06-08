@@ -74,8 +74,8 @@ export default function Home() {
                   onHoverEnd={() => {
                     settextvisible({ ...textvisible, semester1: false });
                   }}
-                  onClick={()=>{
-                    setSemester("1")
+                  onClick={() => {
+                    setSemester("1");
                   }}
                   className="mx-1 font-capriola flex items-center rounded-xl border border-blue-500 hover:bg-cyan-600 hover:text-white px-4 py-1 text-gray-900 gap-2 flex-row"
                 >
@@ -111,8 +111,8 @@ export default function Home() {
                   onHoverEnd={() => {
                     settextvisible({ ...textvisible, semester2: false });
                   }}
-                  onClick={()=>{
-                    setSemester("2")
+                  onClick={() => {
+                    setSemester("2");
                   }}
                   className="mx-1 font-capriola flex items-center rounded-xl border border-blue-500 hover:bg-cyan-600 hover:text-white px-4 py-1 text-gray-900 gap-2 flex-row"
                 >
@@ -148,8 +148,8 @@ export default function Home() {
                   onHoverEnd={() => {
                     settextvisible({ ...textvisible, semester3: false });
                   }}
-                  onClick={()=>{
-                    setSemester("3")
+                  onClick={() => {
+                    setSemester("3");
                   }}
                   className="mx-1 font-capriola flex items-center rounded-xl border border-blue-500 hover:bg-cyan-600 hover:text-white px-4 py-1 text-gray-900 gap-2 flex-row"
                 >
@@ -185,8 +185,8 @@ export default function Home() {
                   onHoverEnd={() => {
                     settextvisible({ ...textvisible, semester4: false });
                   }}
-                  onClick={()=>{
-                    setSemester("4")
+                  onClick={() => {
+                    setSemester("4");
                   }}
                   className="mx-1 font-capriola flex items-center rounded-xl border border-blue-500 hover:bg-cyan-600 hover:text-white px-4 py-1 text-gray-900 gap-2 flex-row"
                 >
@@ -222,8 +222,8 @@ export default function Home() {
                   onHoverEnd={() => {
                     settextvisible({ ...textvisible, semester5: false });
                   }}
-                  onClick={()=>{
-                    setSemester("5")
+                  onClick={() => {
+                    setSemester("5");
                   }}
                   className="mx-1 font-capriola flex items-center rounded-xl border border-blue-500 hover:bg-cyan-600 hover:text-white px-4 py-1 text-gray-900 gap-2 flex-row"
                 >
@@ -259,8 +259,8 @@ export default function Home() {
                   onHoverEnd={() => {
                     settextvisible({ ...textvisible, semester6: false });
                   }}
-                  onClick={()=>{
-                    setSemester("6")
+                  onClick={() => {
+                    setSemester("6");
                   }}
                   className="mx-1 font-capriola flex items-center rounded-xl border border-blue-500 hover:bg-cyan-600 hover:text-white px-4 py-1 text-gray-900 gap-2 flex-row"
                 >
@@ -297,6 +297,113 @@ export default function Home() {
                 minHeight: "50vh",
               }}
             ></div>
+          )}
+          {Semester && (
+            <motion.div
+              initial={{
+                scale: 0,
+              }}
+              animate={
+                SubjectData.length !== 0
+                  ? {
+                      scale: 1,
+                    }
+                  : {}
+              }
+              className="mt-5 min-h-full"
+            >
+              <div className="min-h-min min-w-full ">
+                <div className="grid grid-cols-12 md:gap-4 min-[0px]:gap-2 md:mx-8 min-[0px]:mx-1 md:p-3 min-[0px]:p-2 bg-white rounded-3xl">
+                  <div className="md:col-span-1 min-[0px]:col-span-2 h-auto bg-cyan-200 rounded-3xl flex justify-center items-center">
+                    <div className="-rotate-90 text-cyan-900 text-opacity-60 md:text-4xl min-[0px]:text-lg font-bold font-capriola whitespace-nowrap">
+                      Syllabus
+                    </div>
+                  </div>
+                  <div className="md:col-span-11 min-[0px]:col-span-10 h-auto bg-cyan-200 rounded-3xl md:p-5 min-[0px]:p-2">
+                    <div className="flex overflow-x-scroll hide-scroll-bar">
+                      <div
+                        className="flex flex-nowrap"
+                        style={{
+                          minHeight: "208px",
+                        }}
+                      >
+                        {SubjectData.filter(
+                          (arrayItem) =>
+                            arrayItem.category === "syllabus" &&
+                            arrayItem.semester === `semester_${Semester}`
+                        ).length === 0 && (
+                          <div className="text-start font-outfit text-red-500  text-2xl">
+                            {" "}
+                            <div className="">Notes Not Found</div>
+                            <div className="">
+                              Please feel free to submit a request through our
+                              &#39;
+                              <Link
+                                href="/contact-us"
+                                className="text-cyan-500 hover:underline hover:underline-offset-3"
+                              >
+                                Contact Us
+                              </Link>
+                              &#39; page for Request a Document.
+                            </div>{" "}
+                          </div>
+                        )}
+                        {SubjectData.filter(
+                          (arrayItem) =>
+                            arrayItem.category === "syllabus" &&
+                            arrayItem.semester === `semester_${Semester}`
+                        ).map((item) => (
+                          <div className="inline-block px-1" key={item.id}>
+                            <motion.div
+                              initial={{
+                                scale: 0,
+                              }}
+                              animate={{
+                                scale: 1,
+                              }}
+                              whileHover={{
+                                // rotateY: 360,
+                                scale: 0.98,
+                              }}
+                              whileTap={{
+                                scale: 0.9,
+                              }}
+                              transition={{
+                                ease: "easeInOut",
+                                delay: 0.1,
+                              }}
+                              onClick={() => {
+                                setpopupBox(true);
+                                setArrayIndex(
+                                  SubjectData.findIndex((i) => i.id === item.id)
+                                );
+                              }}
+                              className="w-60 h-96 max-w-xs cursor-pointer overflow-hidden rounded-3xl shadow-md bg-cyan-900 text-cyan-200 hover:shadow-xl transition-shadow duration-300 ease-in-out flex justify-center items-center flex-col"
+                            >
+                              <div className="text-lg font-outfit font-bold tracking-wider capitalize">
+                                {item.degree.split(/(?=[A-Z])/).join(" ")}
+                              </div>
+                              <div className="text-lg font-outfit font-bold tracking-wider capitalize">
+                                {item.semester.split("_").join(" ")}
+                              </div>
+                              <div className="text-lg font-outfit font-bold tracking-wider capitalize">
+                                {item.mainSubject.split(/(?=[A-Z])/).join(" ")}
+                              </div>
+                              <div className="text-lg font-outfit font-bold tracking-wider capitalize">
+                                {item.subject.split(/(?=[A-Z])/).join(" ")}
+                              </div>
+                              <div className="text-lg font-outfit font-bold tracking-wider capitalize">
+                                {item.subjectCode.split(/(?=[A-Z])/).join(" ")}
+                              </div>
+                            </motion.div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
           )}
           {Semester && (
             <motion.div

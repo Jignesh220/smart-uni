@@ -1,9 +1,9 @@
 import React from 'react'
 import Page from './page';
 export const metadata = {
-    title: "UniSol | Admin",
+    title: "UniSmart | Admin",
     description:
-      "Admin Section Of Unisol",
+      "Admin Section Of UniSmart",
   };
   
   export default function AdminLayout({
