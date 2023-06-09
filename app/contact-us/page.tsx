@@ -52,7 +52,7 @@ export default function Page() {
         </div>
         <form
           action=""
-          className="flex flex-col gap-3 px-96 mx-60"
+          className=" flex flex-col gap-3 md:px-96 md:mx-60 min-[0px]:mx-7"
           onSubmit={handleUploadData}
         >
           <div className="flex flex-col gap-1">
