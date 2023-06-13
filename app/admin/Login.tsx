@@ -4,13 +4,15 @@ import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
 import firebase from "firebase/compat/app";
 import { error } from "console";
-import { signInWithEmailAndPassword} from "firebase/auth";
+import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../Firebase/Firebase";
 
 export default function Login() {
   const router = useRouter();
   const [passwordVisible, setpasswordVisible] = useState(false);
   const [loading, setloading] = useState(false);
+  const [error, seterror] = useState(false);
+  const [errorCode, seterrorCode] = useState("");
   const [Form, setForm] = useState({
     email: "",
     password: "",
@@ -20,12 +22,19 @@ export default function Login() {
     e.preventDefault();
     setloading(true);
     try {
-      signInWithEmailAndPassword(auth, Form.email, Form.password).then(() => {
-        router.push("/admin/home");
-      });
+      signInWithEmailAndPassword(auth, Form.email, Form.password)
+        .then(() => {
+          router.push("/admin/home");
+        })
+        .catch((error) => {
+          setloading(false);
+          seterror(true);
+          seterrorCode(error.code);
+          console.log(error + "=" + error.code);
+          
+        });
     } catch (error) {
       setloading(false);
-      console.log(error);
     }
   };
 
@@ -197,6 +206,7 @@ export default function Login() {
                     }}
                     required
                   />
+
                   <span className="absolute inset-y-0 end-0 grid w-10 place-content-center mt-6">
                     <button
                       type="button"
@@ -238,6 +248,13 @@ export default function Login() {
                     </button>
                   </span>
                 </div>
+                {error && (
+                  <div className="text-rose-600 font-outfit text-xs font-bold tracking-wider">
+                    {/* Please Enter Correct Password! */}
+                    <div className="">{errorCode}</div>
+                  </div>
+                )}
+
                 <button
                   type="submit"
                   className="bg-blue-500 w-full text-center py-2 rounded-full text-white font-outfit font-bold tracking-wider mt-6 shadow-md shadow-slate-400"

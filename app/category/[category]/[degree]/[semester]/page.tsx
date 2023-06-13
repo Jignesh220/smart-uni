@@ -207,7 +207,7 @@ export default function Page({
                     style={{
                       backgroundColor: colorThemeIndex,
                     }}
-                    className={`group md:w-96 min-[0px]:w-96 md:h-36 min-[0px]:h-36 rounded-3xl flex justify-center items-center flex-col shadow-lg shadow-slate-400 relative overflow-hidden`}
+                    className={`group md:w-96 min-[0px]:w-80 md:h-36 min-[0px]:h-36 rounded-3xl flex justify-center items-center flex-col shadow-lg shadow-slate-400 relative overflow-hidden`}
                   >
                     <div
                       style={{
