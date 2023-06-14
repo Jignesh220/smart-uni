@@ -2,15 +2,21 @@
 @tailwind components;
 @tailwind utilities;
 
-html{
-  scroll-behavior: smooth; 
+html {
+  scroll-behavior: smooth;
+}
+body {
+  background: radial-gradient(circle, #cdcbff 10%, transparent 11%);
+  background-size: 1em 1em;
+  background-color: #ffffff;
+  opacity: 1;
 }
 
 .loader {
   width: 48px;
   height: 48px;
   display: block;
-  margin:15px auto;
+  margin: 15px auto;
   position: relative;
   color: #003566;
   box-sizing: border-box;
@@ -18,7 +24,7 @@ html{
 }
 .loader::after,
 .loader::before {
-  content: '';  
+  content: "";
   box-sizing: border-box;
   position: absolute;
   width: 24px;
@@ -42,16 +48,14 @@ html{
   100% {
     transform: rotate(360deg);
   }
-} 
+}
 @keyframes animloader {
-    50% {
-      transform: scale(1) translate(-50%, -50%);
+  50% {
+    transform: scale(1) translate(-50%, -50%);
+  }
 }
-}
-    
 
-
-.scrollbar-search::-webkit-scrollbar{
+.scrollbar-search::-webkit-scrollbar {
   width: 5px;
   border-radius: 999;
 }
@@ -65,7 +69,7 @@ html{
 .scrollbar-search::-webkit-scrollbar-thumb {
   background: rgb(126 34 206);
   border-radius: 15px;
-  border: .5px solid transparent;
+  border: 0.5px solid transparent;
 }
 
 /* Handle on hover */

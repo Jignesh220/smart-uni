@@ -51,7 +51,6 @@ export default function Home() {
       const oldpaperInformation = collection(db, ref);
       const Mysnapshort = getDocs(oldpaperInformation);
       (await Mysnapshort).forEach(async (doc) => {
-        // console.log(doc.data());
         setSubjectData((arr) => [...arr, doc.data()]);
       });
     }

@@ -63,7 +63,6 @@ export default function Page({
     const mySnapshot: QuerySnapshot = await getDocs(bseInformation);
     mySnapshot.forEach((doc) => {
       // doc.data() is never undefined for query doc snapshots
-      console.log(doc.id, " => ", doc.data());
       setMainSubjectData((arr) => [...arr, doc.data()]);
     });
   };
@@ -106,7 +105,7 @@ export default function Page({
   return (
     <div className="min-w-full md:px-5 min-[0px]:px-2 py-4 flex justify-center">
       <div
-        className="min-w-full rounded-3xl outline outline-offset-2 outline-2 outline-blue-500 bg-slate-50"
+        className="min-w-full rounded-3xl outline outline-offset-2 outline-2 outline-blue-500 bg-slate-50 md:pb-0 min-[0px]:pb-8"
         style={{
           minHeight: "90vh",
         }}
@@ -168,7 +167,7 @@ export default function Page({
           </div>
         </div>
         <div className="mt-16 min-w-full px-32">
-          <div className="min-w-full flex flex-row flex-wrap justify-center gap-3">
+          <div className="min-w-full flex flex-row flex-wrap justify-center gap-6">
             {MainSubjectData.map((item) => {
               const RandomIndex = Math.floor(Math.random() * 6);
               const colorThemeIndex = Colors[RandomIndex];

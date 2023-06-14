@@ -56,7 +56,7 @@ export function Navbar() {
   };
 
   return (
-    <div className="relative w-full bg-white">
+    <div className="relative w-full bg-blue-200 bg-opacity-20">
       <div className="mx-auto flex items-center justify-between px-4 py-2 sm:px-6 lg:px-8 md:flex-row min-[0px]:flex-col flex-wrap gap-2">
         <Link href="/" aria-label="Home">
           <div className="inline-flex items-center space-x-2">
@@ -112,7 +112,7 @@ export function Navbar() {
                       }}
                       onFocus={handleFocus}
                       onBlur={handleBlur}
-                      className="h-10 rounded-full border-none bg-purple-100 focus:border-2 hover:border-purple-400 outline-purple-700 pe-10 ps-4 text-sm shadow-sm"
+                      className="h-10 rounded-full border-none bg-purple-200 focus:border-2 hover:border-purple-400 outline-purple-700 pe-10 ps-4 text-sm shadow-sm"
                       id="search"
                       type="search"
                       placeholder="Search"
@@ -121,55 +121,26 @@ export function Navbar() {
                       onChange={handleChange}
                     />
 
-                    <motion.button
-                      initial={{
-                        opacity: 0,
-                      }}
-                      animate={{
-                        opacity: 1,
-                      }}
-                      transition={{
-                        delay: 0.1,
-                      }}
-                      type="button"
-                      className="absolute end-1 top-1/2 -translate-y-1/2 rounded-full bg-gray-50 p-2 text-gray-600 transition hover:text-gray-700"
-                    >
-                      <span className="sr-only">Search</span>
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="h-4 w-4"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                        />
-                      </svg>
-                    </motion.button>
+                    
                   </motion.div>
                   {isFocused && suggestions.length > 0 && (
                     <motion.div
                       initial={{
                         scale: 0,
                         opacity: 0,
+                        width: "0px",
                       }}
-                      whileInView={
+                      animate={
                         isFocused && suggestions.length > 0
                           ? {
                               scale: 1,
                               opacity: 1,
+                              width: "350px",
                             }
-                          : {}
+                          : { scale: 0, opacity: 0, width: "0px" }
                       }
                       transition={{
                         delay: 0.3,
-                      }}
-                      style={{
-                        width: "350px",
                       }}
                       className="absolute z-10 md:max-h-96 min-[0px]:max-h-80 overflow-auto scrollbar-search bg-purple-100 border border-purple-300 rounded-md shadow-md mt-2"
                     >
@@ -193,20 +164,19 @@ export function Navbar() {
                       initial={{
                         scale: 0,
                         opacity: 0,
+                        width: "0px",
                       }}
-                      whileInView={
+                      animate={
                         isFocused && suggestions.length > 0
                           ? {
                               scale: 1,
                               opacity: 1,
+                              width: "350px",
                             }
-                          : {}
+                          : { scale: 0, opacity: 0, width: "0px" }
                       }
                       transition={{
                         delay: 0.3,
-                      }}
-                      style={{
-                        width: "350px",
                       }}
                       className="absolute z-10 md:max-h-96 min-[0px]:max-h-80 overflow-auto scrollbar-search bg-purple-100 border border-purple-300 rounded-xl shadow-md mt-2 w-96"
                     >

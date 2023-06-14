@@ -24,10 +24,14 @@ export default function Footer() {
           : {}
       }
       aria-label="Site Footer"
-      className="bg-blue-100 mt-24 my-3 mx-3 rounded-3xl"
+      className="mt-24 my-3 mx-3 rounded-3xl"
       style={{
         boxShadow:
           "rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px, rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px",
+        background: "radial-gradient(circle, #BDD9FF7a 10%, transparent 11%)",
+        backgroundSize: "1em 1em",
+        opacity: 1,
+        backgroundColor: "#E8E7FF",
       }}
     >
       <motion.div
