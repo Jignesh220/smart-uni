@@ -5,12 +5,6 @@
 html {
   scroll-behavior: smooth;
 }
-body {
-  background: radial-gradient(circle, #cdcbff 10%, transparent 11%);
-  background-size: 1em 1em;
-  background-color: #ffffff;
-  opacity: 1;
-}
 
 .loader {
   width: 48px;
