@@ -6,6 +6,7 @@ import Category from './Home/Category'
 import Footer from './Reuseable/Footer'
 import Degree from './Home/Degree'
 import Head from 'next/head'
+import Home2 from './Home/Home2'
 
 export default function Index() {
   return (
@@ -14,7 +15,7 @@ export default function Index() {
         <title>UniSol | Home</title>
       </Head>
       <Navbar/>
-      <Home/>
+      <Home2/>
       <Category/>
       <Degree/>
       <Footer/>

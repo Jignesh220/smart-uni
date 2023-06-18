@@ -1,5 +1,14 @@
 import "./globals.css";
 import { Inter, Lexend_Deca, Outfit, Capriola } from "next/font/google";
+import localFont from "next/font/local";
+
+const Krylon = localFont({
+  src: "./fonts/Krylon-Regular.woff",
+  display: "swap",
+  weight: "400",
+  style: "normal",
+  variable: '--font-Krylon',
+});
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -48,6 +57,7 @@ export default function RootLayout({
         ${inter.className} 
         ${lexend_deca.variable}
         ${capriola.variable}
+        ${Krylon.variable}
         `}
       >
         {children}

@@ -17,6 +17,7 @@ module.exports = {
       outfit: ["var(--font-outfit)"],
       lexend_deca: ["var(--font-lexend_deca)"],
       capriola: ["var(--font-capriola)"],
+      krylon: ["var(--font-Krylon)"],
     },
   },
   plugins: [],

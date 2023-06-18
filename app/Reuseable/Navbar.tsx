@@ -90,11 +90,9 @@ export function Navbar() {
                     animate={{
                       opacity: 1,
                     }}
-                    className="relative"
                   >
                     <label className="sr-only" htmlFor="search">
-                      {" "}
-                      Search{" "}
+                      Search
                     </label>
 
                     <motion.input
@@ -112,7 +110,7 @@ export function Navbar() {
                       }}
                       onFocus={handleFocus}
                       onBlur={handleBlur}
-                      className="h-10 rounded-full border-none bg-purple-200 focus:border-2 hover:border-purple-400 outline-purple-700 pe-10 ps-4 text-sm shadow-sm"
+                      className="h-10 rounded-full border-none bg-purple-200 focus:border-2 hover:border-purple-400 outline-purple-700 pe-4 ps-4 text-sm shadow-sm"
                       id="search"
                       type="search"
                       placeholder="Search"

@@ -1163,10 +1163,10 @@ export default function Category() {
               : {}
           }
           transition={{
-            ease: "easeInOut",
+            type: 'spring',
             delay: 0.2,
           }}
-          className="lg:text-7xl min-[0px]:text-6xl text-slate-700/20 font-capriola font-extrabold text-center tracking-wide"
+          className="lg:text-7xl min-[0px]:text-6xl text-slate-700 font-krylon font-extrabold text-center tracking-wide"
         >
           Category
         </motion.div>
@@ -1205,6 +1205,7 @@ export default function Category() {
                       categoryItems.findIndex((i) => i.index === item.index) /
                         10 +
                       0.2,
+                      type: 'spring',
                   }}
                   className={`min-h-full min-w-full rounded-3xl relative  cursor-pointer ${item.color}`}
                   style={{

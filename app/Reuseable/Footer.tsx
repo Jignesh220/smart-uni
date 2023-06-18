@@ -23,6 +23,9 @@ export default function Footer() {
             }
           : {}
       }
+      transition={{
+        type: 'spring',
+      }}
       aria-label="Site Footer"
       className="mt-24 my-3 mx-3 rounded-3xl"
       style={{
@@ -49,6 +52,7 @@ export default function Footer() {
         }
         transition={{
           delay: 0.3,
+          type: 'spring',
         }}
         className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8"
       >
