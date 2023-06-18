@@ -118,8 +118,6 @@ export function Navbar() {
                       value={searchTerm}
                       onChange={handleChange}
                     />
-
-                    
                   </motion.div>
                   {isFocused && suggestions.length > 0 && (
                     <motion.div

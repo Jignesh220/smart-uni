@@ -5,11 +5,14 @@
 html {
   scroll-behavior: smooth;
 }
+<<<<<<< HEAD
 body {
   background: radial-gradient(circle, #cdcbff 10%, transparent 11%);
   background-size: 1em 1em;
   opacity: 1;
 }
+=======
+>>>>>>> 7973f15fab5edf06bc11826d192792c0a24a226a
 
 .loader {
   width: 48px;
