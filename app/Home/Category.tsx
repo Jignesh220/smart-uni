@@ -1103,7 +1103,7 @@ const categoryItems = [
     title: "Old Papers",
     color: "bg-blue-200",
     bgSVG: "bg-blue-700",
-    textColor: "text-blue-800",
+    textColor: "text-blue-900",
     url: "/category/oldPaper",
   },
   // {
@@ -1116,9 +1116,12 @@ const categoryItems = [
   {
     index: 3,
     title: "Notes",
-    color: "bg-yellow-200",
-    bgSVG: "bg-yellow-700",
-    textColor: "text-yellow-800",
+    // color: "bg-yellow-200",
+    // bgSVG: "bg-yellow-700",
+    // textColor: "text-yellow-900",
+    color: "bg-blue-200",
+    bgSVG: "bg-blue-700",
+    textColor: "text-blue-900",
     url: "/category/notes",
   },
   // {
@@ -1131,17 +1134,23 @@ const categoryItems = [
   {
     index: 5,
     title: "Project Guid",
-    color: "bg-rose-200",
-    bgSVG: "bg-rose-700",
-    textColor: "text-rose-800",
+    // color: "bg-yellow-200",
+    // bgSVG: "bg-yellow-700",
+    // textColor: "text-yellow-900",
+    color: "bg-blue-200",
+    bgSVG: "bg-blue-700",
+    textColor: "text-blue-900",
     url: "/category/projectGuide",
   },
   {
     index: 6,
     title: "Syllabus",
-    color: "bg-teal-200",
-    bgSVG: "bg-teal-700",
-    textColor: "text-teal-800",
+    // color: "bg-yellow-200",
+    // bgSVG: "bg-yellow-700",
+    // textColor: "text-yellow-900",
+    color: "bg-blue-200",
+    bgSVG: "bg-blue-700",
+    textColor: "text-blue-900",
     url: "/category/syllabus",
   },
 ];
@@ -1205,7 +1214,7 @@ export default function Category() {
                       categoryItems.findIndex((i) => i.index === item.index) /
                         10 +
                       0.2,
-                      type: 'spring',
+                      type: 'just',
                   }}
                   className={`min-h-full min-w-full rounded-3xl relative  cursor-pointer ${item.color}`}
                   style={{
@@ -1222,7 +1231,7 @@ export default function Category() {
                   </div>
                   <div className="absolute bottom-0 ms-6 left-1/2 -translate-x-1/2 -translate-y-1/2 min-w-full">
                     <div
-                      className={`lg:text-4xl min-[0px]:text-3xl font-capriola text-start font-bold ${item.textColor} text-opacity-60`}
+                      className={`lg:text-4xl min-[0px]:text-3xl font-capriola text-start font-bold ${item.textColor}`}
                     >
                       {item.title}
                     </div>

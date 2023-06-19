@@ -94,12 +94,13 @@ export default function Page({
           }}
         >
           <div className="mt-8 flex flex-col md:gap-5 min-[0px]:gap-3 px-3">
-            <div className="md:text-3xl min-[0px]:text-lg text-center font-capriola font-bold text-red-400/50 capitalize">
-              The requested document was not found.
+            <div className="md:text-3xl min-[0px]:text-lg text-center font-outfit font-bold text-rose-700 capitalize tracking-wide">
+              The requested {params.category.split(/(?=[A-Z])/).join(" ")} was
+              not found.
             </div>
-            <div className="md:text-3xl min-[0px]:text-lg text-center font-capriola font-bold text-red-400/50">
-              Please feel free to submit a request through our &#39;Contact Us&#39; page
-              for Request a Document.
+            <div className="md:text-3xl min-[0px]:text-lg text-center font-outfit font-bold text-rose-700 tracking-wide">
+              Please feel free to submit a request through our &#39; <Link href="/contact-us" className="hover:underline-offset-4 hover:text-blue-600 hover:underline">Contact
+              Us</Link>&#39; page for Request a Document.
             </div>
           </div>
         </div>
