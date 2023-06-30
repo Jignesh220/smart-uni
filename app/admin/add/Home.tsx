@@ -120,7 +120,7 @@ export default function Home() {
           const textWidth = font.widthOfTextAtSize("UniSmart", watermarkSize);
           const textHeight = font.heightAtSize(watermarkSize);
 
-          page.drawText('UniSmart', {
+          page.drawText("UniSmart", {
             x: (width - textWidth) / 2,
             y: height - textHeight - 200,
             size: watermarkSize,
@@ -128,7 +128,7 @@ export default function Home() {
             color: watermarkColor,
             opacity: 0.3,
           });
-          page.drawText('UniSmart', {
+          page.drawText("UniSmart", {
             x: (width - textWidth) / 2,
             y: 200,
             size: watermarkSize,
@@ -136,16 +136,8 @@ export default function Home() {
             color: watermarkColor,
             opacity: 0.3,
           });
-          // page.drawText(watermarkText, {
-          //   x: (width - textWidth) / 2,
-          //   y: height/2,
-          //   size: watermarkSize,
-          //   font: font,
-          //   color: watermarkColor,
-          //   opacity: 0.3,
-          // });
         }
-        const modifiedPdfBytes = await pdfDoc.save();
+        // const watermarkFile = await pdfDoc.save();
         if (
           form.documentPdf &&
           form.degree &&
@@ -156,10 +148,15 @@ export default function Home() {
           setfileUploading(true);
           const path = `${form.degree}/${form.semester}/${form.category}/${form.fileName}`;
           const adharcardupload = ref(storage, path);
+          const metadata = {
+            contentType: "application/pdf",
+          };
           const uploadTask = uploadBytesResumable(
             adharcardupload,
-            modifiedPdfBytes
+            await pdfDoc.save(),
+            metadata
           );
+
           uploadTask.on(
             "state_changed",
             (snapshot: any) => {
