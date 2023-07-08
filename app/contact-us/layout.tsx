@@ -13,9 +13,7 @@ export default function ContactUsLayout({
   }) {
     return (
       <section>
-        <Navbar/>
         {children}
-        <Footer/>
       </section>
     );
   }

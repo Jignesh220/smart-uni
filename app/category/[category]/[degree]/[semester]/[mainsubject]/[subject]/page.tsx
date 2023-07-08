@@ -6,6 +6,7 @@ import { db } from "@/app/Firebase/Firebase";
 import Pdfview from "./Pdfview";
 import { storage } from "@/app/Firebase/Firebase";
 import { ref, getDownloadURL } from "firebase/storage";
+import SmoothScrollbar from "@/app/Reuseable/SmoothScrollbar";
 
 import {
   collection,
@@ -14,6 +15,7 @@ import {
   QuerySnapshot,
 } from "firebase/firestore";
 import Head from "next/head";
+import Footer from "@/app/Reuseable/Footer";
 
 export default function SubjectPage({
   params,

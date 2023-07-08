@@ -4,6 +4,9 @@ import React from "react";
 import { db } from "../Firebase/Firebase";
 import { uuidv4 } from "@firebase/util";
 import { doc, getDoc, setDoc } from "firebase/firestore";
+import SmoothScrollbar from "../Reuseable/SmoothScrollbar";
+import { Navbar } from "../Reuseable/Navbar";
+import Footer from "../Reuseable/Footer";
 
 interface FormProps {
   name: string;
@@ -40,7 +43,8 @@ export default function Page() {
     }
   };
   return (
-    <div>
+    <SmoothScrollbar>
+      <Navbar/>
       <div
         className="min-w-full"
         style={{
@@ -52,7 +56,7 @@ export default function Page() {
         </div>
         <form
           action=""
-          className=" flex flex-col gap-3 md:px-96 md:mx-60 min-[0px]:mx-7"
+          className=" flex flex-col gap-3 lg:px-60 md:px-24 md:mx-24 lg:mx-60 min-[0px]:mx-7"
           onSubmit={handleUploadData}
         >
           <div className="flex flex-col gap-1">
@@ -182,6 +186,7 @@ export default function Page() {
           </button>
         </form>
       </div>
-    </div>
+      <Footer/>
+    </SmoothScrollbar>
   );
 }

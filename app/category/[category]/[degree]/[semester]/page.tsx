@@ -3,6 +3,8 @@ import Link from "next/link";
 import React from "react";
 import { motion } from "framer-motion";
 import { db } from "@/app/Firebase/Firebase";
+import SmoothScrollbar from "@/app/Reuseable/SmoothScrollbar";
+import Footer from "@/app/Reuseable/Footer";
 import {
   doc,
   getDoc,
@@ -95,8 +97,14 @@ export default function Page({
               not found.
             </div>
             <div className="md:text-3xl min-[0px]:text-lg text-center font-outfit font-bold text-rose-700 tracking-wide">
-              Please feel free to submit a request through our &#39; <Link href="/contact-us" className="hover:underline-offset-4 hover:text-blue-600 hover:underline">Contact
-              Us</Link>&#39; page for Request a Document.
+              Please feel free to submit a request through our &#39;{" "}
+              <Link
+                href="/contact-us"
+                className="hover:underline-offset-4 hover:text-blue-600 hover:underline"
+              >
+                Contact Us
+              </Link>
+              &#39; page for Request a Document.
             </div>
           </div>
         </div>
@@ -104,135 +112,138 @@ export default function Page({
     );
   }
   return (
-    <div className="min-w-full md:px-5 min-[0px]:px-2 py-4 flex justify-center">
-      <div
-        className="min-w-full rounded-3xl outline outline-offset-2 outline-2 outline-blue-500 bg-slate-50 md:pb-0 min-[0px]:pb-8"
-        style={{
-          minHeight: "90vh",
-        }}
-      >
-        <div className="flex justify-center md:pt-8 min-[0px]:pt-5">
-          <div className="flex flex-row md:gap-3 min-[0px]:gap-1 bg-blue-50 p-2 md:px-7 min-[0px]:px-3 rounded-full">
-            <Link
-              href="/"
-              className="md:text-base min-[0px]:text-xs font-outfit text-blue-700 hover:underline underline-offset-4 my-auto"
-            >
-              Home
-            </Link>
-            <div className="h-auto flex items-center">
-              <svg
-                viewBox="0 0 96 96"
-                xmlns="http://www.w3.org/2000/svg"
-                className="md:w-4 min-[0px]:w-2 md:h-4 min-[0px]:h-2 my-auto"
+    <SmoothScrollbar>
+      <div className="min-w-full md:px-5 min-[0px]:px-2 py-4 flex justify-center">
+        <div
+          className="min-w-full rounded-3xl outline outline-offset-2 outline-2 outline-blue-500 bg-slate-50 md:pb-0 min-[0px]:pb-8"
+          style={{
+            minHeight: "90vh",
+          }}
+        >
+          <div className="flex justify-center md:pt-8 min-[0px]:pt-5">
+            <div className="flex flex-row md:gap-3 min-[0px]:gap-1 bg-blue-50 p-2 md:px-7 min-[0px]:px-3 rounded-full">
+              <Link
+                href="/"
+                className="md:text-base min-[0px]:text-xs font-outfit text-blue-700 hover:underline underline-offset-4 my-auto"
               >
-                <title />
-                <path d="M69.8437,43.3876,33.8422,13.3863a6.0035,6.0035,0,0,0-7.6878,9.223l30.47,25.39-30.47,25.39a6.0035,6.0035,0,0,0,7.6878,9.2231L69.8437,52.6106a6.0091,6.0091,0,0,0,0-9.223Z" />
-              </svg>
-            </div>
-            <Link
-              href="/#Category"
-              className="md:text-base min-[0px]:text-xs font-outfit text-blue-700 hover:underline underline-offset-4 my-auto"
-            >
-              Category
-            </Link>
-            <div className="h-auto flex items-center">
-              <svg
-                viewBox="0 0 96 96"
-                xmlns="http://www.w3.org/2000/svg"
-                className="md:w-4 min-[0px]:w-2 md:h-4 min-[0px]:h-2 my-auto"
+                Home
+              </Link>
+              <div className="h-auto flex items-center">
+                <svg
+                  viewBox="0 0 96 96"
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="md:w-4 min-[0px]:w-2 md:h-4 min-[0px]:h-2 my-auto"
+                >
+                  <title />
+                  <path d="M69.8437,43.3876,33.8422,13.3863a6.0035,6.0035,0,0,0-7.6878,9.223l30.47,25.39-30.47,25.39a6.0035,6.0035,0,0,0,7.6878,9.2231L69.8437,52.6106a6.0091,6.0091,0,0,0,0-9.223Z" />
+                </svg>
+              </div>
+              <Link
+                href="/#Category"
+                className="md:text-base min-[0px]:text-xs font-outfit text-blue-700 hover:underline underline-offset-4 my-auto"
               >
-                <title />
-                <path d="M69.8437,43.3876,33.8422,13.3863a6.0035,6.0035,0,0,0-7.6878,9.223l30.47,25.39-30.47,25.39a6.0035,6.0035,0,0,0,7.6878,9.2231L69.8437,52.6106a6.0091,6.0091,0,0,0,0-9.223Z" />
-              </svg>
-            </div>
-            <Link
-              href={`/category/${params.category}`}
-              className="md:text-base min-[0px]:text-xs font-outfit text-blue-700 hover:underline underline-offset-4 my-auto"
-            >
-              {params.degree.split(/(?=[A-Z])/).join(" ")}
-            </Link>
-            <div className="h-auto flex items-center">
-              <svg
-                viewBox="0 0 96 96"
-                xmlns="http://www.w3.org/2000/svg"
-                className="md:w-4 min-[0px]:w-2 md:h-4 min-[0px]:h-2 my-auto"
+                Category
+              </Link>
+              <div className="h-auto flex items-center">
+                <svg
+                  viewBox="0 0 96 96"
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="md:w-4 min-[0px]:w-2 md:h-4 min-[0px]:h-2 my-auto"
+                >
+                  <title />
+                  <path d="M69.8437,43.3876,33.8422,13.3863a6.0035,6.0035,0,0,0-7.6878,9.223l30.47,25.39-30.47,25.39a6.0035,6.0035,0,0,0,7.6878,9.2231L69.8437,52.6106a6.0091,6.0091,0,0,0,0-9.223Z" />
+                </svg>
+              </div>
+              <Link
+                href={`/category/${params.category}`}
+                className="md:text-base min-[0px]:text-xs font-outfit text-blue-700 hover:underline underline-offset-4 my-auto"
               >
-                <title />
-                <path d="M69.8437,43.3876,33.8422,13.3863a6.0035,6.0035,0,0,0-7.6878,9.223l30.47,25.39-30.47,25.39a6.0035,6.0035,0,0,0,7.6878,9.2231L69.8437,52.6106a6.0091,6.0091,0,0,0,0-9.223Z" />
-              </svg>
-            </div>
-            <div className="md:text-base min-[0px]:text-xs font-outfit text-black my-auto flex flex-row gap-2">
-              <span>Semester</span>
-              <span>{params.semester.slice(9)}</span>
+                {params.degree.split(/(?=[A-Z])/).join(" ")}
+              </Link>
+              <div className="h-auto flex items-center">
+                <svg
+                  viewBox="0 0 96 96"
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="md:w-4 min-[0px]:w-2 md:h-4 min-[0px]:h-2 my-auto"
+                >
+                  <title />
+                  <path d="M69.8437,43.3876,33.8422,13.3863a6.0035,6.0035,0,0,0-7.6878,9.223l30.47,25.39-30.47,25.39a6.0035,6.0035,0,0,0,7.6878,9.2231L69.8437,52.6106a6.0091,6.0091,0,0,0,0-9.223Z" />
+                </svg>
+              </div>
+              <div className="md:text-base min-[0px]:text-xs font-outfit text-black my-auto flex flex-row gap-2">
+                <span>Semester</span>
+                <span>{params.semester.slice(9)}</span>
+              </div>
             </div>
           </div>
-        </div>
-        <div className="mt-16 min-w-full px-32">
-          <div className="min-w-full flex flex-row flex-wrap justify-center gap-6">
-            {MainSubjectData.map((item) => {
-              const RandomIndex = Math.floor(Math.random() * 6);
-              const colorThemeIndex = Colors[RandomIndex];
-              const colorText = TextColor[RandomIndex];
-              return (
-                <Link
-                  href={`/category/${params.category}/${params.degree}/${params.semester}/${item.url}`}
-                  key={item.id}
-                >
-                  <motion.div
-                    initial={{
-                      scale: 0,
-                      opacity: 0,
-                    }}
-                    whileInView={
-                      loaded
-                        ? {
-                            scale: 1,
-                            opacity: 1,
-                          }
-                        : {}
-                    }
-                    whileHover={{
-                      scale: 1.05,
-                    }}
-                    whileTap={{
-                      scale: 0.9,
-                    }}
-                    transition={{
-                      delay:
-                        (MainSubjectData.findIndex((i) => i.id === item.id) +
-                          1) /
-                        10,
-                      ease: "easeInOut",
-                    }}
-                    style={{
-                      backgroundColor: colorThemeIndex,
-                    }}
-                    className={`group md:w-96 min-[0px]:w-80 md:h-36 min-[0px]:h-36 rounded-3xl flex justify-center items-center flex-col shadow-lg shadow-slate-400 relative overflow-hidden`}
+          <div className="mt-16 min-w-full px-32">
+            <div className="min-w-full flex flex-row flex-wrap justify-center gap-6">
+              {MainSubjectData.map((item) => {
+                const RandomIndex = Math.floor(Math.random() * 6);
+                const colorThemeIndex = Colors[RandomIndex];
+                const colorText = TextColor[RandomIndex];
+                return (
+                  <Link
+                    href={`/category/${params.category}/${params.degree}/${params.semester}/${item.url}`}
+                    key={item.id}
                   >
-                    <div
-                      style={{
-                        color: colorText,
+                    <motion.div
+                      initial={{
+                        scale: 0,
+                        opacity: 0,
                       }}
-                      className={`text-2xl font-outfit absolute top-8 left-8`}
-                    >
-                      {item.mainSubject}
-                    </div>
-                    <div
-                      style={{
-                        color: colorText,
-                        opacity: 0.3,
+                      whileInView={
+                        loaded
+                          ? {
+                              scale: 1,
+                              opacity: 1,
+                            }
+                          : {}
+                      }
+                      whileHover={{
+                        scale: 1.05,
                       }}
-                      className={`absolute bottom-2 right-4 text-8xl group-hover:text-7xl group-hover:transition group-hover:duration-150 group-hover:ease-in-out group-hover:delay-300 font-capriola`}
+                      whileTap={{
+                        scale: 0.9,
+                      }}
+                      transition={{
+                        delay:
+                          (MainSubjectData.findIndex((i) => i.id === item.id) +
+                            1) /
+                          10,
+                        ease: "easeInOut",
+                      }}
+                      style={{
+                        backgroundColor: colorThemeIndex,
+                      }}
+                      className={`group md:w-96 min-[0px]:w-80 md:h-36 min-[0px]:h-36 rounded-3xl flex justify-center items-center flex-col shadow-lg shadow-slate-400 relative overflow-hidden`}
                     >
-                      {MainSubjectData.findIndex((i) => i.id === item.id) + 1}
-                    </div>
-                  </motion.div>
-                </Link>
-              );
-            })}
+                      <div
+                        style={{
+                          color: colorText,
+                        }}
+                        className={`text-2xl font-outfit absolute top-8 left-8`}
+                      >
+                        {item.mainSubject}
+                      </div>
+                      <div
+                        style={{
+                          color: colorText,
+                          opacity: 0.3,
+                        }}
+                        className={`absolute bottom-2 right-4 text-8xl group-hover:text-7xl group-hover:transition group-hover:duration-150 group-hover:ease-in-out group-hover:delay-300 font-capriola`}
+                      >
+                        {MainSubjectData.findIndex((i) => i.id === item.id) + 1}
+                      </div>
+                    </motion.div>
+                  </Link>
+                );
+              })}
+            </div>
           </div>
         </div>
       </div>
-    </div>
+      <Footer/>
+    </SmoothScrollbar>
   );
 }
