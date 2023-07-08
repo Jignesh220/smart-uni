@@ -56,7 +56,7 @@ export function Navbar() {
   };
 
   return (
-    <div className="relative w-full bg-blue-200 bg-opacity-20">
+    <div className="relative w-full bg-transparent backdrop-blur-md">
       <div className="mx-auto flex items-center justify-between px-4 py-2 sm:px-6 lg:px-8 md:flex-row min-[0px]:flex-col flex-wrap gap-2">
         <Link href="/" aria-label="Home">
           <div className="inline-flex items-center space-x-2">

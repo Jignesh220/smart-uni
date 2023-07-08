@@ -15,7 +15,7 @@ export default function Home2() {
           }}
         >
           <div className="absolute min-h-full min-w-full grid grid-cols-12 gap-4 overflow-visible">
-            <div className="min-h-full min-w-full relative overflow-visible col-span-12">
+            <div className="min-h-full min-w-full relative overflow-visible col-span-12 ">
               {/* <motion.div
                 initial={{
                   opacity: 0,
@@ -42,9 +42,9 @@ export default function Home2() {
                   delay: 0.1,
                   type: "spring",
                 }}
-                className="absolute top-1/2 right-1/3 translate-x-1/2 -translate-y-1/2"
+                className="absolute top-1/2 right-1/3 translate-x-1/2 -translate-y-1/2 blur-3xl"
               >
-                <div className="md:h-80 md:w-80 min-[0px]:h-44 min-[0px]:w-44 blur-3xl shadow-2xl shadow-cyan-300 bg-cyan-300"></div>
+                <div className="md:h-80 md:w-80 min-[0px]:h-44 min-[0px]:w-44 rounded-full blur-3xl shadow-2xl shadow-cyan-400 bg-cyan-400"></div>
               </motion.div>
               <motion.div
                 initial={{
@@ -57,9 +57,9 @@ export default function Home2() {
                   delay: 0.2,
                   type: "spring",
                 }}
-                className="absolute top-1/2 left-1/3 -translate-x-1/2 -translate-y-1/2"
+                className="absolute top-1/2 left-1/3 -translate-x-1/2 -translate-y-1/2 blur-3xl"
               >
-                <div className="md:h-80 md:w-80 min-[0px]:h-44 min-[0px]:w-44 blur-3xl shadow-2xl shadow-purple-300 bg-purple-300"></div>
+                <div className="md:h-80 md:w-80 min-[0px]:h-44 min-[0px]:w-44 rounded-full blur-3xl shadow-2xl shadow-purple-300 bg-purple-300"></div>
               </motion.div>
               <motion.div
                 initial={{
@@ -72,9 +72,9 @@ export default function Home2() {
                   delay: 0.1,
                   type: "spring",
                 }}
-                className="absolute top-1/2 right-1/2 translate-x-1/2 -translate-y-1/2"
+                className="absolute top-1/2 right-1/2 translate-x-1/2 -translate-y-1/2 blur-3xl"
               >
-                <div className="md:h-80 md:w-80 min-[0px]:h-44 min-[0px]:w-44 blur-3xl shadow-2xl backdrop-blur-sm shadow-green-200 bg-green-200"></div>
+                <div className="md:h-80 md:w-80 min-[0px]:h-44 min-[0px]:w-44 rounded-full shadow-2xl blur-3xl backdrop-blur-sm shadow-green-300 bg-green-300"></div>
               </motion.div>
               <div className="absolute min-h-full min-w-full grid grid-cols-12 bg-transparent gap-4 overflow-visible">
                 <div className="col-span-12 bg-transparent">
