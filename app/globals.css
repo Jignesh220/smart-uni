@@ -68,7 +68,7 @@ html {
 
 /* Handle on hover */
 .scrollbar-search::-webkit-scrollbar-thumb:hover {
-  background: #006a8a;
+  background: rgb(126,34,206,0.6);
 }
 
 .scrollbar-hidden::-webkit-scrollbar {

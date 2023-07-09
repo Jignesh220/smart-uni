@@ -5,6 +5,7 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
 import SvgIcon from "./SvgIcon";
+import SmoothScrollbar from "./SmoothScrollbar";
 interface Searchprops {
   index: number;
   category: string;
@@ -34,6 +35,9 @@ export function Navbar() {
   const [suggestions, setSuggestions] = useState<Searchprops[]>([]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    while (suggestions.length > 0) {
+      suggestions.pop();
+    }
     const term = e.target.value;
 
     setSearchTerm(term);
@@ -57,144 +61,69 @@ export function Navbar() {
 
   return (
     <div className="relative w-full bg-transparent backdrop-blur-md">
-      <div className="mx-auto flex items-center justify-between px-4 py-2 sm:px-6 lg:px-8 md:flex-row min-[0px]:flex-col flex-wrap gap-2">
+      <div className="mx-auto flex items-center justify-between px-4 py-2 sm:px-6 lg:px-8 flex-row flex-wrap gap-2">
         <Link href="/" aria-label="Home">
           <div className="inline-flex items-center space-x-2">
             <span>
               <SvgIcon />
             </span>
-            <div className="text-sm font-outfit md:hidden min-[0px]:block">
+            {/* <div className="text-sm font-outfit md:hidden min-[0px]:block">
               UniSmart
-            </div>
+            </div> */}
           </div>
         </Link>
-        <div className="block">
-          <ul className="inline-flex md:space-x-8">
-            {menuItems.map((item) => (
-              <li key={item.name} className="my-auto min-[0px]:hidden md:block">
-                <a
-                  href={item.href}
-                  className="text-sm font-semibold text-gray-800 hover:text-gray-800/75"
-                >
-                  {item.name}
-                </a>
-              </li>
-            ))}
-            <li>
-              <div className="w-auto flex items-center h-auto">
-                <form action="" className="my-auto">
-                  <motion.div
-                    initial={{
-                      opacity: 0,
-                    }}
-                    animate={{
-                      opacity: 1,
-                    }}
-                  >
-                    <label className="sr-only" htmlFor="search">
-                      Search
-                    </label>
-
-                    <motion.input
-                      initial={{
-                        width: "0px",
-                      }}
-                      animate={{
-                        width: "280px",
-                      }}
-                      whileFocus={{
-                        width: "350px",
-                      }}
-                      transition={{
-                        delay: 0.2,
-                      }}
-                      onFocus={handleFocus}
-                      onBlur={handleBlur}
-                      className="h-10 rounded-full border-none bg-purple-200 focus:border-2 hover:border-purple-400 outline-purple-700 pe-4 ps-4 text-sm shadow-sm"
-                      id="search"
-                      type="search"
-                      placeholder="Search"
-                      autoComplete="off"
-                      value={searchTerm}
-                      onChange={handleChange}
-                    />
-                  </motion.div>
-                  {isFocused && suggestions.length > 0 && (
-                    <motion.div
-                      initial={{
-                        scale: 0,
-                        opacity: 0,
-                        width: "0px",
-                      }}
-                      animate={
-                        isFocused && suggestions.length > 0
-                          ? {
-                              scale: 1,
-                              opacity: 1,
-                              width: "350px",
-                            }
-                          : { scale: 0, opacity: 0, width: "0px" }
-                      }
-                      transition={{
-                        delay: 0.3,
-                      }}
-                      className="absolute z-10 md:max-h-96 min-[0px]:max-h-80 overflow-auto scrollbar-search bg-purple-100 border border-purple-300 rounded-md shadow-md mt-2"
-                    >
-                      {suggestions.map((item) => (
-                        <Link href={item.url} key={item.index}>
-                          <div className="p-2 cursor-pointer hover:bg-purple-200">
-                            <div className="font-outfit text-sm text-purple-900">
-                              <div className="font-bold">{item.name}</div>
-                              <div className="text-xs font-normal text-purple-700/75">
-                                {item.category}
-                              </div>
-                            </div>
-                          </div>
-                        </Link>
-                      ))}
-                    </motion.div>
-                  )}
-
-                  {isFocused && !(suggestions.length > 0) && (
-                    <motion.div
-                      initial={{
-                        scale: 0,
-                        opacity: 0,
-                        width: "0px",
-                      }}
-                      animate={
-                        isFocused && suggestions.length > 0
-                          ? {
-                              scale: 1,
-                              opacity: 1,
-                              width: "350px",
-                            }
-                          : { scale: 0, opacity: 0, width: "0px" }
-                      }
-                      transition={{
-                        delay: 0.3,
-                      }}
-                      className="absolute z-10 md:max-h-96 min-[0px]:max-h-80 overflow-auto scrollbar-search bg-purple-100 border border-purple-300 rounded-xl shadow-md mt-2 w-96"
-                    >
-                      {Search.map((item) => (
-                        <Link href={item.url} key={item.index}>
-                          <div className="p-2 cursor-pointer hover:bg-purple-200 font-outfit rounded-xl">
-                            <div className="font-outfit text-purple-900 text-base font-bold tracking-wider">
-                              <div className="">{item.name}</div>
-                              <div className="text-xs font-normal text-purple-700/75">
-                                {item.category}
-                              </div>
-                            </div>
-                          </div>
-                        </Link>
-                      ))}
-                    </motion.div>
-                  )}
-                </form>
-              </div>
+        <Link href="/search" className="block md:hidden">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <circle cx="11" cy="11" r="8" />
+            <path d="m21 21-4.3-4.3" />
+          </svg>
+        </Link>
+        <ul className="md:space-x-8 min-[0px]:hidden md:inline-flex">
+          {menuItems.map((item) => (
+            <li key={item.name} className="my-auto ">
+              <Link
+                href={item.href}
+                className="text-sm font-semibold text-gray-800 hover:text-gray-800/75"
+              >
+                {item.name}
+              </Link>
             </li>
-          </ul>
-        </div>
+          ))}
+          <li>
+            <Link href="/search" className="cursor-pointer">
+              <motion.input
+                initial={{
+                  width: "0px",
+                }}
+                animate={{
+                  width: "280px",
+                }}
+                whileFocus={{
+                  width: "350px",
+                }}
+                transition={{
+                  delay: 0.2,
+                }}
+                className="h-10 cursor-pointer rounded-full border-none bg-purple-200 focus:border-2 hover:border-purple-400 outline-purple-700 pe-4 ps-4 text-sm shadow-sm"
+                id="search"
+                type="search"
+                placeholder="Search"
+                autoComplete="off"
+                disabled
+              />
+            </Link>
+          </li>
+        </ul>
       </div>
     </div>
   );
