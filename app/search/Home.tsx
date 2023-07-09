@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 
-export default function page() {
+export default function Home() {
   const [query, setQuery] = useState("");
   const [Suggestion, setSuggestion] = useState<Searchprops[]>([]);
   const debounceQuery = useDebounceValue(query);
