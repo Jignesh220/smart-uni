@@ -80,9 +80,9 @@ export function Navbar() {
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
           >
             <circle cx="11" cy="11" r="8" />
             <path d="m21 21-4.3-4.3" />
@@ -99,6 +99,24 @@ export function Navbar() {
               </Link>
             </li>
           ))}
+          <motion.li 
+          whileHover={{
+            scale: 1.04,
+          }}
+          whileTap={{
+            scale: 0.8,
+          }}
+          transition={{
+            type:"spring"
+          }}
+          className="my-auto rounded-full text-white bg-blue-300 p-2 px-8 bg-gradient-to-r from-pink-400 via-purple-500 to-blue-500">
+              <Link
+                href="/notes"
+                className="text-base font-semibold tracking-wide"
+              >
+                Notes
+              </Link>
+            </motion.li>
           <li>
             <Link href="/search" className="cursor-pointer">
               <motion.input

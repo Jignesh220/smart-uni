@@ -5,49 +5,69 @@
 html {
   scroll-behavior: smooth;
 }
-
 .loader {
-  width: 48px;
-  height: 48px;
-  display: block;
-  margin: 15px auto;
-  position: relative;
-  color: #003566;
-  box-sizing: border-box;
-  animation: rotation 1s linear infinite;
-}
-.loader::after,
-.loader::before {
-  content: "";
-  box-sizing: border-box;
-  position: absolute;
-  width: 24px;
-  height: 24px;
-  top: 50%;
-  left: 50%;
-  transform: scale(0.5) translate(0, 0);
-  background-color: #003566;
-  border-radius: 50%;
-  animation: animloader 1s infinite ease-in-out;
-}
-.loader::before {
-  background-color: #ffc300;
-  transform: scale(0.5) translate(-48px, -48px);
+  animation: rotate 1s infinite;
+  height: 50px;
+  width: 50px;
 }
 
-@keyframes rotation {
+.loader:before,
+.loader:after {
+  border-radius: 50%;
+  content: "";
+  display: block;
+  height: 20px;
+  width: 20px;
+}
+.loader:before {
+  animation: ball1 1s infinite;
+  background-color: #8c8eff;
+  box-shadow: 30px 0 0 #002261;
+  margin-bottom: 10px;
+}
+.loader:after {
+  animation: ball2 1s infinite;
+  background-color: #002261;
+  box-shadow: 30px 0 0 #8c8eff;
+}
+
+@keyframes rotate {
+  0% { transform: rotate(0deg) scale(0.8) }
+  50% { transform: rotate(360deg) scale(1.2) }
+  100% { transform: rotate(720deg) scale(0.8) }
+}
+
+@keyframes ball1 {
   0% {
-    transform: rotate(0deg);
+    box-shadow: 30px 0 0 #002261;
+  }
+  50% {
+    box-shadow: 0 0 0 #002261;
+    margin-bottom: 0;
+    transform: translate(15px, 15px);
   }
   100% {
-    transform: rotate(360deg);
+    box-shadow: 30px 0 0 #002261;
+    margin-bottom: 10px;
   }
 }
-@keyframes animloader {
+
+@keyframes ball2 {
+  0% {
+    box-shadow: 30px 0 0 #8c8eff;
+  }
   50% {
-    transform: scale(1) translate(-50%, -50%);
+    box-shadow: 0 0 0 #8c8eff;
+    margin-top: -20px;
+    transform: translate(15px, 15px);
+  }
+  100% {
+    box-shadow: 30px 0 0 #8c8eff;
+    margin-top: 0;
   }
 }
+
+    
 
 .scrollbar-search::-webkit-scrollbar {
   width: 5px;
@@ -85,25 +105,25 @@ html {
 
 /* scrollbar */
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 5px;
 }
 
 /* Track */
 ::-webkit-scrollbar-track {
-  background-color: #00000b;
+  background-color: transparent;
   width: 2px;
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #006a8a;
+  background: #0027d4;
   border-radius: 15px;
-  border: 3px solid #00000b;
+  border: 2px solid transparent;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: #006a8a;
+  background: #0027d4;
 }
 /* scrollbar end */
 
@@ -192,3 +212,7 @@ html.has-scroll-dragging {
   bottom: 0;
 }
 /* Locomotive End */
+
+.superFancyBlockquote{
+  background-color: #0027d4;
+}
