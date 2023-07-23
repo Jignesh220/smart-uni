@@ -58,7 +58,7 @@ const Modal = ({
   return (
     <Fragment>
       <AnimatePresence>
-        <div className="fixed inset-0 flex items-center justify-center z-50">
+        <div className="fixed inset-0 flex items-center justify-center z-50 p-2">
           <div className="fixed bg-black/50 inset-0 backdrop-blur-[5px] -z-50"></div>
           <motion.div
             initial={{
@@ -90,7 +90,7 @@ const Modal = ({
             }
             className={`${ModelStyale({
               variants,
-            })} rounded-3xl z-10 w-[38rem] h-auto relative ${className}`}
+            })} rounded-3xl z-10 md:w-[38rem] w-full h-auto relative ${className}`}
             style={{
               boxShadow: "rgba(100, 100, 111, 0.2) 0px 7px 29px 0px",
             }}

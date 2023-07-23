@@ -72,22 +72,40 @@ export function Navbar() {
             </div> */}
           </div>
         </Link>
-        <Link href="/search" className="block md:hidden">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
+        <div className="flex flex-row gap-4">
+          <motion.div
+            whileHover={{
+              scale: 1.04,
+            }}
+            whileTap={{
+              scale: 0.8,
+            }}
+            transition={{
+              type: "spring",
+            }}
+            className="my-auto block md:hidden rounded-full text-white bg-blue-300 p-1 px-5 bg-gradient-to-r from-pink-400 via-purple-500 to-blue-500"
           >
-            <circle cx="11" cy="11" r="8" />
-            <path d="m21 21-4.3-4.3" />
-          </svg>
-        </Link>
+            <Link href="/notes" className="text-xs font-semibold tracking-wide">
+              Take a Note
+            </Link>
+          </motion.div>
+          <Link href="/search" className="block md:hidden my-auto">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <circle cx="11" cy="11" r="8" />
+              <path d="m21 21-4.3-4.3" />
+            </svg>
+          </Link>
+        </div>
         <ul className="md:space-x-8 min-[0px]:hidden md:inline-flex">
           {menuItems.map((item) => (
             <li key={item.name} className="my-auto ">
@@ -99,24 +117,25 @@ export function Navbar() {
               </Link>
             </li>
           ))}
-          <motion.li 
-          whileHover={{
-            scale: 1.04,
-          }}
-          whileTap={{
-            scale: 0.8,
-          }}
-          transition={{
-            type:"spring"
-          }}
-          className="my-auto rounded-full text-white bg-blue-300 p-2 px-8 bg-gradient-to-r from-pink-400 via-purple-500 to-blue-500">
-              <Link
-                href="/notes"
-                className="text-base font-semibold tracking-wide"
-              >
-                Notes
-              </Link>
-            </motion.li>
+          <motion.li
+            whileHover={{
+              scale: 1.04,
+            }}
+            whileTap={{
+              scale: 0.8,
+            }}
+            transition={{
+              type: "spring",
+            }}
+            className="my-auto rounded-full text-white bg-blue-300 p-2 px-8 bg-gradient-to-r from-pink-400 via-purple-500 to-blue-500"
+          >
+            <Link
+              href="/notes"
+              className="text-base font-semibold tracking-wide"
+            >
+              Take a Note
+            </Link>
+          </motion.li>
           <li>
             <Link href="/search" className="cursor-pointer">
               <motion.input
@@ -142,6 +161,18 @@ export function Navbar() {
             </Link>
           </li>
         </ul>
+      </div>
+      <div className="text-sm flex flex-row justify-center gap-8 mt-1 md:hidden">
+        {menuItems.map((item) => (
+          <div key={item.name} className="my-auto bg-slate-200 p-1 px-4 rounded-full">
+            <Link
+              href={item.href}
+              className="text-xs font-semibold text-gray-800 hover:text-gray-800/75"
+            >
+              {item.name}
+            </Link>
+          </div>
+        ))}
       </div>
     </div>
   );

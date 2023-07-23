@@ -188,19 +188,19 @@ export default function Notes() {
       <div className="flex justify-center min-w-full flex-row gap-4">
         <motion.input
           initial={{
-            width: "0px",
+            scale: 0
           }}
           animate={{
-            width: "20%",
+            scale: 1
           }}
           whileFocus={{
-            width: "25%",
+            scale: 1.02
           }}
           transition={{
             delay: 0.2,
             type: "spring",
           }}
-          className="h-12 pl-6 pr-8 rounded-full bg-purple-200 focus:outline-purple-700 outline-none pe-4 ps-4 text-sm shadow-sm"
+          className="h-12 pl-6 pr-8 w-3/5 md:w-3/12 rounded-full bg-purple-200 focus:outline-purple-700 outline-none pe-4 ps-4 text-sm shadow-sm"
           id="note"
           type="note"
           placeholder="note"
@@ -257,8 +257,8 @@ export default function Notes() {
             <span className="loader"></span>
           </div>
         ) : (
-          <div className="min-w-full">
-            <div className="mt-4 min-w-full flex flex-row gap-2">
+          <div className="w-full">
+            <div className="mt-4 w-full flex flex-wrap flex-row gap-2">
               <motion.input
                 className="py-2 ps-2 w-full border-b-2 md:text-lg font-outfit tracking-wide font-bold outline-none border-gray-200 pe-10 shadow-sm text-sm focus:border-black"
                 id="title"
@@ -282,7 +282,7 @@ export default function Notes() {
             <div className="">
               <hr />
               <div className="mt-2 flex justify-between">
-                <div className="flex flex-row gap-4">
+                <div className="flex flex-row flex-wrap gap-4">
                   <button
                     onClick={handleBoldClick}
                     className="bg-transparent border border-black/75 p-2 px-4 rounded-lg text-black font-outfit font-bold"
@@ -301,13 +301,13 @@ export default function Notes() {
                   >
                     U
                   </button>
-                  <button
+                  {/* <button
                     onClick={openLinkModal}
                     className="bg-transparent border border-black/75 p-2 px-4 rounded-lg text-black font-outfit font-bold"
                   >
                     Link
-                  </button>
-                  <div className="mt-2 text-xs text-gray-600 flex flex-col gap-1 mx-auto">
+                  </button> */}
+                  <div className="mt-2 text-xs text-gray-600 flex md:flex-col flex-row md:gap-1 gap-4 mx-auto">
                     <p>{getContentLength()} characters</p>
                     <p>{getWordCount()} Words</p>
                   </div>
@@ -315,7 +315,7 @@ export default function Notes() {
                 <button
                   onClick={onAddNote}
                   disabled={getContentLength() === 0 || notesTitle === ""}
-                  className="bg-blue-800 p-2 px-8 rounded-lg text-white disabled:bg-slate-400"
+                  className="bg-blue-800 max-h-12 p-2 px-8 rounded-lg text-white disabled:bg-slate-400"
                 >
                   Add
                 </button>
