@@ -59,7 +59,7 @@ const Modal = ({
     <Fragment>
       <AnimatePresence>
         <div className="fixed inset-0 flex items-center justify-center z-50 p-2">
-          <div className="fixed bg-black/50 inset-0 backdrop-blur-[5px] -z-50"></div>
+          <div className="fixed bg-black/30 inset-0 backdrop-blur-[5px] -z-50"></div>
           <motion.div
             initial={{
               scale: 0,

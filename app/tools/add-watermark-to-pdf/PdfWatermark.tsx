@@ -173,6 +173,13 @@ export default function PdfWatermark() {
               onChange={handleFileChange}
               required
             />
+            {pdfFile && (
+              <div className="text-sm text-green-800 font-outfit mt-2 font-semibold tracking-wide">
+                {`${pdfFile?.name} ( ${
+                  pdfFile ? (pdfFile.size / 1048576).toFixed(2) : null
+                } MB  )`}
+              </div>
+            )}
           </div>
 
           <motion.button

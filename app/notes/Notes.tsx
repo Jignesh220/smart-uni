@@ -188,19 +188,19 @@ export default function Notes() {
       <div className="flex justify-center min-w-full flex-row gap-4">
         <motion.input
           initial={{
-            scale: 0
+            scale: 0,
           }}
           animate={{
-            scale: 1
+            scale: 1,
           }}
           whileFocus={{
-            scale: 1.02
+            scale: 1.02,
           }}
           transition={{
             delay: 0.2,
             type: "spring",
           }}
-          className="h-12 pl-6 pr-8 w-3/5 md:w-3/12 rounded-full bg-purple-200 focus:outline-purple-700 outline-none pe-4 ps-4 text-sm shadow-sm"
+          className="h-12 pl-6 pr-8 w-11/12 md:w-3/12 rounded-full bg-purple-200 focus:outline-purple-700 outline-none pe-4 ps-4 text-sm shadow-sm"
           id="note"
           type="note"
           placeholder="note"
@@ -209,36 +209,6 @@ export default function Notes() {
           onClick={openModal}
           autoFocus
         />
-        <motion.div
-          whileTap={{
-            scale: 0.8,
-          }}
-          onClick={Logout}
-          className="inline-block cursor-pointer my-auto rounded-full border border-indigo-600 p-3 hover:border-2 text-indigo-600 focus:outline-none focus:ring active:bg-indigo-500"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            className="w-5"
-          >
-            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
-            <polyline points="16 17 21 12 16 7" />
-            <line x1="21" x2="9" y1="12" y2="12" />
-          </svg>
-        </motion.div>
-        <motion.div
-          whileTap={{
-            scale: 0.8,
-          }}
-          className="inline-block text-sm my-auto p-3 text-red-600 focus:outline-none focus:ring"
-        >
-          {Error}
-        </motion.div>
       </div>
       <div className="my-4">
         <NotesData />
