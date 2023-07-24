@@ -112,7 +112,7 @@ export function Navbar() {
             </Link>
           </motion.div>
           {!loading && (
-            <div className="">
+            <div className="my-auto">
               {user ? (
                 <motion.div
                   whileHover={{
