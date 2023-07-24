@@ -112,7 +112,7 @@ export function Navbar() {
             </Link>
           </motion.div>
           {!loading && (
-            <div className="my-auto">
+            <div className="my-auto block md:hidden">
               {user ? (
                 <motion.div
                   whileHover={{
@@ -374,7 +374,7 @@ export function Navbar() {
           )}
         </ul>
       </div>
-      <div className="text-sm flex flex-row justify-center gap-8 mt-1 md:hidden">
+      <div className="text-sm flex flex-row justify-center gap-4 mt-1 md:hidden">
         {menuItems.map((item) => (
           <div
             key={item.name}
@@ -388,6 +388,7 @@ export function Navbar() {
             </Link>
           </div>
         ))}
+        <Dropdown />
       </div>
     </div>
   );
@@ -685,22 +686,25 @@ const Dropdown = () => {
             }}
             onHoverStart={openDropdown}
             onClick={openDropdown}
-            className="my-auto cursor-pointer rounded-full text-white bg-blue-300 p-2 px-6 bg-gradient-to-r from-pink-600 via-purple-600 to-blue-600"
+            className="my-auto cursor-pointer rounded-full text-white bg-blue-300 md:p-2 md:px-6 p-1 px-4 bg-gradient-to-r from-pink-600 via-purple-600 to-blue-600"
           >
-            <div className="text-xs font-semibold tracking-wide">Tools</div>
+            <div className="text-sm font-semibold tracking-wide">Tools</div>
           </motion.div>
           {isDropdownOpen && (
-            <div className="absolute right-0 p-2 w-72 z-20 flex flex-col gap-1">
-              <div
+            <div className="absolute right-0 md:p-2 p-2 w-72 z-20 flex flex-col gap-1">
+              <motion.div
+                whileTap={{
+                  scale: 0.9,
+                }}
                 onClick={() => {
                   Router.push("/tools/add-watermark-to-pdf");
                 }}
                 className="py-2 cursor-pointer bg-gray-800 rounded-xl shadow-lg"
               >
-                <div className="block cursor-pointer text-center px-4 py-2 text-white hover:text-gray-300 font-outfit tracking-wider text-sm">
+                <div className="block cursor-pointer text-center px-4 py-2 text-white hover:text-gray-300 font-outfit tracking-wider md:text-sm text-xs">
                   Add Watermark to PDF
                 </div>
-              </div>
+              </motion.div>
               <div className="py-2 cursor-pointer bg-gray-800 rounded-xl shadow-lg">
                 <div className="block cursor-pointer text-center px-4 py-2 text-red-200 hover:text-gray-300 font-outfit tracking-wider text-xs">
                   We are adding more tools...
