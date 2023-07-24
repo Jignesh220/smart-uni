@@ -6,6 +6,11 @@ import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
 import SvgIcon from "./SvgIcon";
 import SmoothScrollbar from "./SmoothScrollbar";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "../Firebase/Firebase";
+import { signOut } from "firebase/auth";
+import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+
 interface Searchprops {
   index: number;
   category: string;
@@ -30,6 +35,7 @@ const menuItems = [
 ];
 
 export function Navbar() {
+  const [user, loading] = useAuthState(auth);
   const Router = useRouter();
   const [searchTerm, setSearchTerm] = useState("");
   const [suggestions, setSuggestions] = useState<Searchprops[]>([]);
@@ -59,6 +65,22 @@ export function Navbar() {
     }, 500);
   };
 
+  const Logout = () => {
+    signOut(auth);
+  };
+
+  const [Error, setError] = useState("");
+  const provider = new GoogleAuthProvider();
+  const LoginRegisterWithGoogle = async () => {
+    await signInWithPopup(auth, provider)
+      .then(() => {
+        console.log("done");
+      })
+      .catch((error) => {
+        setError(error);
+      });
+  };
+
   return (
     <div className="relative w-full bg-transparent backdrop-blur-md">
       <div className="mx-auto flex items-center justify-between px-4 py-2 sm:px-6 lg:px-8 flex-row flex-wrap gap-2">
@@ -72,7 +94,7 @@ export function Navbar() {
             </div> */}
           </div>
         </Link>
-        <div className="flex flex-row gap-4">
+        <div className="flex flex-row gap-2">
           <motion.div
             whileHover={{
               scale: 1.04,
@@ -83,12 +105,103 @@ export function Navbar() {
             transition={{
               type: "spring",
             }}
-            className="my-auto block md:hidden rounded-full text-white bg-blue-300 p-1 px-5 bg-gradient-to-r from-pink-400 via-purple-500 to-blue-500"
+            className="my-auto block md:hidden rounded-full text-white bg-blue-300 p-1 px-3 bg-gradient-to-r from-pink-400 via-purple-500 to-blue-500"
           >
             <Link href="/notes" className="text-xs font-semibold tracking-wide">
               Take a Note
             </Link>
           </motion.div>
+          {!loading && (
+            <div className="">
+              {user ? (
+                <motion.div
+                  whileHover={{
+                    scale: 1.04,
+                  }}
+                  whileTap={{
+                    scale: 0.8,
+                  }}
+                  transition={{
+                    type: "spring",
+                  }}
+                  onClick={Logout}
+                  className="my-auto cursor-pointer rounded-full text-white bg-blue-300 p-1 px-4 bg-gradient-to-r from-pink-300 via-purple-300 to-blue-300"
+                >
+                  <div className="text-xs font-semibold tracking-wide text-gray-600">
+                    Log Out
+                  </div>
+                </motion.div>
+              ) : (
+                <motion.div
+                  whileHover={{
+                    scale: 1.08,
+                  }}
+                  whileTap={{
+                    scale: 0.8,
+                  }}
+                  transition={{
+                    type: "spring",
+                  }}
+                  onClick={LoginRegisterWithGoogle}
+                  className=" bg-white cursor-pointer my-auto p-1 px-3 flex flex-row gap-1 rounded-full border hover:border-2 border-gray-500 "
+                  style={{
+                    boxShadow: "rgba(100, 100, 111, 0.2) 0px 7px 29px 0px",
+                  }}
+                >
+                  <div className="my-auto">
+                    <svg
+                      enable-background="new 0 0 128 128"
+                      id="Social_Icons"
+                      version="1.1"
+                      viewBox="0 0 128 128"
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="w-3 my-auto"
+                    >
+                      <g id="_x31__stroke">
+                        <g id="Google">
+                          <rect
+                            clip-rule="evenodd"
+                            fill="none"
+                            fill-rule="evenodd"
+                            height="128"
+                            width="128"
+                          />
+                          <path
+                            clip-rule="evenodd"
+                            d="M27.585,64c0-4.157,0.69-8.143,1.923-11.881L7.938,35.648    C3.734,44.183,1.366,53.801,1.366,64c0,10.191,2.366,19.802,6.563,28.332l21.558-16.503C28.266,72.108,27.585,68.137,27.585,64"
+                            fill="#FBBC05"
+                            fill-rule="evenodd"
+                          />
+                          <path
+                            clip-rule="evenodd"
+                            d="M65.457,26.182c9.031,0,17.188,3.2,23.597,8.436L107.698,16    C96.337,6.109,81.771,0,65.457,0C40.129,0,18.361,14.484,7.938,35.648l21.569,16.471C34.477,37.033,48.644,26.182,65.457,26.182"
+                            fill="#EA4335"
+                            fill-rule="evenodd"
+                          />
+                          <path
+                            clip-rule="evenodd"
+                            d="M65.457,101.818c-16.812,0-30.979-10.851-35.949-25.937    L7.938,92.349C18.361,113.516,40.129,128,65.457,128c15.632,0,30.557-5.551,41.758-15.951L86.741,96.221    C80.964,99.86,73.689,101.818,65.457,101.818"
+                            fill="#34A853"
+                            fill-rule="evenodd"
+                          />
+                          <path
+                            clip-rule="evenodd"
+                            d="M126.634,64c0-3.782-0.583-7.855-1.457-11.636H65.457v24.727    h34.376c-1.719,8.431-6.397,14.912-13.092,19.13l20.474,15.828C118.981,101.129,126.634,84.861,126.634,64"
+                            fill="#4285F4"
+                            fill-rule="evenodd"
+                          />
+                        </g>
+                      </g>
+                    </svg>
+                  </div>
+                  <div className="font-bold text-black my-auto font-outfit text-xs">
+                    Login
+                  </div>
+                </motion.div>
+              )}
+            </div>
+          )}
+
           <Link href="/search" className="block md:hidden my-auto">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -106,7 +219,7 @@ export function Navbar() {
             </svg>
           </Link>
         </div>
-        <ul className="md:space-x-8 min-[0px]:hidden md:inline-flex">
+        <ul className="md:space-x-4 min-[0px]:hidden md:inline-flex">
           {menuItems.map((item) => (
             <li key={item.name} className="my-auto ">
               <Link
@@ -127,29 +240,27 @@ export function Navbar() {
             transition={{
               type: "spring",
             }}
-            className="my-auto rounded-full text-white bg-blue-300 p-2 px-8 bg-gradient-to-r from-pink-400 via-purple-500 to-blue-500"
+            className="my-auto"
           >
             <Link
               href="/notes"
-              className="text-base font-semibold tracking-wide"
+              className="text-base underline underline-offset-4 font-semibold tracking-wide bg-clip-text text-transparent bg-gradient-to-r via-blue-700 from-pink-700 to-purple-700"
             >
               Take a Note
             </Link>
           </motion.li>
+
           <li>
             <Link href="/search" className="cursor-pointer">
               <motion.input
                 initial={{
-                  width: "0px",
+                  scale: 0,
                 }}
                 animate={{
-                  width: "280px",
-                }}
-                whileFocus={{
-                  width: "350px",
+                  scale: 1,
                 }}
                 transition={{
-                  delay: 0.2,
+                  type: "spring",
                 }}
                 className="h-10 cursor-pointer rounded-full border-none bg-purple-200 focus:border-2 hover:border-purple-400 outline-purple-700 pe-4 ps-4 text-sm shadow-sm"
                 id="search"
@@ -160,11 +271,115 @@ export function Navbar() {
               />
             </Link>
           </li>
+          <li className="my-auto">
+            <Dropdown />
+          </li>
+          {!loading && (
+            <motion.div
+              initial={{
+                scale: 0,
+              }}
+              whileInView={{
+                scale: 1,
+              }}
+              className="my-auto"
+            >
+              {user ? (
+                <motion.li
+                  whileHover={{
+                    scale: 1.04,
+                  }}
+                  whileTap={{
+                    scale: 0.8,
+                  }}
+                  transition={{
+                    type: "spring",
+                  }}
+                  onClick={Logout}
+                  className="my-auto cursor-pointer rounded-full text-white bg-blue-300 p-2 px-6 bg-gradient-to-r from-pink-300 via-purple-300 to-blue-300"
+                >
+                  <div className="text-xs font-semibold tracking-wide text-gray-600">
+                    Log Out
+                  </div>
+                </motion.li>
+              ) : (
+                <motion.li
+                  whileHover={{
+                    scale: 1.08,
+                  }}
+                  whileTap={{
+                    scale: 0.8,
+                  }}
+                  transition={{
+                    type: "spring",
+                  }}
+                  onClick={LoginRegisterWithGoogle}
+                  className=" bg-white cursor-pointer my-auto p-2 px-6 flex flex-row gap-4 rounded-full border hover:border-2 border-gray-500 "
+                  style={{
+                    boxShadow: "rgba(100, 100, 111, 0.2) 0px 7px 29px 0px",
+                  }}
+                >
+                  <div className="">
+                    <svg
+                      enable-background="new 0 0 128 128"
+                      id="Social_Icons"
+                      version="1.1"
+                      viewBox="0 0 128 128"
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="w-5 my-auto"
+                    >
+                      <g id="_x31__stroke">
+                        <g id="Google">
+                          <rect
+                            clip-rule="evenodd"
+                            fill="none"
+                            fill-rule="evenodd"
+                            height="128"
+                            width="128"
+                          />
+                          <path
+                            clip-rule="evenodd"
+                            d="M27.585,64c0-4.157,0.69-8.143,1.923-11.881L7.938,35.648    C3.734,44.183,1.366,53.801,1.366,64c0,10.191,2.366,19.802,6.563,28.332l21.558-16.503C28.266,72.108,27.585,68.137,27.585,64"
+                            fill="#FBBC05"
+                            fill-rule="evenodd"
+                          />
+                          <path
+                            clip-rule="evenodd"
+                            d="M65.457,26.182c9.031,0,17.188,3.2,23.597,8.436L107.698,16    C96.337,6.109,81.771,0,65.457,0C40.129,0,18.361,14.484,7.938,35.648l21.569,16.471C34.477,37.033,48.644,26.182,65.457,26.182"
+                            fill="#EA4335"
+                            fill-rule="evenodd"
+                          />
+                          <path
+                            clip-rule="evenodd"
+                            d="M65.457,101.818c-16.812,0-30.979-10.851-35.949-25.937    L7.938,92.349C18.361,113.516,40.129,128,65.457,128c15.632,0,30.557-5.551,41.758-15.951L86.741,96.221    C80.964,99.86,73.689,101.818,65.457,101.818"
+                            fill="#34A853"
+                            fill-rule="evenodd"
+                          />
+                          <path
+                            clip-rule="evenodd"
+                            d="M126.634,64c0-3.782-0.583-7.855-1.457-11.636H65.457v24.727    h34.376c-1.719,8.431-6.397,14.912-13.092,19.13l20.474,15.828C118.981,101.129,126.634,84.861,126.634,64"
+                            fill="#4285F4"
+                            fill-rule="evenodd"
+                          />
+                        </g>
+                      </g>
+                    </svg>
+                  </div>
+                  <div className="font-bold text-black my-auto font-outfit text-sm">
+                    Login With Google
+                  </div>
+                </motion.li>
+              )}
+            </motion.div>
+          )}
         </ul>
       </div>
       <div className="text-sm flex flex-row justify-center gap-8 mt-1 md:hidden">
         {menuItems.map((item) => (
-          <div key={item.name} className="my-auto bg-slate-200 p-1 px-4 rounded-full">
+          <div
+            key={item.name}
+            className="my-auto bg-slate-200 p-1 px-4 rounded-full"
+          >
             <Link
               href={item.href}
               className="text-xs font-semibold text-gray-800 hover:text-gray-800/75"
@@ -433,3 +648,68 @@ const Search: Searchprops[] = [
     tag: "msc semester 4 sem 4",
   },
 ];
+
+const Dropdown = () => {
+  const Router = useRouter();
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+
+  const openDropdown = () => {
+    setIsDropdownOpen(true);
+    setTimeout(() => {
+      closeDropdown();
+    }, 3000);
+  };
+  const closeDropdown = () => {
+    setIsDropdownOpen(false);
+  };
+
+  return (
+    <div className="my-auto">
+      <div className="mx-auto flex justify-between items-center">
+        <div className="relative">
+          <motion.div
+            initial={{
+              scale: 0,
+            }}
+            whileInView={{
+              scale: 1,
+            }}
+            whileHover={{
+              scale: 1.04,
+            }}
+            whileTap={{
+              scale: 0.8,
+            }}
+            transition={{
+              type: "spring",
+            }}
+            onHoverStart={openDropdown}
+            onClick={openDropdown}
+            className="my-auto cursor-pointer rounded-full text-white bg-blue-300 p-2 px-6 bg-gradient-to-r from-pink-600 via-purple-600 to-blue-600"
+          >
+            <div className="text-xs font-semibold tracking-wide">Tools</div>
+          </motion.div>
+          {isDropdownOpen && (
+            <div className="absolute right-0 p-2 w-72 z-20 flex flex-col gap-1">
+              <div
+                onClick={() => {
+                  Router.push("/tools/add-watermark-to-pdf");
+                }}
+                className="py-2 cursor-pointer bg-gray-800 rounded-xl shadow-lg"
+              >
+                <div className="block cursor-pointer text-center px-4 py-2 text-white hover:text-gray-300 font-outfit tracking-wider text-sm">
+                  Add Watermark to PDF
+                </div>
+              </div>
+              <div className="py-2 cursor-pointer bg-gray-800 rounded-xl shadow-lg">
+                <div className="block cursor-pointer text-center px-4 py-2 text-red-200 hover:text-gray-300 font-outfit tracking-wider text-xs">
+                  We are adding more tools...
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+};
