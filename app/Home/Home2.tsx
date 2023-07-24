@@ -7,7 +7,7 @@ import { easeInOut, motion } from "framer-motion";
 export default function Home2() {
   return (
     <div>
-      <div className="min-w-full min-h-full md:px-20 min-[0px]:px-2 py-4">
+      <div className="min-w-full min-h-full md:px-20 min-[0px]:px-2 py-4 z-0">
         <div
           className="min-w-full relative"
           style={{

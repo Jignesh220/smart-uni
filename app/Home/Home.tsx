@@ -18,7 +18,7 @@ export default function Home() {
         transition={{
           ease: "easeInOut",
         }}
-        className="min-w-full h-auto flex justify-center items-center lg:px-8 min-[0px]:px-2 mt-5 text-center"
+        className="min-w-full h-auto flex justify-center items-center lg:px-8 min-[0px]:px-2 mt-5 text-center z-0"
       >
         <motion.div
           initial={{
