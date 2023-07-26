@@ -25,8 +25,8 @@ const menuItems = [
     href: "/#Category",
   },
   {
-    name: "About",
-    href: "/about-us",
+    name: "Blog",
+    href: "/blogs",
   },
   {
     name: "Contact",
@@ -224,7 +224,7 @@ export function Navbar() {
             <li key={item.name} className="my-auto ">
               <Link
                 href={item.href}
-                className="text-sm font-semibold text-gray-800 hover:text-gray-800/75"
+                className="text-lg tracking-wide font-semibold text-gray-800 hover:text-gray-800/75"
               >
                 {item.name}
               </Link>
@@ -244,7 +244,7 @@ export function Navbar() {
           >
             <Link
               href="/notes"
-              className="text-base underline underline-offset-4 font-semibold tracking-wide bg-clip-text text-transparent bg-gradient-to-r via-blue-700 from-pink-700 to-purple-700"
+              className="text-lg underline underline-offset-4 font-semibold tracking-wide bg-clip-text text-transparent bg-gradient-to-r via-blue-700 from-pink-700 to-purple-700"
             >
               Take a Note
             </Link>

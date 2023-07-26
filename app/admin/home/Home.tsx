@@ -23,6 +23,11 @@ const adminItem = [
     title: "Remove",
     url: "#",
   },
+  {
+    index: 5,
+    title: "Manage Blogs",
+    url: "/admin/blogs",
+  },
 ];
 
 export default function Home() {
