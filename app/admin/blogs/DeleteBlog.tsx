@@ -21,6 +21,7 @@ export default function DeleteBlog() {
   const storage = getStorage();
   const [BlogData, setBlogData] = React.useState<DocumentData[]>([]);
   const [isModalOpen, setisModalOpen] = useState(false);
+  const [BlogId, setBlogId] = useState("");
   const openModal = () => {
     setisModalOpen(true);
   };
@@ -41,12 +42,12 @@ export default function DeleteBlog() {
     });
   };
 
-  const deleteNote = async (id: string) => {
-    const desertRef = ref(storage, `blogs/${id}/coverImage`);
+  const deleteNote = async () => {
+    const desertRef = ref(storage, `blogs/${BlogId}/coverImage`);
     deleteObject(desertRef)
       .then(async () => {
         // File deleted successfully
-        await deleteDoc(doc(db, `/blogs`, id)).then(() => {
+        await deleteDoc(doc(db, `/blogs`, BlogId)).then(() => {
           handleGetData();
           closeModal();
         });
@@ -90,7 +91,10 @@ export default function DeleteBlog() {
                 </div>
                 <div
                   className="my-8 flex justify-center cursor-pointer"
-                  onClick={openModal}
+                  onClick={() => {
+                    setBlogId(item.id);
+                    openModal();
+                  }}
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -152,7 +156,7 @@ export default function DeleteBlog() {
                     </button>
                     <button
                       onClick={() => {
-                        deleteNote(item.id);
+                        deleteNote();
                       }}
                       className="bg-red-700 p-2 px-5 rounded-md text-white"
                     >

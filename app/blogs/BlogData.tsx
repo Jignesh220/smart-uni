@@ -30,7 +30,7 @@ export default function BlogData() {
     });
   };
   return (
-    <div className="min-w-full min-h-screen mb-16">
+    <div className="min-w-full min-h-screen my-8">
       <div className="flex flex-row justify-center gap-6 flex-wrap">
         {BlogData.map((item) => (
           <Link href={`/blogs/${item.id}`} className="" key={item.id}>
