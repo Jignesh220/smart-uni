@@ -11,6 +11,8 @@ export default function SendMailTesting() {
   const [sendBackend, setsendBackend] = useState({
     email: "",
     htmltable: "",
+    subject: "",
+    name: ""
   });
 
   useEffect(() => {
@@ -27,7 +29,7 @@ export default function SendMailTesting() {
 
   const sendEMailToUser = async () => {
     try {
-      const response = await axios.post("/api/sendemail", sendBackend)
+      const response = await axios.post("/api/sendemail", sendBackend);
       console.log(response);
       setuploaded(true);
     } catch (error: any) {
@@ -52,7 +54,17 @@ export default function SendMailTesting() {
   return (
     <div className="">
       <div className="my-16 flex flex-col min-w-full justify-center items-center min-h-screen px-2">
-        <div className="max-w-4xl md:min-w-[50rem] min-w-full my-4">
+        <div className="max-w-4xl md:min-w-[50rem] min-w-full my-4 flex flex-col gap-4">
+        <input
+            type="text"
+            id="name"
+            name="name"
+            placeholder="Enter senders Name(Your Name)"
+            onChange={(e) => {
+              setsendBackend({ ...sendBackend, name: e.target.value });
+            }}
+            className="w-full rounded-full px-6 h-10 bg-blue-100 border-gray-200 pe-10 shadow-sm sm:text-sm"
+          />
           <div className="relative mb-2">
             <label htmlFor="UserEmail" className="sr-only">
               {" "}
@@ -85,6 +97,16 @@ export default function SendMailTesting() {
               </svg>
             </span>
           </div>
+          <input
+            type="text"
+            id="subject"
+            name="subject"
+            placeholder="Enter Subject for email"
+            onChange={(e) => {
+              setsendBackend({ ...sendBackend, subject: e.target.value });
+            }}
+            className="w-full rounded-full px-6 h-10 bg-blue-100 border-gray-200 pe-10 shadow-sm sm:text-sm"
+          />
           <textarea
             id="OrderNotes"
             className="mt-2 p-8 w-full rounded-3xl bg-blue-100 border-gray-200 align-top shadow-sm sm:text-sm"

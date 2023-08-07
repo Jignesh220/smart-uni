@@ -28,6 +28,16 @@ const adminItem = [
     title: "Manage Blogs",
     url: "/admin/blogs",
   },
+  {
+    index: 6,
+    title: "send mail to Subcribers",
+    url: "/admin/sendemail",
+  },
+  {
+    index: 7,
+    title: "test a mail",
+    url: "/admin/sendemailtest",
+  },
 ];
 
 export default function Home() {

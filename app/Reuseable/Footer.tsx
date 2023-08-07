@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import SvgIcon from "./SvgIcon";
 import { motion } from "framer-motion";
@@ -7,9 +7,36 @@ import Instagram from "../ContactSVG/Instagram";
 import Facebook from "../ContactSVG/Facebook";
 import Mail from "../ContactSVG/Mail";
 import Twitter from "../ContactSVG/Twitter";
+import { uuidv4 } from "@firebase/util";
+import { doc, getDoc, setDoc } from "firebase/firestore";
+import { db } from "../Firebase/Firebase";
 
 export default function Footer() {
   const [DegreeViewPoint, setDegreeViewPoint] = React.useState(false);
+  const [emailForSubscription, setemailForSubscription] = useState("");
+  const [notification, setnotification] = useState("please enter valid email");
+  const [isNotificationVisible, setisNotificationVisible] = useState(true);
+  const handleUploadData = async (e: React.FormEvent) => {
+    e.preventDefault();
+    const uniqID = uuidv4();
+    if (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailForSubscription)) {
+      const ref = `Subscription/${uniqID}`;
+      const formData = doc(db, ref);
+      await setDoc(formData, {
+        id: uniqID,
+        email: emailForSubscription,
+      }).then(() => {
+        setisNotificationVisible(true);
+        setnotification("You email is saved!");
+      });
+    }
+  };
+  useEffect(() => {
+    if (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailForSubscription)) {
+      setisNotificationVisible(false);
+    }
+  }, [emailForSubscription]);
+
   return (
     <motion.footer
       initial={{
@@ -52,6 +79,41 @@ export default function Footer() {
         }}
         className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8"
       >
+        {/* update subscription button */}
+        <center className="md:min-w-[80rem] min-w-full flex justify-center">
+          <div className="flex md:flex-row flex-col md:gap-0 gap-2 md:min-w-[30rem] min-w-full bg-purple-200 md:rounded-full rounded-xl overflow-hidden p-2">
+            <input
+              type="text"
+              id="Subscribe"
+              placeholder="abc@xyz.com"
+              onChange={(e) => {
+                setemailForSubscription(e.target.value);
+              }}
+              className="w-full px-4 rounded-full bg-transparent outline-none border-gray-200 py-2.5 pe-10 shadow-sm sm:text-sm"
+            />
+            <button
+              type="button"
+              onClick={handleUploadData}
+              className="bg-purple-800 md:py-0 py-3 md:tracking-normal tracking-wide text-white rounded-full px-4 md:text-xs text-sm hover:text-white/75"
+            >
+              <span className="sr-only">Search</span>
+              subscribe for updates
+            </button>
+          </div>
+        </center>
+        {isNotificationVisible && (
+          <div
+            className={`text-sm mt-2 text-center font-outfit ${
+              /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailForSubscription)
+                ? "text-green-600"
+                : "text-red-600"
+            }`}
+          >
+            {notification}
+          </div>
+        )}
+
+        {/* About senction */}
         <p className="mx-auto mt-6 max-w-6xl text-center font-outfit font-bold tracking-wider leading-relaxed text-blue-800 text-opacity-50">
           Welcome to our college website, a comprehensive platform designed to
           support your academic journey, offering subject notes, old exam

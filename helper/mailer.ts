@@ -3,8 +3,10 @@ import nodemailer from "nodemailer";
 interface sendEmail {
   email: string[];
   htmltable: string;
+  subject: string;
+  name: string;
 }
-export const sendEmail = async ({ email,htmltable }: sendEmail) => {
+export const sendEmail = async ({ email,htmltable,subject,name }: sendEmail) => {
   try {
     var transport = nodemailer.createTransport({
       service: "gmail",
@@ -15,10 +17,10 @@ export const sendEmail = async ({ email,htmltable }: sendEmail) => {
     });
 
     const mailOptions = {
-      from: "Alpita Patel <starpmart8@gmail.com>",
+      from: `${name} <starpmart8@gmail.com>`,
       to: [],
       bcc: email,
-      subject: "Test Message 4",
+      subject: subject,
       html: `<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
       <html lang="en">
       
