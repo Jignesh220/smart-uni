@@ -133,7 +133,7 @@ export default function SendMailTesting() {
             }}
           ></textarea>
         </div>
-        <div className="text-5xl font-outfit font-bold mt-8">Perview</div>
+        <div className="text-4xl font-outfit font-bold mt-8">Perview</div>
         <div className="my-8">
           <div dangerouslySetInnerHTML={{ __html: PerviewHtml }}></div>
         </div>
