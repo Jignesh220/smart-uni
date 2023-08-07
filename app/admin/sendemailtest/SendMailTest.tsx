@@ -12,8 +12,24 @@ export default function SendMailTesting() {
     email: "",
     htmltable: "",
     subject: "",
-    name: ""
+    name: "",
   });
+  const PerviewHtml = `<table align="center" width="100%" data-id="react-email-section" border="0" cellPadding="0" cellSpacing="0" role="presentation">
+  <tbody>
+    <tr>
+      <td>
+        <table style="border-collapse:collapse;width:100%">
+          <tr>
+            <th style="border:0.5px solid #FFE0FC;font-size:14px;text-align:center;padding:8px;font-family:HelveticaNeue,Helvetica,Arial,sans-serif">Degree</th>
+            <th style="border:0.5px solid #FFE0FC;font-size:14px;text-align:center;padding:8px;font-family:HelveticaNeue,Helvetica,Arial,sans-serif">Subject</th>
+            <th style="border:0.5px solid #FFE0FC;font-size:14px;text-align:center;padding:8px;font-family:HelveticaNeue,Helvetica,Arial,sans-serif">Sub Subjects</th>
+          </tr>
+          ${sendBackend.htmltable}
+        </table>
+      </td>
+    </tr>
+  </tbody>
+</table>`;
 
   useEffect(() => {
     if (
@@ -55,7 +71,7 @@ export default function SendMailTesting() {
     <div className="">
       <div className="my-16 flex flex-col min-w-full justify-center items-center min-h-screen px-2">
         <div className="max-w-4xl md:min-w-[50rem] min-w-full my-4 flex flex-col gap-4">
-        <input
+          <input
             type="text"
             id="name"
             name="name"
@@ -117,6 +133,10 @@ export default function SendMailTesting() {
             }}
           ></textarea>
         </div>
+        <div className="text-5xl font-outfit font-bold mt-8">Perview</div>
+        <div className="my-8">
+          <div dangerouslySetInnerHTML={{ __html: PerviewHtml }}></div>
+        </div>
         <div className="max-w-4xl md:min-w-[50rem] min-w-full">
           <motion.button
             whileTap={{
@@ -135,6 +155,7 @@ export default function SendMailTesting() {
             {buttonDisable ? "Fill details first!!" : "Send"}
           </motion.button>
         </div>
+        
       </div>
     </div>
   );

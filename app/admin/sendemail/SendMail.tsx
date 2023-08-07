@@ -14,6 +14,22 @@ export default function SendMail() {
     subject: "",
     name: "",
   });
+  const PerviewHtml = `<table align="center" width="100%" data-id="react-email-section" border="0" cellPadding="0" cellSpacing="0" role="presentation">
+  <tbody>
+    <tr>
+      <td>
+        <table style="border-collapse:collapse;width:100%">
+          <tr>
+            <th style="border:0.5px solid #FFE0FC;font-size:14px;text-align:center;padding:8px;font-family:HelveticaNeue,Helvetica,Arial,sans-serif">Degree</th>
+            <th style="border:0.5px solid #FFE0FC;font-size:14px;text-align:center;padding:8px;font-family:HelveticaNeue,Helvetica,Arial,sans-serif">Subject</th>
+            <th style="border:0.5px solid #FFE0FC;font-size:14px;text-align:center;padding:8px;font-family:HelveticaNeue,Helvetica,Arial,sans-serif">Sub Subjects</th>
+          </tr>
+          ${sendBackend.htmltable}
+        </table>
+      </td>
+    </tr>
+  </tbody>
+</table>`;
 
   useEffect(() => {
     if (sendBackend.htmltable.length > 10 && sendBackend.email.length > 0) {
@@ -80,6 +96,10 @@ export default function SendMail() {
               setsendBackend({ ...sendBackend, htmltable: e.target.value });
             }}
           ></textarea>
+        </div>
+        <div className="text-5xl font-outfit font-bold mt-8">Perview</div>
+        <div className="my-8">
+          <div dangerouslySetInnerHTML={{ __html: PerviewHtml }}></div>
         </div>
         <div className="max-w-4xl md:min-w-[50rem] min-w-full">
           <motion.button
