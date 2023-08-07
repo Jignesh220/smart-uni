@@ -4,16 +4,40 @@ import React, { useState, useEffect } from "react";
 import { NavbarAdmin } from "@/app/Reuseable/NavbarAdmin";
 import { motion } from "framer-motion";
 import axios from "axios";
+import { DocumentData, collection, getDocs } from "firebase/firestore";
+import { db } from "@/app/Firebase/Firebase";
 
+interface SendBackendState {
+  email: DocumentData[];
+  htmltable: string;
+  subject: string;
+  name: string;
+}
 export default function SendMail() {
   const [buttonDisable, setbuttonDisable] = useState(true);
   const [uploaded, setuploaded] = useState(false);
-  const [sendBackend, setsendBackend] = useState({
-    email: ["jigneshpatel17777@gmail.com", "jigneshbaria1309@gmail.com"],
+  const [sendBackend, setsendBackend] = useState<SendBackendState>({
+    email: [],
     htmltable: "",
     subject: "",
     name: "",
   });
+  useEffect(() => {
+    getOldPaperData();
+  }, [db]);
+
+  const getOldPaperData = async () => {
+    const ref = `Subscription/`;
+    const emailInfo = collection(db, ref);
+    const Mysnapshort = await getDocs(emailInfo);
+    Mysnapshort.forEach(async (doc) => {
+      //set a doc.data() in setsendBackend
+      setsendBackend((prevSendBackend) => ({
+        ...prevSendBackend,
+        email: [...prevSendBackend.email, doc.data().email],
+      }));
+    });
+  };
   const PerviewHtml = `<table align="center" width="100%" data-id="react-email-section" border="0" cellPadding="0" cellSpacing="0" role="presentation">
   <tbody>
     <tr>
@@ -67,7 +91,7 @@ export default function SendMail() {
     <div className="">
       <div className="my-16 flex flex-col min-w-full justify-center items-center min-h-screen px-2">
         <div className="max-w-4xl md:min-w-[50rem] min-w-full my-4 flex flex-col gap-4">
-        <input
+          <input
             type="text"
             id="name"
             name="name"
