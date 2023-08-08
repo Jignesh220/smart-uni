@@ -44,7 +44,7 @@ const SemesterNumberArray = [
 interface CategoryProps {
   index: number;
   title: string;
-  url: "syllabus" | "notes" | "oldPaper";
+  url: "syllabus" | "notes" | "oldPaper" | "assignment";
 }
 const categoryArray: CategoryProps[] = [
   {
@@ -62,14 +62,19 @@ const categoryArray: CategoryProps[] = [
     title: "Exam Papers",
     url: "oldPaper",
   },
+  {
+    index: 4,
+    title: "Assignment",
+    url: "assignment",
+  },
 ];
 export default function Home() {
   const [popupBox, setpopupBox] = useState(false);
   const [SemesterNumber, setSemesterNumber] = useState(0);
   const [Semester, setSemester] = useState<string | null>(null);
-  const [category, setCategory] = useState<"syllabus" | "notes" | "oldPaper">(
-    "syllabus"
-  );
+  const [category, setCategory] = useState<
+    "syllabus" | "notes" | "oldPaper" | "assignment"
+  >("syllabus");
   React.useEffect(() => {
     if (typeof window !== "undefined") {
       const fragmentIdentifier = window.location.hash.slice(1);
@@ -124,7 +129,11 @@ export default function Home() {
                 onClick={() => {
                   setSemester(item.index.toString());
                 }}
-                className={`flex justify-center cursor-pointer flex-row md:gap-3 gap-2 shadow-xl shadow-slate-200 rounded-xl ${Semester && Semester === item.index.toString() ? "bg-purple-200" : "bg-white"} hover:bg-purple-100 border border-black/10 md:p-4 p-2`}
+                className={`flex justify-center cursor-pointer flex-row md:gap-3 gap-2 shadow-xl shadow-slate-200 rounded-xl ${
+                  Semester && Semester === item.index.toString()
+                    ? "bg-purple-200"
+                    : "bg-white"
+                } hover:bg-purple-100 border border-black/10 md:p-4 p-2`}
               >
                 <div className="my-auto">
                   <svg
@@ -159,7 +168,9 @@ export default function Home() {
                 onClick={() => {
                   setCategory(item.url);
                 }}
-                className={`flex cursor-pointer justify-center flex-row gap-2 rounded-full shadow-xl shadow-slate-200 ${category === item.url ? "bg-purple-200":"bg-white"} hover:bg-purple-100 border border-black/10 p-2 px-4`}
+                className={`flex cursor-pointer justify-center flex-row gap-2 rounded-full shadow-xl shadow-slate-200 ${
+                  category === item.url ? "bg-purple-200" : "bg-white"
+                } hover:bg-purple-100 border border-black/10 p-2 px-4`}
               >
                 <div className="my-auto">
                   <svg
@@ -181,7 +192,7 @@ export default function Home() {
               </div>
             ))}
           </div>
-          <div className="bg-white min-h-[70vh] overflow-hidden overflow-y-scroll">
+          <div className="bg-white min-h-[70vh] overflow-hidden overflow-y-scroll p-2 scrollbar-hidden">
             {Semester && (
               <div className="flex md:justify-start justify-center flex-row md:gap-2 gap-2 flex-wrap">
                 {SubjectData.filter(
@@ -209,10 +220,31 @@ export default function Home() {
                     arrayItem.category === category &&
                     arrayItem.semester === `semester_${Semester}`
                 ).map((item) => (
-                  <div
+                  <motion.div
+                    initial={{
+                      y: 100,
+                      opacity: 0,
+                    }}
+                    whileInView={{
+                      y: 0,
+                      opacity: 1,
+                    }}
+                    whileTap={{
+                      scale: 0.9,
+                    }}
+                    whileHover={{
+                      scale: 1.02,
+                    }}
+                    transition={{
+                      delay: SubjectData.findIndex((i) => i.id === item.id)/100,
+                      type:"spring"
+                    }}
                     key={item.id}
                     onClick={() => {
                       setpopupBox(true);
+                      setArrayIndex(
+                        SubjectData.findIndex((i) => i.id === item.id)
+                      );
                     }}
                     className="md:min-w-[10rem] cursor-pointer w-[11.2rem] md:max-w-[12rem] min-h-auto p-4 rounded-2xl relative shadow-2xl shadow-slate-200 border border-purple-700 bg-purple-50/40"
                   >
@@ -245,7 +277,7 @@ export default function Home() {
                         [ {item.subjectCode.split("_").join(" ")} ]
                       </div>
                     </div>
-                  </div>
+                  </motion.div>
                 ))}
               </div>
             )}

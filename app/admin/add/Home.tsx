@@ -514,6 +514,7 @@ export default function Home() {
                 >
                   <option value="">Please Select Category</option>
                   <option value="oldPaper">Old Paper</option>
+                  <option value="assignment">Assignment</option>
                   <option value="notes">Notes</option>
                   <option value="syllabus">syllabus</option>
                   <option value="projectGuide">Project Guide</option>
