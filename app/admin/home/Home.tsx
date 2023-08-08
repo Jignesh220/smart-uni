@@ -21,7 +21,7 @@ const adminItem = [
   {
     index: 4,
     title: "Remove",
-    url: "#",
+    url: "/admin/delete",
   },
   {
     index: 5,
