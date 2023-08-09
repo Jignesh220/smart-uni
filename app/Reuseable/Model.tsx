@@ -95,7 +95,7 @@ const Modal = ({
               boxShadow: "rgba(100, 100, 111, 0.2) 0px 7px 29px 0px",
             }}
           >
-            <div className="max-h-[90vh] overflow-hidden overflow-y-scroll hide-scroll-bar rounded-lg">
+            <div className="max-h-[95vh] overflow-hidden overflow-y-scroll hide-scroll-bar rounded-lg">
               {children}
             </div>
             <div className="absolute right-2 top-2 z-50" onClick={onClose}>
