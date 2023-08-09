@@ -160,7 +160,7 @@ export default function Home() {
           </div>
           <div className="flex md:justify-start justify-center flex-row gap-2 flex-wrap mb-6 md:mt-6">
             <div className="my-auto text-sm font-outfit font-bold tracking-wider hidden md:block">
-              Category :{" "}
+              Category {" "}
             </div>
             {categoryArray.map((item) => (
               <div
@@ -192,7 +192,7 @@ export default function Home() {
               </div>
             ))}
           </div>
-          <div className="bg-white min-h-[70vh] overflow-hidden overflow-y-scroll p-2 scrollbar-hidden">
+          <div className="bg-white h-[69.5vh] overflow-hidden overflow-y-scroll p-2 scrollbar-hidden">
             {Semester && (
               <div className="flex md:justify-start justify-center flex-row md:gap-2 gap-2 flex-wrap">
                 {SubjectData.filter(
@@ -233,7 +233,8 @@ export default function Home() {
                       scale: 0.9,
                     }}
                     whileHover={{
-                      scale: 1.02,
+                      scale: 1.05,
+                      backgroundColor: "rgb(243 232 255)"
                     }}
                     transition={{
                       delay: SubjectData.findIndex((i) => i.id === item.id)/100,
@@ -246,7 +247,7 @@ export default function Home() {
                         SubjectData.findIndex((i) => i.id === item.id)
                       );
                     }}
-                    className="md:min-w-[10rem] cursor-pointer w-[11.2rem] md:max-w-[12rem] min-h-auto p-4 rounded-2xl relative shadow-2xl shadow-slate-200 border border-purple-700 bg-purple-50/40"
+                    className="md:min-w-[10rem] cursor-pointer w-[11.2rem] md:max-w-[12rem] min-h-auto p-4 rounded-2xl relative shadow-2xl shadow-slate-200 border border-purple-700 bg-purple-50"
                   >
                     <div className="absolute top-3 left-3">
                       <svg

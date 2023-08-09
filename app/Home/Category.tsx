@@ -1104,7 +1104,7 @@ const categoryItems = [
     color: "bg-blue-200",
     bgSVG: "bg-blue-700",
     textColor: "text-blue-900",
-    url: "/category/oldPaper",
+    url: "/category?n=oldPaper&s=semester_1&d=BachelorOfScience",
   },
   // {
   //   index: 2,
@@ -1122,7 +1122,7 @@ const categoryItems = [
     color: "bg-blue-200",
     bgSVG: "bg-blue-700",
     textColor: "text-blue-900",
-    url: "/category/notes",
+    url: "/category?n=notes&s=semester_1&d=BachelorOfScience",
   },
   // {
   //   index: 4,
@@ -1133,14 +1133,14 @@ const categoryItems = [
   // },
   {
     index: 5,
-    title: "Project Guid",
+    title: "Project Guide",
     // color: "bg-yellow-200",
     // bgSVG: "bg-yellow-700",
     // textColor: "text-yellow-900",
     color: "bg-blue-200",
     bgSVG: "bg-blue-700",
     textColor: "text-blue-900",
-    url: "/category/projectGuide",
+    url: "/category?n=projectGuide&s=semester_1&d=BachelorOfScience",
   },
   {
     index: 6,
@@ -1151,7 +1151,7 @@ const categoryItems = [
     color: "bg-blue-200",
     bgSVG: "bg-blue-700",
     textColor: "text-blue-900",
-    url: "/category/syllabus",
+    url: "/category?n=syllabus&s=semester_1&d=BachelorOfScience",
   },
 ];
 

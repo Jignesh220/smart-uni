@@ -182,7 +182,7 @@ export default function Home() {
               </div>
             ))}
           </div>
-          <div className="bg-white min-h-[70vh] overflow-hidden overflow-y-scroll p-2 scrollbar-hidden">
+          <div className="bg-white h-[69.5vh] overflow-hidden overflow-y-scroll p-2 scrollbar-hidden">
             {Semester && (
               <div className="flex md:justify-start justify-center flex-row md:gap-2 gap-2 flex-wrap">
                 {SubjectData.filter(

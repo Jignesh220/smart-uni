@@ -46,14 +46,10 @@ export default function Footer() {
       onViewportEnter={() => {
         setDegreeViewPoint(true);
       }}
-      animate={
-        DegreeViewPoint
-          ? {
-              scale: 1,
-              opacity: 1,
-            }
-          : {}
-      }
+      animate={{
+        scale: 1,
+        opacity: 1,
+      }}
       transition={{
         type: "spring",
       }}
@@ -65,14 +61,10 @@ export default function Footer() {
           scale: 0,
           opacity: 0,
         }}
-        animate={
-          DegreeViewPoint
-            ? {
-                scale: 1,
-                opacity: 1,
-              }
-            : {}
-        }
+        animate={{
+          scale: 1,
+          opacity: 1,
+        }}
         transition={{
           delay: 0.3,
           type: "spring",
