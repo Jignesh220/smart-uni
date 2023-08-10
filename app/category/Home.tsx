@@ -21,7 +21,7 @@ export default function Home() {
   const [Degree, setDegree] = useState<string | null>("BachelorOfScience");
   const [Semester, setSemester] = useState<string | null>("1");
   const [isModelOpen, setIsModelOpen] = useState<boolean>(false);
-  const [url, seturl] = useState("")
+  const [url, seturl] = useState("");
 
   const SemesterNumberArray = [
     {
@@ -79,21 +79,24 @@ export default function Home() {
   useEffect(() => {
     setTimeout(() => {
       setSemester(sNumber?.slice(9) || "1");
-    }, 1000);
+    }, 100);
   }, [Semester]);
 
   useEffect(() => {
     setTimeout(() => {
       setDegree(dName);
-    }, 1000);
+    }, 100);
   }, [Degree]);
 
   useEffect(() => {
     if (typeof window !== "undefined") {
-      seturl(`${process.env.NEXT_PUBLIC_URL}/category${window.location.search.toString()}`);
+      seturl(
+        `${
+          process.env.NEXT_PUBLIC_URL
+        }/category${window.location.search.toString()}`
+      );
     }
   }, [Semester, Degree]);
-  
 
   const [SubjectData, setSubjectData] = React.useState<DocumentData[]>([]);
   const [ArrayIndex, setArrayIndex] = useState(0);
@@ -241,9 +244,7 @@ export default function Home() {
         <div
           onClick={async () => {
             try {
-              await navigator.clipboard.writeText(
-                `${url}`
-              );
+              await navigator.clipboard.writeText(`${url}`);
               setcopy(true);
               setTimeout(() => {
                 setcopy(false);
@@ -300,7 +301,18 @@ export default function Home() {
         {/* <ShareMenu /> */}
         <div className="flex h-auto my-auto md:justify-start justify-center flex-row md:gap-4 gap-2 flex-wrap mt-4">
           {DegreeArray.map((item) => (
-            <div
+            <motion.div
+              initial={{
+                scale: 0,
+                opacity: 0,
+              }}
+              whileInView={{
+                scale: 1,
+                opacity: 1,
+              }}
+              whileTap={{
+                scale: 0.9,
+              }}
               key={item.index}
               onClick={() => {
                 setDegree(item.name);
@@ -327,7 +339,7 @@ export default function Home() {
               <div className="md:text-sm text-xs my-auto font-outfit font-bold tracking-wider">
                 {item.title}
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
         {Degree && (
@@ -336,7 +348,18 @@ export default function Home() {
               0,
               Degree === "BachelorOfScience" ? 6 : 4
             ).map((item) => (
-              <div
+              <motion.div
+                initial={{
+                  scale: 0,
+                  opacity: 0,
+                }}
+                whileInView={{
+                  scale: 1,
+                  opacity: 1,
+                }}
+                whileTap={{
+                  scale: 0.9,
+                }}
                 key={item.index}
                 onClick={() => {
                   setSemester(item.index);
@@ -365,14 +388,24 @@ export default function Home() {
                 <div className="md:text-sm text-xs my-auto font-outfit font-bold tracking-wider">
                   {item.title}
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
         )}
 
         <div className="bg-white h-[69.5vh] overflow-hidden overflow-y-scroll p-2 scrollbar-hidden mt-6">
           {Semester && Degree && (
-            <div className="flex md:justify-start justify-center flex-row md:gap-2 gap-2 flex-wrap">
+            <motion.div
+              initial={{
+                scale: 0,
+                opacity: 0,
+              }}
+              whileInView={{
+                scale: 1,
+                opacity: 1,
+              }}
+              className="flex md:justify-start justify-center flex-row md:gap-2 gap-2 flex-wrap"
+            >
               {SubjectData.filter(
                 (arrayItem) =>
                   arrayItem.category === search &&
@@ -458,7 +491,7 @@ export default function Home() {
                   </div>
                 </motion.div>
               ))}
-            </div>
+            </motion.div>
           )}
         </div>
         <div className="mb-16"></div>
