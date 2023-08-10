@@ -9,45 +9,48 @@ import { uuidv4 } from "@firebase/util";
 import Link from "next/link";
 import { useSearchParams, usePathname } from "next/navigation";
 import Modal from "../Reuseable/Model";
+import { useRouter } from "next/navigation";
 
 export default function Home() {
+  const navigate = useRouter();
   const searchParams = useSearchParams();
   const pathname = usePathname();
   const search = searchParams.get("n");
   const sNumber = searchParams.get("s");
   const dName = searchParams.get("d");
-  const [Degree, setDegree] = useState<string | null>("");
+  const [Degree, setDegree] = useState<string | null>("BachelorOfScience");
   const [Semester, setSemester] = useState<string | null>("1");
   const [isModelOpen, setIsModelOpen] = useState<boolean>(false);
+  const [url, seturl] = useState("")
 
   const SemesterNumberArray = [
     {
-      index: 1,
+      index: "1",
       title: "Semester 1",
       url: `/category?n=${search}&s=semester_1&d=${Degree}`,
     },
     {
-      index: 2,
+      index: "2",
       title: "Semester 2",
       url: `/category?n=${search}&s=semester_2&d=${Degree}`,
     },
     {
-      index: 3,
+      index: "3",
       title: "Semester 3",
       url: `/category?n=${search}&s=semester_3&d=${Degree}`,
     },
     {
-      index: 4,
+      index: "4",
       title: "Semester 4",
       url: `/category?n=${search}&s=semester_4&d=${Degree}`,
     },
     {
-      index: 5,
+      index: "5",
       title: "Semester 5",
       url: `/category?n=${search}&s=semester_5&d=${Degree}`,
     },
     {
-      index: 6,
+      index: "6",
       title: "Semester 6",
       url: `/category?n=${search}&s=semester_6&d=${Degree}`,
     },
@@ -74,12 +77,23 @@ export default function Home() {
   }, [db, Degree]);
 
   useEffect(() => {
-    setSemester(sNumber?.slice(9) || "1");
+    setTimeout(() => {
+      setSemester(sNumber?.slice(9) || "1");
+    }, 1000);
   }, [Semester]);
 
   useEffect(() => {
-    setDegree(dName || "BachelorOfScience");
+    setTimeout(() => {
+      setDegree(dName);
+    }, 1000);
   }, [Degree]);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      seturl(`${process.env.NEXT_PUBLIC_URL}/category${window.location.search.toString()}`);
+    }
+  }, [Semester, Degree]);
+  
 
   const [SubjectData, setSubjectData] = React.useState<DocumentData[]>([]);
   const [ArrayIndex, setArrayIndex] = useState(0);
@@ -89,7 +103,7 @@ export default function Home() {
       while (SubjectData.length > 0) {
         SubjectData.pop();
       }
-      const ref = `/allData/govind_guru/${dName || "BachelorOfScience"}`;
+      const ref = `/allData/govind_guru/${dName}`;
       const oldpaperInformation = collection(db, ref);
       const Mysnapshort = await getDocs(oldpaperInformation);
       Mysnapshort.forEach(async (doc) => {
@@ -109,9 +123,7 @@ export default function Home() {
     return (
       <div className="flex mt-2 flex-row-reverse h-auto my-auto md:justify-end justify-center items-center gap-2">
         <Link
-          href={`whatsapp://send?text=${`${
-            process.env.NEXT_PUBLIC_URL
-          }/${pathname}?${searchParams.toString()}`}`}
+          href={`whatsapp://send?text=${url}`}
           target="_blank"
           className="rounded-full bg-transparent px-2 py-2 text-sm font-semibold text-white shadow-sm hover:bg-black/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
         >
@@ -139,9 +151,7 @@ export default function Home() {
         </Link>
         <Link
           href={`mailto:?subject=URL send via UniSmart.com
-                        ${`${
-                          process.env.NEXT_PUBLIC_URL
-                        }/${pathname}?${searchParams.toString()}`}`}
+                        ${url}`}
           target="_blank"
           className="rounded-full bg-transparent px-2 py-2 text-sm font-semibold text-black shadow-sm hover:bg-black/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
         >
@@ -170,9 +180,7 @@ export default function Home() {
           </motion.svg>
         </Link>
         <Link
-          href={`https://telegram.me/share/url?url=${`${
-            process.env.NEXT_PUBLIC_URL
-          }/${pathname}?${searchParams.toString()}`}`}
+          href={`https://telegram.me/share/url?url=${url}`}
           target="_blank"
           className="rounded-full bg-transparent px-2 py-2 text-sm font-semibold text-black shadow-sm hover:bg-black/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
         >
@@ -204,9 +212,7 @@ export default function Home() {
           href={`sms:?body=URL send via UniSmart.com
                         
                         
-                      ${`${
-                        process.env.NEXT_PUBLIC_URL
-                      }/${pathname}?${searchParams.toString()}`}`}
+                      ${url}`}
           target="_blank"
           className="rounded-full bg-transparent px-2 py-2 text-sm font-semibold text-black shadow-sm hover:bg-black/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
         >
@@ -235,7 +241,9 @@ export default function Home() {
         <div
           onClick={async () => {
             try {
-              await navigator.clipboard.writeText(`${`${process.env.NEXT_PUBLIC_URL}/${pathname}?${searchParams.toString()}`}`);
+              await navigator.clipboard.writeText(
+                `${url}`
+              );
               setcopy(true);
               setTimeout(() => {
                 setcopy(false);
@@ -289,14 +297,14 @@ export default function Home() {
         <div className="my-2 pe-40 hidden md:block">
           <hr />
         </div>
-        <ShareMenu />
+        {/* <ShareMenu /> */}
         <div className="flex h-auto my-auto md:justify-start justify-center flex-row md:gap-4 gap-2 flex-wrap mt-4">
           {DegreeArray.map((item) => (
-            <Link
-              href={item.url}
+            <div
               key={item.index}
               onClick={() => {
                 setDegree(item.name);
+                navigate.push(item.url);
               }}
               className={`flex justify-center cursor-pointer flex-row md:gap-3 gap-2 shadow-xl shadow-slate-200 rounded-xl ${
                 Degree && Degree === item.name ? "bg-purple-200" : "bg-white"
@@ -319,20 +327,23 @@ export default function Home() {
               <div className="md:text-sm text-xs my-auto font-outfit font-bold tracking-wider">
                 {item.title}
               </div>
-            </Link>
+            </div>
           ))}
         </div>
         {Degree && (
           <div className="flex md:justify-start justify-center flex-row md:gap-4 gap-2 flex-wrap mt-3">
-            {SemesterNumberArray.map((item) => (
-              <Link
-                href={item.url}
+            {SemesterNumberArray.slice(
+              0,
+              Degree === "BachelorOfScience" ? 6 : 4
+            ).map((item) => (
+              <div
                 key={item.index}
                 onClick={() => {
-                  setSemester(item.index.toString());
+                  setSemester(item.index);
+                  navigate.push(item.url);
                 }}
                 className={`flex justify-center cursor-pointer flex-row md:gap-3 gap-2 shadow-xl shadow-slate-200 rounded-xl ${
-                  Semester && Semester === item.index.toString()
+                  Semester && Semester === item.index
                     ? "bg-purple-200"
                     : "bg-white"
                 } hover:bg-purple-100 border border-black/10 md:p-4 p-2`}
@@ -354,7 +365,7 @@ export default function Home() {
                 <div className="md:text-sm text-xs my-auto font-outfit font-bold tracking-wider">
                   {item.title}
                 </div>
-              </Link>
+              </div>
             ))}
           </div>
         )}
