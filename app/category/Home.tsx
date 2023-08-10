@@ -79,13 +79,13 @@ export default function Home() {
   useEffect(() => {
     setTimeout(() => {
       setSemester(sNumber?.slice(9) || "1");
-    }, 100);
+    }, 500);
   }, [Semester]);
 
   useEffect(() => {
     setTimeout(() => {
       setDegree(dName);
-    }, 100);
+    }, 500);
   }, [Degree]);
 
   useEffect(() => {
