@@ -52,26 +52,18 @@ export default function Home() {
   const deleteNote = async () => {
     await deleteDoc(
       doc(db, `/allData/govind_guru/${docFileData.degree}`, id)
-    ).then(async () => {
-      await deleteDoc(
-        doc(
-          db,
-          `university/govind_guru/${docFileData.degree}/${docFileData.semester}/${docFileData.mainSubject}/${docFileData.subSubject}/${docFileData.category}`,
-          id
-        )
-      ).then(() => {
-        getOldPaperData();
-        closeModal();
-        setid("");
-        setdocFileData({
-          ...docFileData,
-          semester: "",
-          category: "",
-          degree: "",
-          mainSubject: "",
-          subSubject: "",
-          fileName: "",
-        });
+    ).then(() => {
+      getOldPaperData();
+      closeModal();
+      setid("");
+      setdocFileData({
+        ...docFileData,
+        semester: "",
+        category: "",
+        degree: "",
+        mainSubject: "",
+        subSubject: "",
+        fileName: "",
       });
     });
   };
@@ -158,8 +150,21 @@ export default function Home() {
               delay: SubjectData.findIndex((i) => i.id === item.id) / 100,
               type: "spring",
             }}
+            onClick={() => {
+              openModal();
+              setid(item.aDocid);
+              setdocFileData({
+                ...docFileData,
+                semester: item.semester,
+                category: item.category,
+                degree: item.degree,
+                mainSubject: item.mainSubject,
+                subSubject: item.subject,
+                fileName: item.fileName,
+              });
+            }}
             key={item.id}
-            className="md:w-[18rem] w-[22rem] min-h-auto p-4 rounded-2xl relative shadow-2xl shadow-slate-200 border border-purple-700 bg-purple-50/40"
+            className="md:w-[18rem] w-[22rem] cursor-pointer min-h-auto p-4 rounded-2xl relative shadow-2xl shadow-slate-200 border border-purple-700 bg-purple-50/40"
           >
             <div
               onClick={() => {
@@ -265,8 +270,21 @@ export default function Home() {
                 delay: SubjectData.findIndex((i) => i.id === item.id) / 100,
                 type: "spring",
               }}
+              onClick={() => {
+                openModal();
+                setid(item.aDocid);
+                setdocFileData({
+                  ...docFileData,
+                  semester: item.semester,
+                  category: item.category,
+                  degree: item.degree,
+                  mainSubject: item.mainSubject,
+                  subSubject: item.subject,
+                  fileName: item.fileName,
+                });
+              }}
               key={item.id}
-              className="md:w-[18rem] w-[22rem] min-h-auto p-4 rounded-2xl relative shadow-2xl shadow-slate-200 border border-purple-700 bg-purple-50/40"
+              className="md:w-[18rem] w-[22rem] cursor-pointer min-h-auto p-4 rounded-2xl relative shadow-2xl shadow-slate-200 border border-purple-700 bg-purple-50/40"
             >
               <div
                 onClick={() => {
@@ -374,8 +392,21 @@ export default function Home() {
               delay: SubjectData.findIndex((i) => i.id === item.id) / 100,
               type: "spring",
             }}
+            onClick={() => {
+              openModal();
+              setid(item.aDocid);
+              setdocFileData({
+                ...docFileData,
+                semester: item.semester,
+                category: item.category,
+                degree: item.degree,
+                mainSubject: item.mainSubject,
+                subSubject: item.subject,
+                fileName: item.fileName,
+              });
+            }}
             key={item.id}
-            className="md:w-[18rem] w-[22rem] min-h-auto p-4 rounded-2xl relative shadow-2xl shadow-slate-200 border border-purple-700 bg-purple-50/40"
+            className="md:w-[18rem] w-[22rem] min-h-auto cursor-pointer p-4 rounded-2xl relative shadow-2xl shadow-slate-200 border border-purple-700 bg-purple-50/40"
           >
             <div
               onClick={() => {
@@ -482,8 +513,21 @@ export default function Home() {
               delay: SubjectData.findIndex((i) => i.id === item.id) / 100,
               type: "spring",
             }}
+            onClick={() => {
+              openModal();
+              setid(item.aDocid);
+              setdocFileData({
+                ...docFileData,
+                semester: item.semester,
+                category: item.category,
+                degree: item.degree,
+                mainSubject: item.mainSubject,
+                subSubject: item.subject,
+                fileName: item.fileName,
+              });
+            }}
             key={item.id}
-            className="md:w-[18rem] w-[22rem] min-h-auto p-4 rounded-2xl relative shadow-2xl shadow-slate-200 border border-purple-700 bg-purple-50/40"
+            className="md:w-[18rem] w-[22rem] min-h-auto p-4 cursor-pointer rounded-2xl relative shadow-2xl shadow-slate-200 border border-purple-700 bg-purple-50/40"
           >
             <div
               onClick={() => {
@@ -532,7 +576,7 @@ export default function Home() {
                 <polyline points="14 2 14 8 20 8" />
               </svg>
             </div>
-            <div className="flex flex-col gap-1 min-h-fit justify-start items-start mt-12">
+            <div className="flex flex-col gap-1 min-h-fit justify-start items-start mt-12 cursor-pointer">
               <div className="text-black font-outfit font-bold tracking-wider">
                 {item.university}
               </div>

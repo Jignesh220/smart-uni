@@ -1,7 +1,7 @@
 import React from "react";
 import { auth, db, storage } from "@/app/Firebase/Firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { doc, getDoc, setDoc, updateDoc } from "firebase/firestore";
+import { doc, getDoc, getDocs, setDoc, updateDoc } from "firebase/firestore";
 import { uuidv4 } from "@firebase/util";
 import { PDFDocument, rgb } from "pdf-lib";
 import {
@@ -189,12 +189,14 @@ export default function Home() {
     if (form.fileURL) {
       setdataUploading(true);
       const uniqID = uuidv4();
-      const path = `university/${form.university}/${form.degree}/${form.semester}/${form.mainSubject}/${form.subSubject}/${form.category}/${uniqID}`;
-      const docInformation = doc(db, path);
-      const mySnapshot = await getDoc(docInformation);
+      const unqId = uuidv4();
+      const allDataPath = `allData/${form.university}/${form.degree}/${uniqID}`;
+      const allData = doc(db, allDataPath);
+      const mySnapshot = await getDoc(allData);
       if (!mySnapshot.exists()) {
-        await setDoc(docInformation, {
-          id: uniqID,
+        await setDoc(allData, {
+          aDocid: uniqID,
+          id: unqId,
           university: form.university,
           degree: form.degree,
           semester: form.semester,
@@ -210,70 +212,8 @@ export default function Home() {
           tag3: form.Tag_3,
           tag4: form.Tag_4,
           tag5: form.Tag_5,
-        }).then(async () => {
-          const uid = uuidv4();
-          const MainSubjectPath = `university/${form.university}/${form.degree}_${form.semester}/${form.mainSubject}`;
-          const MainSubjectInfomation = doc(db, MainSubjectPath);
-          await setDoc(MainSubjectInfomation, {
-            id: uid,
-            dataID: uniqID,
-            university: form.university,
-            degree: form.degree,
-            semester: form.semester,
-            mainSubject: form.mainSubject,
-            url: form.mainSubject,
-          })
-            .then(async () => {
-              const uniqId = uuidv4();
-              const SubjectPath = `university/${form.university}/${form.degree}/${form.semester}/${form.mainSubject}/${form.subSubject}`;
-              const SubjectInformation = doc(db, SubjectPath);
-              await setDoc(SubjectInformation, {
-                id: uniqId,
-                dataID: uniqID,
-                university: form.university,
-                degree: form.degree,
-                semester: form.semester,
-                mainSubject: form.mainSubject,
-                subject: form.subSubject,
-                url: form.subSubject,
-              }).then((error) => {
-                console.log(error);
-                setdataUploading(false);
-                setuploadSuccessfull({
-                  ...uploadSuccessfull,
-                  dataUpload: true,
-                });
-              });
-            })
-            .then(async () => {
-              const unqId = uuidv4();
-              const allDataPath = `allData/${form.university}/${form.degree}/${uniqID}`;
-              const allData = doc(db, allDataPath);
-              await setDoc(allData, {
-                aDocid: uniqID,
-                id: unqId,
-                university: form.university,
-                degree: form.degree,
-                semester: form.semester,
-                mainSubject: form.mainSubject,
-                subject: form.subSubject,
-                category: form.category,
-                subjectCode: form.subjectCode,
-                DocumentYear: form.docYear,
-                fileName: form.fileName,
-                fileURL: form.fileURL,
-                tag1: form.Tag_1,
-                tag2: form.Tag_2,
-                tag3: form.Tag_3,
-                tag4: form.Tag_4,
-                tag5: form.Tag_5,
-              }).then((error) => {
-                console.log(error);
-              });
-            })
-            .then((error) => {
-              console.log(error);
-            });
+        }).then((error) => {
+          console.log(error);
         });
       }
     } else {
