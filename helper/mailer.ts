@@ -12,7 +12,7 @@ export const sendEmail = async ({ email,htmltable,subject,name }: sendEmail) => 
       service: "gmail",
       auth: {
         user: "strapmart8@gmail.com",
-        pass: process.env.NEXT_PUBLIC_GMAIL_PASS,
+        pass: process.env.GMAIL_PASS,
       },
     });
 
