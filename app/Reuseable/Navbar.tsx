@@ -390,6 +390,9 @@ export function Navbar() {
         ))}
         <Dropdown />
       </div>
+      <div className="min-w-full bg-rose-800 text-center font-bold font-outfit tracking-wider text-white/75 p-2 z-[999]">
+        This website is closed please visite new website <Link href={"https://syncnotes.vercel.app/"} className="text-white" target="_blank">https://syncnotes.vercel.app/</Link>
+      </div>
     </div>
   );
 }

@@ -4,6 +4,7 @@ import React from "react";
 import Image from "next/image";
 import Avtar from "../../images/home_cover_3.png";
 import { motion } from "framer-motion";
+import Link from "next/link";
 
 export default function Home() {
   return (
